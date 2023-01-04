@@ -9,14 +9,13 @@ export const theme = {
     cardBackground: "#FFFFFF",
   },
 
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px", "512px"],
 
   fontFamily: "'Roboto', sans-serif",
 
   fontWeight: {
     normal: 400,
     medium: 500,
-    semiBold: 600,
     bold: 700,
   },
 
