@@ -27,5 +27,5 @@ export const theme = {
     xl: "40px",
   },
 
-  transitionTiming: "cubic-bezier(0.4, 0, 0.2, 1)",
+  transitionTiming: "250ms cubic-bezier(0.4, 0, 0.2, 1)",
 };
