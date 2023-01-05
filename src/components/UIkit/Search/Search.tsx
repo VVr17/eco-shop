@@ -2,10 +2,10 @@ import { FC } from "react";
 import { IBaseProps, UI_BASE_PROPS } from "../base/uiBaseProps";
 
 interface ISearchProps extends IBaseProps {
-  placeholder: string;
+  placeholder?: string;
 }
 
-const Search: FC<ISearchProps> = ({ placeholder, ...rest }) => {
+const Search: FC<ISearchProps> = ({ placeholder = "", ...rest }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
   return (
