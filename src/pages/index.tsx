@@ -1,5 +1,6 @@
+import ButtonExamples from "components/UIkit/Button/ButtonExamples";
+import Search from "components/UIkit/Search";
 import Head from "next/head";
-import ButtonExamples from "../components/UIkit/Button/ButtonExamples";
 
 const Home = () => {
   return (
@@ -11,7 +12,8 @@ const Home = () => {
       </Head>
       <section>
         Home
-        <ButtonExamples />
+        {/* <ButtonExamples /> */}
+        <Search />
       </section>
     </>
   );
