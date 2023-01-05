@@ -18,11 +18,24 @@ const Test = () => {
         Home
         {/* <ButtonExamples /> */}
         {/* Search */}
-        <Box p="50px" backgroundColor="#F5F3F1">
-          <Search placeholder="Search" />
+        <Box p="30px" backgroundColor="#c7701f">
+          <Search
+            fontSize="s"
+            borderStyle="none"
+            pr="50px"
+            onSearch={console.log}
+          />
+        </Box>
+        <Box p="30px" backgroundColor="white">
+          <Search
+            fontSize="s"
+            borderStyle="solid"
+            borderColor="accent"
+            width="400px"
+          />
         </Box>
         {/* Search */}
-        <Box
+        {/* <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -36,7 +49,7 @@ const Test = () => {
         <Box padding="20px">
           <Checkbox />
           <Checkbox label="checkbox with label" />
-        </Box>
+        </Box> */}
       </section>
     </>
   );
