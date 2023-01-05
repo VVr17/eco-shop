@@ -14,8 +14,7 @@ const Counter: React.FC<IProps> = ({ value, onIncrement, onDecrement }) => {
       <button onClick={onDecrement}>
         <AiOutlineMinus size={12} />
       </button>
-      <input type="text" value={value} readOnly max={10} min={1} />
-      kg
+      <input type="text" value={value} readOnly max={10} min={0.5} /> kg
       <button onClick={onIncrement}>
         <AiOutlinePlus size={12} />
       </button>

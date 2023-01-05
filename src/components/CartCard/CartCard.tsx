@@ -10,13 +10,13 @@ import {
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
 const CartCard = () => {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(0.5);
 
   const setIncrement = () => {
-    if (counter < 10) setCounter((prev) => prev + 1);
+    if (counter < 10) setCounter((prev) => prev + 0.5);
   };
   const setDecrement = () => {
-    if (counter > 1) setCounter((prev) => prev - 1);
+    if (counter > 0.5) setCounter((prev) => prev - 0.5);
   };
 
   return (
