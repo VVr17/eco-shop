@@ -1,11 +1,8 @@
-import Checkbox from "components/UIkit/Checkbox";
 import Head from "next/head";
-import { useState } from "react";
 import ButtonExamples from "../components/UIkit/Button/ButtonExamples";
 import ProductCard from "components/ProductCard";
 
 const Home = () => {
-  // const [checked, setChecked] = useState(false);
   return (
     <>
       <Head>
@@ -16,14 +13,6 @@ const Home = () => {
       <section>
         Home
         <ButtonExamples />
-        {/* <Checkbox />
-        <Checkbox
-          label="this is label"
-          checked={checked}
-          onChange={() => {
-            setChecked((prev) => !prev);
-          }}
-        /> */}
         <ProductCard />
       </section>
     </>
