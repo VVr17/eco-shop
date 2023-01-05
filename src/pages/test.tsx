@@ -20,17 +20,17 @@ const Test = () => {
         Home
         {/* <SearchExamples /> */}
         {/* <ButtonExamples /> */}
-        {/* <Box
+        <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
           padding="20px"
           gridGap="40px"
         >
-          <ProductCard />
-          <ProductCard isSale={true} />
+          {/* <ProductCard /> */}
+          {/* <ProductCard isSale={true} /> */}
           <CartCard />
-        </Box> */}
+        </Box>
         {/* <Box padding="20px">
           <Checkbox
             checked={checked}

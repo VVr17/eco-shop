@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { CounterStyled } from "./Counter.styled";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
-const Counter = () => {
-  const [counter, setCounter] = useState(0);
+interface IProps {
+  value: number;
+  onIncrement: () => void;
+  onDecrement: () => void;
+}
 
+const Counter: React.FC<IProps> = ({ value, onIncrement, onDecrement }) => {
   return (
     <CounterStyled>
-      <button onClick={() => setCounter((prev) => prev - 1)}>
+      <button onClick={onDecrement}>
         <AiOutlineMinus size={12} />
       </button>
-      <input type="number" value={counter} readOnly max={20} min={1} /> kg
-      <button onClick={() => setCounter((prev) => prev + 1)}>
+      <input type="text" value={value} readOnly max={10} min={1} />
+      kg
+      <button onClick={onIncrement}>
         <AiOutlinePlus size={12} />
       </button>
     </CounterStyled>
