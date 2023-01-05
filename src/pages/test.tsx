@@ -23,8 +23,8 @@ const Test = () => {
           padding="20px"
           gridGap="40px"
         >
-          {/* <ProductCard /> */}
-          {/* <ProductCard onSale={true} /> */}
+          <ProductCard />
+          <ProductCard onSale={true} />
           <CartCard />
         </Box>
         <Box padding="20px">
