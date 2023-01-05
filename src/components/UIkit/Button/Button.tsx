@@ -17,22 +17,19 @@ interface IButtonProps extends IBaseProps {
   iconSize?: string;
 }
 
-const Button: FC<IButtonProps> = (props) => {
-  const {
-    type = "button",
-    text,
-    iconLeft: IconLeft = null,
-    iconRight: IconRight = null,
-    iconMargin = "default",
-    iconSize,
+const Button: FC<IButtonProps> = ({
+  type = "button",
+  text,
+  iconLeft: IconLeft = null,
+  iconRight: IconRight = null,
+  iconMargin = "default",
+  iconSize,
 
-    ...rest
-  } = props;
-
-  // const allProps = { ...baseProps, ...props };
+  ...rest
+}) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
-  console.log(`text: ${text}`, commonProps);
+  // console.log(`text: ${text}`, commonProps);
   return (
     <StyledButton type={type} {...commonProps}>
       {IconLeft && (

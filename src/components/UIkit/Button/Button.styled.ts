@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IBaseProps } from "./Button";
+import { IBaseProps } from "../base/uiBaseProps";
 
 export const ButtonBackdrop = styled("span")`
   content: "";
