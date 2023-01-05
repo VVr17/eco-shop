@@ -32,7 +32,7 @@ const ProductCard = ({ onSale = false }) => {
       >
         <Title>Seedless Prune</Title>
 
-        <Box display="flex" justifyContent="space-between">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           <Button
             text="Add"
             iconRight={AiOutlinePlus}

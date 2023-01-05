@@ -54,6 +54,7 @@ export const Price = styled.p<{ onSale: boolean }>`
   font-size: ${({ theme }) => theme.fontSizes.s};
   color: ${({ theme, onSale }) =>
     onSale ? theme.colors.secondaryAccent : theme.colors.mainText};
+  /* margin-bottom: ${({ theme }) => theme.space[1]}; */
 `;
 
 export const Weight = styled.p`
