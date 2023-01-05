@@ -122,7 +122,9 @@ const ButtonExamples = () => {
       </Box>
       <br /> <br /> <br />
       <Button text="Border none" borderColor="accent" borderStyle="none" />
-      <Button text="Add" borderColor="accent" />
+      <Button text="Add" borderColor="accent" hoverColor="rgba(0,0,0,0.5)" />
+      <Button text="margin left (theme) = {4}" borderColor="accent" ml={4} />
+      <Button text="margin left = 70px" borderColor="accent" ml="70px" />
       <Button
         text="color='default' backgroundColor='default'"
         borderColor="input"
