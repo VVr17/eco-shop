@@ -4,7 +4,7 @@ import ProductCard from "components/ProductCard";
 import Checkbox from "components/UIkit/Checkbox";
 import Box from "components/Box";
 import CartCard from "components/CartCard";
-import Search from "components/UIkit/Search";
+import SearchExamples from "components/UIkit/Search/SearchExamples";
 
 const Test = () => {
   return (
@@ -16,26 +16,9 @@ const Test = () => {
       </Head>
       <section>
         Home
+        {/* <SearchExamples /> */}
         {/* <ButtonExamples /> */}
-        {/* Search */}
-        <Box p="30px" backgroundColor="#c7701f">
-          <Search
-            fontSize="s"
-            borderStyle="none"
-            pr="50px"
-            onSearch={console.log}
-          />
-        </Box>
-        <Box p="30px" backgroundColor="white">
-          <Search
-            fontSize="s"
-            borderStyle="solid"
-            borderColor="accent"
-            width="400px"
-          />
-        </Box>
-        {/* Search */}
-        {/* <Box
+        <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -49,7 +32,7 @@ const Test = () => {
         <Box padding="20px">
           <Checkbox />
           <Checkbox label="checkbox with label" />
-        </Box> */}
+        </Box>
       </section>
     </>
   );
