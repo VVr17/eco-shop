@@ -32,8 +32,8 @@ const Test = () => {
           <ProductCard />
           <ProductCard isSale={true} />
           <CartCard />
-        </Box>
-        <Box padding="20px">
+        </Box> */}
+        {/* <Box padding="20px">
           <Checkbox
             checked={checked}
             onChange={() => {
