@@ -13,12 +13,12 @@ import Box from "components/Box";
 import ProductCardLabel from "./ProductCardLabel";
 
 interface IProps {
-  onSale?: boolean;
+  isSale?: boolean;
 }
-const ProductCard = ({ onSale = false }) => {
+const ProductCard = ({ isSale = false }) => {
   return (
     <Card>
-      {onSale && <ProductCardLabel />}
+      {isSale && <ProductCardLabel />}
       <ImageWrapper></ImageWrapper>
       <Rating>
         <AiFillStar />
@@ -41,9 +41,9 @@ const ProductCard = ({ onSale = false }) => {
             hoverColor="accent"
           />
           <Box textAlign="end">
-            {onSale && <PreviousPrice>$ 25.00</PreviousPrice>}
+            {isSale && <PreviousPrice>$ 25.00</PreviousPrice>}
 
-            <Price onSale={onSale}>$ 25.00</Price>
+            <Price isSale={isSale}>$ 25.00</Price>
             <Weight>/ 500g</Weight>
           </Box>
         </Box>

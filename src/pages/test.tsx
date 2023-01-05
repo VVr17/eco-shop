@@ -5,8 +5,10 @@ import Checkbox from "components/UIkit/Checkbox";
 import Box from "components/Box";
 import CartCard from "components/CartCard";
 import SearchExamples from "components/UIkit/Search/SearchExamples";
+import { useState } from "react";
 
 const Test = () => {
+  const [checked, setChecked] = useState(false);
   return (
     <>
       <Head>
@@ -26,12 +28,23 @@ const Test = () => {
           gridGap="40px"
         >
           <ProductCard />
-          <ProductCard onSale={true} />
+          <ProductCard isSale={true} />
           <CartCard />
         </Box>
         <Box padding="20px">
-          <Checkbox />
-          <Checkbox label="checkbox with label" />
+          <Checkbox
+            checked={checked}
+            onChange={() => {
+              setChecked((prev) => !prev);
+            }}
+          />
+          <Checkbox
+            checked={checked}
+            label="checkbox with label"
+            onChange={() => {
+              setChecked((prev) => !prev);
+            }}
+          />
         </Box>
       </section>
     </>
