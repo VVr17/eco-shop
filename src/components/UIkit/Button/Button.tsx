@@ -6,7 +6,11 @@ import {
   ButtonBackdrop,
 } from "./Button.styled";
 import { IconType } from "react-icons/lib";
-import { IBaseProps, UI_BASE_PROPS } from "../base/uiBaseProps";
+import {
+  DEFAULT_STYLES_VALUE,
+  IBaseProps,
+  UI_BASE_PROPS,
+} from "../base/uiBaseProps";
 
 interface IButtonProps extends IBaseProps {
   text: string;
@@ -22,7 +26,7 @@ const Button: FC<IButtonProps> = ({
   text,
   iconLeft: IconLeft = null,
   iconRight: IconRight = null,
-  iconMargin = "default",
+  iconMargin = DEFAULT_STYLES_VALUE,
   iconSize,
 
   ...rest
@@ -45,7 +49,7 @@ const Button: FC<IButtonProps> = ({
         </IconRightWrapper>
       )}
 
-      <ButtonBackdrop />
+      {/* <ButtonBackdrop /> */}
     </StyledButton>
   );
 };
