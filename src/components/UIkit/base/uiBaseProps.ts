@@ -10,9 +10,13 @@ export interface IBaseProps {
   borderRadius?: string;
   borderStyle?: "none" | "solid";
   pl?: string | number;
-  pr?: string;
-  pt?: string;
-  pb?: string;
+  pr?: string | number;
+  pt?: string | number;
+  pb?: string | number;
+  ml?: string | number;
+  mr?: string | number;
+  mt?: string | number;
+  mb?: string | number;
   width?: string;
   height?: string;
   fontSize?: string;
@@ -29,6 +33,10 @@ export const UI_BASE_PROPS: IBaseProps = {
   pr: "16px",
   pt: "12px",
   pb: "12px",
+  ml: 0,
+  mr: 0,
+  mt: 0,
+  mb: 0,
   width: "auto",
   height: "auto",
   fontSize: "15px",
@@ -47,6 +55,10 @@ export const getUIBaseStyles = (p: IBaseProps, theme: any) => {
     pr,
     pt,
     pb,
+    ml,
+    mr,
+    mt,
+    mb,
     fontSize,
     width,
     height,
@@ -80,6 +92,11 @@ export const getUIBaseStyles = (p: IBaseProps, theme: any) => {
     height: ${height};
 
     font-size: ${getThemeValue(fontSize as string, fontSizes)};
+
+    margin-left: ${getSpaceValue(ml as string | number)};
+    margin-right: ${getSpaceValue(mr as string | number)};
+    margin-top: ${getSpaceValue(mt as string | number)};
+    margin-bottom: ${getSpaceValue(mb as string | number)};
 
     padding-left: ${getSpaceValue(pl as string | number)};
     padding-right: ${getSpaceValue(pr as string | number)};
