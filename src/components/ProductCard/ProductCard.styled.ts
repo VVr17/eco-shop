@@ -42,13 +42,22 @@ export const Title = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
 `;
 
-export const Price = styled.p`
+export const PreviousPrice = styled.p`
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSizes.xxs};
+  text-decoration-line: line-through;
+  opacity: 0.9;
+`;
+
+export const Price = styled.p<{ onSale: boolean }>`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSizes.s};
+  color: ${({ theme, onSale }) =>
+    onSale ? theme.colors.secondaryAccent : theme.colors.mainText};
 `;
 
 export const Weight = styled.p`
   opacity: 0.5;
   font-weight: ${({ theme }) => theme.fontWeight.medium};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-size: ${({ theme }) => theme.fontSizes.xxs};
 `;

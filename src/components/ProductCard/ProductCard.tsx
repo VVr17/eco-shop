@@ -2,6 +2,7 @@ import Button from "components/UIkit/Button";
 import {
   Card,
   ImageWrapper,
+  PreviousPrice,
   Price,
   Rating,
   Title,
@@ -12,12 +13,12 @@ import Box from "components/Box";
 import ProductCardLabel from "./ProductCardLabel";
 
 interface IProps {
-  hasLabel?: boolean;
+  onSale?: boolean;
 }
-const ProductCard = ({ hasLabel = false }) => {
+const ProductCard = ({ onSale = false }) => {
   return (
     <Card>
-      {hasLabel && <ProductCardLabel />}
+      {onSale && <ProductCardLabel />}
       <ImageWrapper></ImageWrapper>
       <Rating>
         <AiFillStar />
@@ -40,7 +41,9 @@ const ProductCard = ({ hasLabel = false }) => {
             hoverColor="accent"
           />
           <Box textAlign="end">
-            <Price>$ 25.00</Price>
+            {onSale && <PreviousPrice>$ 25.00</PreviousPrice>}
+
+            <Price onSale={onSale}>$ 25.00</Price>
             <Weight>/ 500g</Weight>
           </Box>
         </Box>
