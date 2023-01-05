@@ -15,8 +15,7 @@ export const ButtonBackdrop = styled("span")`
   transition: opacity ${(p) => p.theme.transitionTiming};
 `;
 
-export const StyledButton = styled("button")<IBaseProps>`
-//     {
+// {
 //   backgroundColor: string;
 //   color: string;
 //   borderColor: string;
@@ -28,7 +27,9 @@ export const StyledButton = styled("button")<IBaseProps>`
 //   width: string;
 //   height: string;
 //   fontSize: string;
-//     }
+// }
+
+export const StyledButton = styled("button")<IBaseProps>`
   margin: 0;
   padding: 0;
   border: none;
@@ -54,13 +55,18 @@ export const StyledButton = styled("button")<IBaseProps>`
   border-width: 1px;
   border-style: ${(p) => (p.borderColor === "default" ? "none" : "solid")};
   border-color: ${(p) =>
-    getColor(p.borderColor, p.theme.colors, p.theme.colors.input)};
+    getColor(p.borderColor as string, p.theme.colors, p.theme.colors.input)};
   border-radius: ${(p) =>
     p.borderRadius === "default" ? "10px" : p.borderRadius};
 
-  color: ${(p) => getColor(p.color, p.theme.colors, p.theme.colors.mainText)};
+  color: ${(p) =>
+    getColor(p.color as string, p.theme.colors, p.theme.colors.mainText)};
   background-color: ${(p) =>
-    getColor(p.backgroundColor, p.theme.colors, p.theme.colors.cardBackground)};
+    getColor(
+      p.backgroundColor as string,
+      p.theme.colors,
+      p.theme.colors.cardBackground
+    )};
 
   position: relative;
   overflow: hidden;
