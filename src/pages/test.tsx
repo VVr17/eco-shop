@@ -5,7 +5,9 @@ import Checkbox from "components/UIkit/Checkbox";
 import Box from "components/Box";
 import CartCard from "components/CartCard";
 import SearchExamples from "components/UIkit/Search/SearchExamples";
+import FieldExamples from "components/UIkit/Field/FieldExamples";
 import { useState } from "react";
+import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -18,8 +20,10 @@ const Test = () => {
       </Head>
       <section>
         Home
-        {/* <SearchExamples /> */}
-        {/* <ButtonExamples /> */}
+        <SubscribeInputExamples />
+        <FieldExamples />
+        <SearchExamples />
+        <ButtonExamples />
         <Box
           display="flex"
           flexDirection="column"
@@ -31,7 +35,7 @@ const Test = () => {
           {/* <ProductCard isSale={true} /> */}
           <CartCard />
         </Box>
-        {/* <Box padding="20px">
+        <Box padding="20px">
           <Checkbox
             checked={checked}
             onChange={() => {
@@ -45,7 +49,7 @@ const Test = () => {
               setChecked((prev) => !prev);
             }}
           />
-        </Box> */}
+        </Box>
       </section>
     </>
   );
