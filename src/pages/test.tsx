@@ -3,6 +3,7 @@ import ButtonExamples from "../components/UIkit/Button/ButtonExamples";
 import ProductCard from "components/ProductCard";
 import Checkbox from "components/UIkit/Checkbox";
 import Box from "components/Box";
+import CartCard from "components/CartCard";
 
 const Test = () => {
   return (
@@ -14,10 +15,17 @@ const Test = () => {
       </Head>
       <section>
         Home
-        <ButtonExamples />
-        <Box display="flex" justifyContent="center" padding="20px">
-          <ProductCard />
-          <ProductCard onSale={true} />
+        {/* <ButtonExamples /> */}
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          padding="20px"
+          gridGap="40px"
+        >
+          {/* <ProductCard /> */}
+          {/* <ProductCard onSale={true} /> */}
+          <CartCard />
         </Box>
         <Box padding="20px">
           <Checkbox />
