@@ -27,11 +27,6 @@ const Search: FC<ISearchProps> = ({
 
   //   const [searchValue, setSearchValue] = useState("");
 
-  const onSearchHandler = (e: SyntheticEvent) => {
-    // setSearchValue(form.value);
-    // console.dir(form.value);
-  };
-
   const onSubmitHandler = (e: SyntheticEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
