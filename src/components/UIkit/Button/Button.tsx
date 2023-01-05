@@ -3,7 +3,6 @@ import {
   StyledButton,
   IconRightWrapper,
   IconLeftWrapper,
-  ButtonBackdrop,
 } from "./Button.styled";
 import { IconType } from "react-icons/lib";
 import {
@@ -48,8 +47,6 @@ const Button: FC<IButtonProps> = ({
           <IconRight size={iconSize} />
         </IconRightWrapper>
       )}
-
-      {/* <ButtonBackdrop /> */}
     </StyledButton>
   );
 };
