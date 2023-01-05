@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ButtonExamples from "../components/UIkit/Button/ButtonExamples";
+import ProductCard from "components/ProductCard";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <section>
         Home
         <ButtonExamples />
+        <ProductCard />
       </section>
     </>
   );
