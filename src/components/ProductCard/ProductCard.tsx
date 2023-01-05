@@ -8,7 +8,7 @@ const ProductCard = () => {
     <Card>
       <ImageWrapper></ImageWrapper>
       <Title>Seedless Prune </Title>
-      <Button />
+      {/* <Button /> */}
     </Card>
   );
 };

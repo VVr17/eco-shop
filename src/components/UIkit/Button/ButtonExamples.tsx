@@ -22,6 +22,7 @@ const ButtonExamples = () => {
           iconRight={AiOutlinePlus}
           iconMargin="16px"
           borderColor="input"
+          hoverColor="accent"
         />
         <Button
           text="Load more"
@@ -120,7 +121,7 @@ const ButtonExamples = () => {
         />
       </Box>
       <br /> <br /> <br />
-      <Button text="Border none" borderColor="accent" />
+      <Button text="Border none" borderColor="accent" borderStyle="none" />
       <Button text="Add" borderColor="accent" />
       <Button
         text="color='default' backgroundColor='default'"
