@@ -7,6 +7,7 @@ import CartCard from "components/CartCard";
 import SearchExamples from "components/UIkit/Search/SearchExamples";
 import FieldExamples from "components/UIkit/Field/FieldExamples";
 import { useState } from "react";
+import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -19,6 +20,7 @@ const Test = () => {
       </Head>
       <section>
         Home
+        <SubscribeInputExamples />
         <FieldExamples />
         <SearchExamples />
         <ButtonExamples />
