@@ -17,6 +17,7 @@ const Test = () => {
         <ButtonExamples />
         <Box display="flex" justifyContent="center" padding="20px">
           <ProductCard />
+          <ProductCard onSale={true} />
         </Box>
         <Box padding="20px">
           <Checkbox />
