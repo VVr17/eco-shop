@@ -5,18 +5,23 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
 import { GlobalStyle } from "../styles/global.styled";
 
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+});
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
+    <style jsx global>{`
+      html {
+        font-family: ${roboto.style.fontFamily};
+      }
+    `}</style>
     <ThemeProvider theme={theme}>
       <Layout>
-        <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
         <main>
           <Component {...pageProps} />
         </main>
