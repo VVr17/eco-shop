@@ -20,7 +20,7 @@ const Test = () => {
         Home
         {/* <SearchExamples /> */}
         {/* <ButtonExamples /> */}
-        <Box
+        {/* <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -30,8 +30,8 @@ const Test = () => {
           <ProductCard />
           <ProductCard isSale={true} />
           <CartCard />
-        </Box>
-        <Box padding="20px">
+        </Box> */}
+        {/* <Box padding="20px">
           <Checkbox
             checked={checked}
             onChange={() => {
@@ -45,7 +45,7 @@ const Test = () => {
               setChecked((prev) => !prev);
             }}
           />
-        </Box>
+        </Box> */}
       </section>
     </>
   );
