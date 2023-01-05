@@ -4,7 +4,7 @@ import SubscribeInput from "./SubscribeInput";
 const SubscribeInputExamples = () => {
   return (
     <Box p="30px" backgroundColor="#EDEAE7">
-      <SubscribeInput />
+      <SubscribeInput onSubmit={console.log} />
     </Box>
   );
 };
