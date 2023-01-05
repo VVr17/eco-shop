@@ -49,11 +49,11 @@ export const PreviousPrice = styled.p`
   opacity: 0.9;
 `;
 
-export const Price = styled.p<{ onSale: boolean }>`
+export const Price = styled.p<{ isSale: boolean }>`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSizes.s};
-  color: ${({ theme, onSale }) =>
-    onSale ? theme.colors.secondaryAccent : theme.colors.mainText};
+  color: ${({ theme, isSale }) =>
+    isSale ? theme.colors.secondaryAccent : theme.colors.mainText};
   /* margin-bottom: ${({ theme }) => theme.space[1]}; */
 `;
 
