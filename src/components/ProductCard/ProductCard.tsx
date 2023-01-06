@@ -11,7 +11,7 @@ import {
 import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import Box from "components/Box";
 import ProductCardLabel from "./ProductCardLabel";
-import { useWindowSize } from "../../../hooks/useWindowSize";
+import { useWindowSize } from "hooks/useWindowSize";
 
 interface IProps {
   isSale?: boolean;
