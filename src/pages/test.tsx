@@ -21,7 +21,7 @@ const Test = () => {
       <section>
         Home
         {/* <SubscribeInputExamples /> */}
-        {/* <FieldExamples /> */}
+        <FieldExamples />
         {/* <SearchExamples /> */}
         {/* <ButtonExamples /> */}
         <Box
@@ -31,12 +31,12 @@ const Test = () => {
           padding="20px"
           gridGap="40px"
         >
-          <ProductCard />
-          <ProductCard isSale={true} />
+          {/* <ProductCard /> */}
+          {/* <ProductCard isSale={true} /> */}
           {/* <CartCard /> */}
         </Box>
         <Box padding="20px">
-          <Checkbox
+          {/* <Checkbox
             checked={checked}
             onChange={() => {
               setChecked((prev) => !prev);
@@ -48,7 +48,7 @@ const Test = () => {
             onChange={() => {
               setChecked((prev) => !prev);
             }}
-          />
+          /> */}
         </Box>
       </section>
     </>
