@@ -8,6 +8,7 @@ import SearchExamples from "components/UIkit/Search/SearchExamples";
 import FieldExamples from "components/UIkit/Field/FieldExamples";
 import { useState } from "react";
 import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
+import SelectExamples from "components/UIkit/Select/SelectExamples";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -20,10 +21,11 @@ const Test = () => {
       </Head>
       <section>
         Home
-        {/* <SubscribeInputExamples /> */}
+        <SelectExamples />
+        <SubscribeInputExamples />
         <FieldExamples />
-        {/* <SearchExamples /> */}
-        {/* <ButtonExamples /> */}
+        <SearchExamples />
+        <ButtonExamples />
         <Box
           display="flex"
           flexDirection="column"

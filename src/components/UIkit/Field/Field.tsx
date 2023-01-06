@@ -7,6 +7,7 @@ interface IFieldProps extends IBaseProps {
   id?: HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
+  name?: string;
 }
 
 const Field: FC<IFieldProps> = ({
@@ -14,6 +15,8 @@ const Field: FC<IFieldProps> = ({
   type,
   placeholder = "",
   required = false,
+  name,
+
   ...rest
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
@@ -22,6 +25,7 @@ const Field: FC<IFieldProps> = ({
     <Input
       type={type}
       id={id}
+      name={name}
       placeholder={placeholder}
       required={required}
       {...commonProps}
