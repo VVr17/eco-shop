@@ -4,7 +4,14 @@ import {
   IBaseProps,
   UI_BASE_PROPS,
 } from "components/UIkit/base/uiBaseProps";
-import { FC, HTMLInputTypeAttribute, useEffect, useState } from "react";
+import {
+  FC,
+  HTMLInputTypeAttribute,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   DropDownItem,
   DropDownList,
@@ -34,22 +41,40 @@ const Select: FC<ISelectProps> = ({
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
+  // useEffect(() => {
+  //   window.addEventListener("click", () => {
+  //     console.log("click");
+  //   });
+  // }, []);
+
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  // const closeDropDownList = () => {
-  //   setIsOpen(false);
-  //   console.log("click");
+  const refDropDown = useRef(null);
+
+  // console.log(refDropDown.current);
+
+  // const closeDropDownList = (e: any) => {
+  //   // console.log(e.currentTarget);
+  //   console.dir(e.currentTarget);
+  //   console.dir(refDropDown);
+  //   if (e.currentTarget === refDropDown) {
+  //     console.log("bingo");
+  //   }
+  //   // if()
+  //   // setIsOpen(false);
+  //   // console.log("click");
   // };
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     window.addEventListener("click", closeDropDownList);
-  //     return;
-  //   } else {
-  //     window.removeEventListener("click", closeDropDownList);
-  //   }
-  // }, [isOpen]);
+  useEffect(() => {
+    if (isOpen) {
+      console.log("open");
+      window.addEventListener("click", closeDropDownList);
+    } else {
+      console.log("close");
+      // window.removeEventListener("click", closeDropDownList);
+    }
+  }, [isOpen]);
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
@@ -80,7 +105,7 @@ const Select: FC<ISelectProps> = ({
       </IconWrapper>
 
       {isOpen && (
-        <DropDownListWrapper {...commonProps}>
+        <DropDownListWrapper {...commonProps} ref={refDropDown}>
           <DropDownList>
             {list.map((country) => (
               <DropDownItem
