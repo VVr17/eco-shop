@@ -21,6 +21,7 @@ import {
 } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ICountry } from "types/types";
+import SelectList from "./SelectList";
 
 interface ISelectProps extends IBaseProps {
   list: ICountry[];
@@ -41,40 +42,26 @@ const Select: FC<ISelectProps> = ({
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
-  // useEffect(() => {
-  //   window.addEventListener("click", () => {
-  //     console.log("click");
-  //   });
-  // }, []);
-
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const refDropDown = useRef(null);
-
-  // console.log(refDropDown.current);
-
   // const closeDropDownList = (e: any) => {
   //   // console.log(e.currentTarget);
-  //   console.dir(e.currentTarget);
-  //   console.dir(refDropDown);
-  //   if (e.currentTarget === refDropDown) {
-  //     console.log("bingo");
-  //   }
+  //   // console.dir(e.currentTarget);
+  //   // console.dir(refDropDown);
+  //   // if (e.currentTarget === refDropDown) {
+  //   //   console.log("bingo");
+  //   // }
   //   // if()
   //   // setIsOpen(false);
   //   // console.log("click");
+  //   console.log("close");
+  //   setIsOpen(false);
   // };
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     console.log("open");
-  //     window.addEventListener("click", closeDropDownList);
-  //   } else {
-  //     console.log("close");
-  //     // window.removeEventListener("click", closeDropDownList);
-  //   }
-  // }, [isOpen]);
+  const onCloseList = () => {
+    setIsOpen(false);
+  };
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
@@ -105,20 +92,12 @@ const Select: FC<ISelectProps> = ({
       </IconWrapper>
 
       {isOpen && (
-        <DropDownListWrapper {...commonProps} ref={refDropDown}>
-          <DropDownList>
-            {list.map((country) => (
-              <DropDownItem
-                key={country.name}
-                onClick={() => {
-                  onSelectItem(country.name);
-                }}
-              >
-                {country.name}
-              </DropDownItem>
-            ))}
-          </DropDownList>
-        </DropDownListWrapper>
+        <SelectList
+          list={list}
+          commonProps={commonProps}
+          onSelectItem={onSelectItem}
+          onClose={onCloseList}
+        />
       )}
     </Box>
   );
