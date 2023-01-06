@@ -66,15 +66,15 @@ const Select: FC<ISelectProps> = ({
   //   // console.log("click");
   // };
 
-  useEffect(() => {
-    if (isOpen) {
-      console.log("open");
-      window.addEventListener("click", closeDropDownList);
-    } else {
-      console.log("close");
-      // window.removeEventListener("click", closeDropDownList);
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     console.log("open");
+  //     window.addEventListener("click", closeDropDownList);
+  //   } else {
+  //     console.log("close");
+  //     // window.removeEventListener("click", closeDropDownList);
+  //   }
+  // }, [isOpen]);
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
