@@ -11,11 +11,14 @@ import {
 import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import Box from "components/Box";
 import ProductCardLabel from "./ProductCardLabel";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 interface IProps {
   isSale?: boolean;
 }
 const ProductCard = ({ isSale = false }) => {
+  const { isDesktop } = useWindowSize();
+
   return (
     <Card>
       {isSale && <ProductCardLabel />}
@@ -33,17 +36,26 @@ const ProductCard = ({ isSale = false }) => {
         <Title>Seedless Prune</Title>
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Button
-            text="Add"
-            iconRight={AiOutlinePlus}
-            iconMargin="16px"
-            borderColor="input"
-            hoverColor="accent"
-          />
-          <Box textAlign="end">
-            {isSale && <PreviousPrice>$ 25.00</PreviousPrice>}
+          {isDesktop && (
+            <Button
+              text="Add"
+              iconRight={AiOutlinePlus}
+              iconMargin="16px"
+              borderColor="input"
+              hoverColor="accent"
+            />
+          )}
 
-            <Price isSale={isSale}>$ 25.00</Price>
+          <Box textAlign={["left", "left", "end", "end"]}>
+            <Box
+              display={["flex"]}
+              flexDirection={["row-reverse", "row-reverse", "column", "column"]}
+              alignItems={["center", "center", "end", "end"]}
+            >
+              {isSale && <PreviousPrice>$ 25.00</PreviousPrice>}
+
+              <Price isSale={isSale}>$ 25.00</Price>
+            </Box>
             <Weight>/ 500g</Weight>
           </Box>
         </Box>
