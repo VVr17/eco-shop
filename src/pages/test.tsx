@@ -20,10 +20,10 @@ const Test = () => {
       </Head>
       <section>
         Home
-        <SubscribeInputExamples />
-        <FieldExamples />
-        <SearchExamples />
-        <ButtonExamples />
+        {/* <SubscribeInputExamples /> */}
+        {/* <FieldExamples /> */}
+        {/* <SearchExamples /> */}
+        {/* <ButtonExamples /> */}
         <Box
           display="flex"
           flexDirection="column"
@@ -31,9 +31,9 @@ const Test = () => {
           padding="20px"
           gridGap="40px"
         >
-          {/* <ProductCard /> */}
-          {/* <ProductCard isSale={true} /> */}
-          <CartCard />
+          <ProductCard />
+          <ProductCard isSale={true} />
+          {/* <CartCard /> */}
         </Box>
         <Box padding="20px">
           <Checkbox
