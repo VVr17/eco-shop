@@ -45,26 +45,28 @@ const Select: FC<ISelectProps> = ({
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  // const closeDropDownList = (e: any) => {
-  //   // console.log(e.currentTarget);
-  //   // console.dir(e.currentTarget);
-  //   // console.dir(refDropDown);
-  //   // if (e.currentTarget === refDropDown) {
-  //   //   console.log("bingo");
-  //   // }
-  //   // if()
-  //   // setIsOpen(false);
-  //   // console.log("click");
+  const refSelect = useRef();
+  // const onCloseList = () => {
   //   console.log("close");
   //   setIsOpen(false);
   // };
 
-  const onCloseList = () => {
-    setIsOpen(false);
-  };
+  function closeDropDownList(e: any) {
+    if (refSelect.current !== e.target) {
+      console.log(" click outside");
+      setIsOpen(false);
+      // return;
+    }
+    // console.log("select ref");
+  }
 
   const toggleDropDownList = () => {
+    console.log("toggle", isOpen);
     setIsOpen(!isOpen);
+  };
+
+  const onOpenList = () => {
+    setIsOpen(true);
   };
 
   const onSelectItem = (value: string) => {
@@ -72,12 +74,34 @@ const Select: FC<ISelectProps> = ({
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    // console.log(isOpen);
+
+    console.log("isOpen", isOpen);
+
+    if (isOpen) {
+      document.addEventListener("click", closeDropDownList);
+    } else {
+      console.log("i am here");
+      document.removeEventListener("click", closeDropDownList);
+    }
+
+    // if (isOpen) {
+    //   window.addEventListener("click", closeDropDownList);
+    // }
+
+    // if (!isOpen) {
+    //   window.removeEventListener("click", closeDropDownList);
+    // }
+  }, [isOpen]);
+
   return (
     <Box
       position="relative"
       width={width === DEFAULT_STYLES_VALUE ? "340px" : width}
     >
       <StyledSelect
+        ref={refSelect as any}
         id={id}
         name={name}
         type="text"
@@ -96,7 +120,7 @@ const Select: FC<ISelectProps> = ({
           list={list}
           commonProps={commonProps}
           onSelectItem={onSelectItem}
-          onClose={onCloseList}
+          onClose={closeDropDownList}
         />
       )}
     </Box>

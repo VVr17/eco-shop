@@ -10,7 +10,7 @@ interface ISelectListProps {
   list: ICountry[];
   commonProps?: any;
   onSelectItem: (value: string) => void;
-  onClose: () => void;
+  onClose: (e: any) => void;
 }
 
 const SelectList: FC<ISelectListProps> = ({
@@ -20,7 +20,7 @@ const SelectList: FC<ISelectListProps> = ({
   onClose,
 }) => {
   useEffect(() => {
-    window.addEventListener("click", onClose);
+    // window.addEventListener("click", onClose);
   }, []);
 
   return (
