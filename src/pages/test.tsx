@@ -10,6 +10,7 @@ import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInp
 import SelectExamples from "components/UIkit/Select/SelectExamples";
 import ProductItem from "components/ProductItem";
 import Container from "components/Container";
+import ModalExamples from "components/UIkit/Modal/ModalExamples";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -22,6 +23,7 @@ const Test = () => {
       </Head>
       <Box as="section" py={[3, 3, 4, 4]}>
         <Container>
+          <ModalExamples />
           <SelectExamples />
           <SubscribeInputExamples />
           <FieldExamples />

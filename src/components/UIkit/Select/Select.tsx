@@ -4,21 +4,8 @@ import {
   IBaseProps,
   UI_BASE_PROPS,
 } from "components/UIkit/base/uiBaseProps";
-import {
-  FC,
-  HTMLInputTypeAttribute,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import {
-  DropDownItem,
-  DropDownList,
-  DropDownListWrapper,
-  IconWrapper,
-  StyledSelect,
-} from "./Select.styled";
+import { FC, HTMLInputTypeAttribute, useRef, useState } from "react";
+import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ICountry } from "types/types";
 import SelectList from "./SelectList";
@@ -47,10 +34,6 @@ const Select: FC<ISelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const refSelect = useRef();
-  // const onCloseList = () => {
-  //   console.log("close");
-  //   setIsOpen(false);
-  // };
 
   const toggleDropDownList = () => {
     console.log("toggle", isOpen);
@@ -70,32 +53,10 @@ const Select: FC<ISelectProps> = ({
     if (refSelect.current !== e.target) {
       console.log(" click outside");
       setIsOpen(false);
-      // return;
+
       console.dir(document);
     }
-    // console.log("select ref");
   };
-
-  // useEffect(() => {
-  //   // console.log(isOpen);
-
-  //   console.log("isOpen", isOpen);
-
-  //   if (isOpen) {
-  //     document.addEventListener("click", closeDropDownList);
-  //   } else {
-  //     console.log("i am here");
-  //     document.removeEventListener("click", closeDropDownList);
-  //   }
-
-  //   // if (isOpen) {
-  //   //   window.addEventListener("click", closeDropDownList);
-  //   // }
-
-  //   // if (!isOpen) {
-  //   //   window.removeEventListener("click", closeDropDownList);
-  //   // }
-  // }, [isOpen]);
 
   return (
     <Box
@@ -130,7 +91,3 @@ const Select: FC<ISelectProps> = ({
 };
 
 export default Select;
-
-// check form submit - outside
-// names for all inputs
-// Select  and out of select close
