@@ -1,4 +1,9 @@
 import { FC, ReactNode } from "react";
+import { createPortal } from "react-dom";
+import Backdrop from "../Backdrop";
+import { ModalContainer } from "./Modal.styled";
+
+// const modalRoot = document.querySelector("#modal-root");
 
 interface IModalProps {
   onClose: () => void;
@@ -6,7 +11,12 @@ interface IModalProps {
 }
 
 const Modal: FC<IModalProps> = ({ onClose, children }) => {
-  return <div>children</div>;
+  return createPortal(
+    <Backdrop>
+      <ModalContainer>{children}</ModalContainer>
+    </Backdrop>,
+    document.querySelector("#modal-root") as Element
+  );
 };
 
 export default Modal;

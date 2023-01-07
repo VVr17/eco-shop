@@ -1,6 +1,7 @@
 import Box from "components/Box";
 import Modal from "./Modal";
 import { useState } from "react";
+import Backdrop from "../Backdrop";
 
 const ModalExamples = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
