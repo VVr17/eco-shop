@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const IconButtonStyled = styled.button`
   margin: 0;
-  padding: ${(p) => p.theme.space[1]};
+  padding: ${(p) => p.theme.space[2]};
   border: none;
   font: inherit;
   cursor: pointer;

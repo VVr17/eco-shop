@@ -1,5 +1,5 @@
-import ButtonExamples from "components/UIkit/Button/ButtonExamples";
-import Search from "components/UIkit/Search";
+import Box from "components/Box";
+import Container from "components/Container";
 import Head from "next/head";
 
 const Home = () => {
@@ -11,7 +11,9 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <section>Home</section>
+      <Box as="section" py={[3, 3, 4, 4]}>
+        <Container>Home</Container>
+      </Box>
     </>
   );
 };

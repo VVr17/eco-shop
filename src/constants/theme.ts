@@ -1,4 +1,4 @@
-export const breakpoints = ["480", "768", "1440"];
+export const breakpoints = ["375", "768", "1440"];
 
 export const theme = {
   colors: {
