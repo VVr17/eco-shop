@@ -8,7 +8,7 @@ import { DEFAULT_ICON_SIZE } from "constants/constants";
 import { theme } from "constants/theme";
 import { FiSearch, FiUser, FiShoppingBag } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoListOutline } from "react-icons/io5";
+import { CgMenuGridO } from "react-icons/cg";
 import { BiChevronDown } from "react-icons/bi";
 import Button from "components/UIkit/Button";
 import { LeftSideContainer, RightSideContainer } from "./Header.styled";
@@ -32,7 +32,7 @@ const Header: React.FC = () => {
           {isDesktop && (
             <Button
               text="Categories"
-              iconLeft={IoListOutline}
+              iconLeft={CgMenuGridO}
               backgroundColor={theme.colors.mainBackground}
               hoverColor={theme.colors.hoverHeaderLink}
               borderColor="transparent"

@@ -10,7 +10,10 @@ export const LogoWrapper = styled(Link)`
   background-color: ${({ theme }) => theme.colors.mainBackground};
   border-radius: 10px;
   transition: background-color ${(p) => p.theme.transitionTiming};
-  /* padding: ${(p) => p.theme.space[1]}; */
+
+  ${theme.mq.desktop} {
+    padding: ${(p) => p.theme.space[2]};
+  }
 
   :hover,
   :focus {
