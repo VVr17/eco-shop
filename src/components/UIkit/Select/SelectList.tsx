@@ -20,7 +20,11 @@ const SelectList: FC<ISelectListProps> = ({
   onClose,
 }) => {
   useEffect(() => {
-    // window.addEventListener("click", onClose);
+    window.addEventListener("click", onClose);
+
+    return () => {
+      window.removeEventListener("click", onClose);
+    };
   }, []);
 
   return (

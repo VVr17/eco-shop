@@ -22,6 +22,7 @@ import {
 import { FiChevronDown } from "react-icons/fi";
 import { ICountry } from "types/types";
 import SelectList from "./SelectList";
+import { getEventListeners } from "events";
 
 interface ISelectProps extends IBaseProps {
   list: ICountry[];
@@ -51,15 +52,6 @@ const Select: FC<ISelectProps> = ({
   //   setIsOpen(false);
   // };
 
-  function closeDropDownList(e: any) {
-    if (refSelect.current !== e.target) {
-      console.log(" click outside");
-      setIsOpen(false);
-      // return;
-    }
-    // console.log("select ref");
-  }
-
   const toggleDropDownList = () => {
     console.log("toggle", isOpen);
     setIsOpen(!isOpen);
@@ -74,26 +66,36 @@ const Select: FC<ISelectProps> = ({
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    // console.log(isOpen);
-
-    console.log("isOpen", isOpen);
-
-    if (isOpen) {
-      document.addEventListener("click", closeDropDownList);
-    } else {
-      console.log("i am here");
-      document.removeEventListener("click", closeDropDownList);
+  const closeDropDownList = (e: any) => {
+    if (refSelect.current !== e.target) {
+      console.log(" click outside");
+      setIsOpen(false);
+      // return;
+      console.dir(document);
     }
+    // console.log("select ref");
+  };
 
-    // if (isOpen) {
-    //   window.addEventListener("click", closeDropDownList);
-    // }
+  // useEffect(() => {
+  //   // console.log(isOpen);
 
-    // if (!isOpen) {
-    //   window.removeEventListener("click", closeDropDownList);
-    // }
-  }, [isOpen]);
+  //   console.log("isOpen", isOpen);
+
+  //   if (isOpen) {
+  //     document.addEventListener("click", closeDropDownList);
+  //   } else {
+  //     console.log("i am here");
+  //     document.removeEventListener("click", closeDropDownList);
+  //   }
+
+  //   // if (isOpen) {
+  //   //   window.addEventListener("click", closeDropDownList);
+  //   // }
+
+  //   // if (!isOpen) {
+  //   //   window.removeEventListener("click", closeDropDownList);
+  //   // }
+  // }, [isOpen]);
 
   return (
     <Box
