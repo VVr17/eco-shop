@@ -7,21 +7,21 @@ import {
   Rating,
   Title,
   Weight,
-} from "./ProductCard.styled";
+} from "./ProductItem.styled";
 import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import Box from "components/Box";
-import ProductCardLabel from "./ProductCardLabel";
 import { useWindowSize } from "hooks/useWindowSize";
+import ProductItemLabel from "./ProductItemLabel";
 
 interface IProps {
   isSale?: boolean;
 }
-const ProductCard = ({ isSale = false }) => {
+const ProductItem = ({ isSale = false }) => {
   const { isDesktop } = useWindowSize();
 
   return (
     <Card>
-      {isSale && <ProductCardLabel />}
+      {isSale && <ProductItemLabel />}
       <ImageWrapper></ImageWrapper>
       <Rating>
         <AiFillStar />
@@ -64,4 +64,4 @@ const ProductCard = ({ isSale = false }) => {
   );
 };
 
-export default ProductCard;
+export default ProductItem;

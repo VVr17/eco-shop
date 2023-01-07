@@ -1,6 +1,5 @@
 import Head from "next/head";
 import ButtonExamples from "../components/UIkit/Button/ButtonExamples";
-import ProductCard from "components/ProductCard";
 import Checkbox from "components/UIkit/Checkbox";
 import Box from "components/Box";
 import CartCard from "components/CartCard";
@@ -9,6 +8,7 @@ import FieldExamples from "components/UIkit/Field/FieldExamples";
 import { useState } from "react";
 import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
 import SelectExamples from "components/UIkit/Select/SelectExamples";
+import ProductItem from "components/ProductItem";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -33,8 +33,8 @@ const Test = () => {
           padding="20px"
           gridGap="40px"
         >
-          {/* <ProductCard /> */}
-          {/* <ProductCard isSale={true} /> */}
+          {/* <ProductItem /> */}
+          {/* <ProductItem isSale={true} /> */}
           {/* <CartCard /> */}
         </Box>
         <Box padding="20px">
