@@ -12,7 +12,7 @@ export const StyledButton = styled("button")<IBaseProps>`
   justify-content: center;
 
   font-family: ${(p) => p.theme.fontFamily};
-  font-weight: ${(p) => p.theme.fontWeight.normal};
+  font-weight: ${(p) => p.theme.fontWeight.medium};
   line-height: 1.25;
 
   border-width: 1px;

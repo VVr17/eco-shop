@@ -39,7 +39,7 @@ export const UI_BASE_PROPS: IBaseProps = {
   mb: 0,
   width: "auto",
   height: "auto",
-  fontSize: "15px",
+  fontSize: "16px",
   hoverColor: NONE_STYLES_VALUE,
 };
 
