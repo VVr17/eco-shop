@@ -11,7 +11,8 @@ export const theme = {
     input: "#EDEAE7",
     border: "rgba(56, 54, 52, 0.3)",
     cardBackground: "#FFFFFF",
-    cartBorder: "rgba(56, 54, 52,0.08)",
+    cartBorder: "rgba(56, 54, 52, 0.08)",
+    hoverHeaderLink: "rgba(76, 124, 125, 0.4)",
   },
 
   space: ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px", "512px"],

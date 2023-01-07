@@ -1,5 +1,9 @@
-import React from "react";
+import MobileHeader from "./Mobile";
 
-const Header: React.FC = () => <header>Header</header>;
+const Header: React.FC = () => (
+  <header>
+    <MobileHeader />
+  </header>
+);
 
 export default Header;
