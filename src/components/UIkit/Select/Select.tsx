@@ -40,10 +40,6 @@ const Select: FC<ISelectProps> = ({
     setIsOpen(!isOpen);
   };
 
-  const onOpenList = () => {
-    setIsOpen(true);
-  };
-
   const onSelectItem = (value: string) => {
     setValue(value);
     setIsOpen(false);

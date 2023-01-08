@@ -5,6 +5,7 @@ import Backdrop from "../Backdrop";
 
 const ModalExamples = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   return (
     <Box p="30px" backgroundColor="#EDEAE7">
@@ -17,13 +18,34 @@ const ModalExamples = () => {
         Open Modal
       </button>
 
+      <button
+        type="button"
+        onClick={() => {
+          setIsTooltipOpen(true);
+        }}
+      >
+        Open Modal tooltip
+      </button>
+
       {isModalOpen && (
         <Modal
+          type="classic"
           onClose={() => {
             setIsModalOpen(false);
           }}
         >
           Modal Body
+        </Modal>
+      )}
+
+      {isTooltipOpen && (
+        <Modal
+          type="tooltip"
+          onClose={() => {
+            setIsTooltipOpen(false);
+          }}
+        >
+          Modal Tooltip body
         </Modal>
       )}
     </Box>
