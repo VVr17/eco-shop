@@ -26,5 +26,26 @@ export const checkoutValidationSchema = yup.object().shape({
       "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
     )
     .required("Number is required"),
-  email: yup.string().required("Number is required"),
+  email: yup
+    .string()
+    .email()
+    .matches(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "email@email.com"
+    )
+    .required("Number is required"),
+});
+
+export const validationPasswordSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required("Please enter your password")
+    .matches(
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+    ),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .oneOf([yup.ref("password"), null], "Passwords don't match."),
 });

@@ -37,7 +37,7 @@ const Field: FC<IFieldProps> = ({
   ...rest
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
-  console.log("error", error);
+
   return (
     <label>
       {name}
