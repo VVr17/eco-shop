@@ -19,7 +19,7 @@ const ModalExamples = () => {
       </button>
 
       <button
-        // id="tooltipTestID"
+        id="tooltipTestID"
         type="button"
         onClick={() => {
           setIsTooltipOpen(true);
