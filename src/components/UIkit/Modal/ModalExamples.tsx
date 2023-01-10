@@ -1,7 +1,7 @@
 import Box from "components/Box";
 import Modal from "./Modal";
+import ModalTooltip from "./ModalTooltip";
 import { useState } from "react";
-import Backdrop from "../Backdrop";
 
 const ModalExamples = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +19,7 @@ const ModalExamples = () => {
       </button>
 
       <button
-        id="tooltipTestID"
+        id="tooltipID"
         type="button"
         onClick={() => {
           setIsTooltipOpen(true);
@@ -30,7 +30,6 @@ const ModalExamples = () => {
 
       {isModalOpen && (
         <Modal
-          type="classic"
           onClose={() => {
             setIsModalOpen(false);
           }}
@@ -40,14 +39,13 @@ const ModalExamples = () => {
       )}
 
       {isTooltipOpen && (
-        <Modal
-          type="tooltip"
+        <ModalTooltip
           onClose={() => {
             setIsTooltipOpen(false);
           }}
         >
           Modal Tooltip body
-        </Modal>
+        </ModalTooltip>
       )}
     </Box>
   );
