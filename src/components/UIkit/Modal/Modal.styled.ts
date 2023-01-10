@@ -33,7 +33,7 @@ export const TooltipContainer = styled("div")<{
   z-index: 999;
 
   /* height: 614px; */
-  height: 100px;
+  /* height: 100px; */
   border-radius: 24px;
   padding: 24px;
 
