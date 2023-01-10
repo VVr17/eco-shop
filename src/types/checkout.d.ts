@@ -3,4 +3,9 @@ interface ICheckout {
   lastName: string;
   phone: string;
   email: string;
+
+  street: string;
+  postCode: string;
+  // packagingType: string;
+  // shippingOption: string;
 }

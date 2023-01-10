@@ -34,6 +34,28 @@ export const checkoutValidationSchema = yup.object().shape({
       "email@email.com"
     )
     .required("Number is required"),
+
+  street: yup
+    .string()
+    .min(4, "Street should be at least 4 characters")
+    .max(30, "Street should be at most 20 characters")
+    .required("Street is required"),
+
+  postCode: yup
+    .string()
+    .length(5, "PostCode should contain 5 digits")
+    .required("PostCode is required"),
+
+  // packagingType: yup
+  //   .string()
+  //   .min(4, "Package should be at least 4 characters")
+  //   .max(30, "Package should be at most 20 characters")
+  //   .required("Package is required"),
+  // shippingOption: yup
+  //   .string()
+  //   .min(4, "Delivery type should be at least 4 characters")
+  //   .max(30, "Delivery type should be at most 20 characters")
+  //   .required("Delivery type is required"),
 });
 
 export const validationPasswordSchema = yup.object().shape({
