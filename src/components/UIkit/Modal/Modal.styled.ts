@@ -16,14 +16,22 @@ export const ModalContainer = styled(Box)`
   background-color: ${(p) => p.theme.colors.cardBackground};
 `;
 
-export const TooltipContainer = styled("div")`
+export const TooltipContainer = styled("div")<{
+  posX: number;
+  posY: number;
+  width: string;
+}>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: ${(p) => p.width};
+
+  top: calc(${(p) => p.posY}px + 10px - 1px);
+  left: calc(${(p) => p.posX}px - ${(p) => p.width} + 60px);
+  /* left: calc(${(p) => p.posX}px); */
+  /* transform: translateX(-${(p) => p.width}); */
+
+  /* transform: translate(-50%, -50%); */
   z-index: 999;
 
-  width: 328px;
   /* height: 614px; */
   height: 100px;
   border-radius: 24px;
