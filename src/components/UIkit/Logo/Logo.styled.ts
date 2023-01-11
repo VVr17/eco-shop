@@ -15,11 +15,6 @@ export const LogoWrapper = styled(Link)`
     padding: ${(p) => p.theme.space[2]};
   }
 
-  :hover,
-  :focus {
-    background-color: ${({ theme }) => theme.colors.hoverHeaderLink};
-  }
-
   img {
     width: 83px;
     height: 32px;
