@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, HTMLInputTypeAttribute } from "react";
 import {
   StyledButton,
   IconRightWrapper,
@@ -13,11 +13,13 @@ import {
 
 interface IButtonProps extends IBaseProps {
   text: string;
+  id?: HTMLInputTypeAttribute;
   type?: "submit" | "button";
   iconLeft?: IconType | null;
   iconRight?: IconType | null;
   iconMargin?: string;
   iconSize?: string;
+  onClick?: () => void;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -27,14 +29,15 @@ const Button: FC<IButtonProps> = ({
   iconRight: IconRight = null,
   iconMargin = DEFAULT_STYLES_VALUE,
   iconSize,
-
+  id,
+  onClick,
   ...rest
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
   // console.log(`text: ${text}`, commonProps);
   return (
-    <StyledButton type={type} {...commonProps}>
+    <StyledButton id={id} type={type} onClick={onClick} {...commonProps}>
       {IconLeft && (
         <IconLeftWrapper iconMargin={iconMargin}>
           <IconLeft size={iconSize} />

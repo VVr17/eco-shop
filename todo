@@ -1,7 +1,19 @@
+/* 
+
 Counter - 1kg +
 
 Button - add disabled 
 
 subscribe input
 
-inputs validation (tel, email, cvv, password, )
+inputs validation (tel, email, cvv, password, 
+
+questions to Vira : breakpoints -> how it works?
+
+
+
+react portal - Modal error- (any?)
+
+id and name props to Button
+
+*/
