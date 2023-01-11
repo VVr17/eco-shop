@@ -4,14 +4,14 @@ export const Card = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 340px;
-  height: 80px;
-  /* border-bottom: 1px solid ${({ theme }) => theme.colors.cartBorder}; */
 `;
 
-export const ImageWrapper = styled.div`
-  width: 64px;
-  height: 64px;
+export const ImageWrapper = styled.div<{
+  width: string;
+  height: string;
+}>`
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.input};
   margin-right: ${({ theme }) => theme.space[3]}; ;
