@@ -1,5 +1,6 @@
 import Box from "components/Box";
 import styled from "styled-components";
+import { theme } from "constants/theme";
 
 export const ModalContainer = styled(Box)`
   position: absolute;
@@ -56,5 +57,9 @@ export const TooltipContainer = styled("div")<{
     border-left: 1px solid ${(p) => p.theme.colors.input};
     border-left: 1px solid ${(p) => p.theme.colors.input};
     background-color: white;
+
+    /* ${theme.mq.tablet} {
+
+    } */
   }
 `;
