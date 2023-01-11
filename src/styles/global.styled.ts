@@ -1,3 +1,4 @@
+import { theme } from "constants/theme";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -28,6 +29,36 @@ h6,
 p {
   margin: 0;
   padding: 0;
+}
+
+h2 {
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  line-height: 1.21;
+  letter-spacing: 0.02em;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  
+  ${theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+  }
+  
+  ${theme.mq.desktop} {
+      font-size: ${({ theme }) => theme.fontSizes.xxl};
+  }
+}
+
+h3 {
+  font-size: ${({ theme }) => theme.fontSizes.l};
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  
+  ${theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSizes.l};
+  }
+  
+    ${theme.mq.desktop} {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+  }
 }
 
 ul,

@@ -1,13 +1,21 @@
 import { FC, HTMLInputTypeAttribute } from "react";
 import { IBaseProps, UI_BASE_PROPS } from "../base/uiBaseProps";
 import { Input } from "./Field.styled";
+import { Ref, MultipleFieldErrors, Message } from "react-hook-form"; // Forms
+
+export type FieldError = {
+  type: string;
+  ref?: Ref;
+  types?: MultipleFieldErrors;
+  message?: Message;
+};
 
 interface IFieldProps extends IBaseProps {
   type: "email" | "tel" | "text" | "password";
   id?: HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
-  name?: string;
+  name: string;
 }
 
 const Field: FC<IFieldProps> = ({

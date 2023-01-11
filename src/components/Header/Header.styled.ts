@@ -26,14 +26,6 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-/**
- *         px={[2, 2, 4, 4]}
-        maxWidth={containerWidth}
-        mx="auto"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
- */
 export const LeftSideContainer = styled.div`
   display: flex;
   align-items: center;
