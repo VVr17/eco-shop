@@ -37,17 +37,6 @@ const CartCard: React.FC<IProps> = ({
   measure,
 }) => {
   const { height, width } = imageDimensions;
-  const [counter, setCounter] = useState(initialVolume);
-  const counterSets = getCounterSets(measure);
-
-  const setIncrement = () => {
-    if (counter < counterSets.max)
-      setCounter((prev) => prev + counterSets.step);
-  };
-  const setDecrement = () => {
-    if (counter > counterSets.min)
-      setCounter((prev) => prev - counterSets.step);
-  };
 
   return (
     <Card id={id}>
@@ -63,12 +52,7 @@ const CartCard: React.FC<IProps> = ({
           width="100%"
           alignItems="center"
         >
-          <Counter
-            value={counter}
-            onIncrement={setIncrement}
-            onDecrement={setDecrement}
-            measure={measure}
-          />
+          <Counter id={id} initialValue={initialVolume} measure={measure} />
           <Price>
             {currency}
             {price}
