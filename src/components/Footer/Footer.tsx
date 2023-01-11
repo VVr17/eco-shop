@@ -3,7 +3,7 @@ import Container from "components/Container";
 import React from "react";
 
 const Footer: React.FC = () => (
-  <Box as="footer" py={[4, 4, 5, 5]}>
+  <Box as="footer" py={[4, 4, 5, 5]} backgroundColor="input">
     <Container>Footer</Container>
   </Box>
 );

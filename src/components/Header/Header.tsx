@@ -11,21 +11,18 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { CgMenuGridO } from "react-icons/cg";
 import { BiChevronDown } from "react-icons/bi";
 import Button from "components/UIkit/Button";
-import { LeftSideContainer, RightSideContainer } from "./Header.styled";
+import {
+  HeaderContainer,
+  LeftSideContainer,
+  RightSideContainer,
+} from "./Header.styled";
 
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
 
   return (
-    <Box as="header" py={[2, 2, 3, 3]}>
-      <Box
-        px={[2, 2, 4, 4]}
-        maxWidth={containerWidth}
-        mx="auto"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+    <Box as="header" pt={[3, 3, 3, 4]}>
+      <HeaderContainer>
         <LeftSideContainer>
           <Logo />
           {(isTablet || isDesktop) && <Search />}
@@ -96,7 +93,7 @@ const Header: React.FC = () => {
             </li>
           )}
         </RightSideContainer>
-      </Box>
+      </HeaderContainer>
     </Box>
   );
 };
