@@ -9,21 +9,53 @@ import {
 } from "./CartCard.styled";
 import { RxCross1 } from "react-icons/rx";
 import { useState } from "react";
-const CartCard = () => {
-  const [counter, setCounter] = useState(0.5);
+import Image from "next/image";
+import { getCounterSets } from "helpers/getCounterSets";
+
+interface IProps {
+  id: string;
+  initialVolume: number;
+  title: string;
+  imageUrl: string;
+  imageDimensions: {
+    width: number;
+    height: number;
+  };
+  currency: string;
+  price: number;
+  measure: "kg" | "g";
+}
+
+const CartCard: React.FC<IProps> = ({
+  id,
+  initialVolume,
+  currency,
+  imageUrl,
+  imageDimensions,
+  title,
+  price,
+  measure,
+}) => {
+  const { height, width } = imageDimensions;
+  const [counter, setCounter] = useState(initialVolume);
+  const counterSets = getCounterSets(measure);
 
   const setIncrement = () => {
-    if (counter < 10) setCounter((prev) => prev + 0.5);
+    if (counter < counterSets.max)
+      setCounter((prev) => prev + counterSets.step);
   };
   const setDecrement = () => {
-    if (counter > 0.5) setCounter((prev) => prev - 0.5);
+    if (counter > counterSets.min)
+      setCounter((prev) => prev - counterSets.step);
   };
 
   return (
-    <Card>
-      <ImageWrapper></ImageWrapper>
+    <Card id={id}>
+      <ImageWrapper width={`${width}px`} height={`${height}px`}>
+        <Image src={imageUrl} width={width} height={height} alt={title} />
+      </ImageWrapper>
       <Box display="flex" flexDirection="column" flex={1}>
-        <Title>Seedless Prune</Title>
+        <Title>{title}</Title>
 
         <Box
           display="flex"
@@ -35,8 +67,12 @@ const CartCard = () => {
             value={counter}
             onIncrement={setIncrement}
             onDecrement={setDecrement}
+            measure={measure}
           />
-          <Price>$42.60</Price>
+          <Price>
+            {currency}
+            {price}
+          </Price>
         </Box>
         <RemoveButton>
           <RxCross1 size={14} />

@@ -34,7 +34,8 @@ export const CounterStyled = styled.div`
     font-weight: inherit;
     border: none;
     background: none;
-    width: 20px;
+    text-align: center;
+    width: 21px;
     font-size: ${({ theme }) => theme.fontSizes.xxs};
   }
 `;
