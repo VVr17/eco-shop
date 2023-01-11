@@ -1,4 +1,3 @@
-import CheckoutForm from "components/CheckoutForm";
 import Heading from "components/Heading";
 import Section from "components/Section";
 import Head from "next/head";
@@ -12,7 +11,6 @@ const Checkout = () => (
     </Head>
     <Section>
       <Heading tag="h2" text="Checkout" />
-      <CheckoutForm />
     </Section>
   </>
 );

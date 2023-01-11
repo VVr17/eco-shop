@@ -1,12 +1,7 @@
 import { FC, HTMLInputTypeAttribute } from "react";
 import { IBaseProps, UI_BASE_PROPS } from "../base/uiBaseProps";
 import { Input } from "./Field.styled";
-import {
-  Ref,
-  MultipleFieldErrors,
-  Message,
-  UseFormRegister,
-} from "react-hook-form"; // Forms
+import { Ref, MultipleFieldErrors, Message } from "react-hook-form"; // Forms
 
 export type FieldError = {
   type: string;
@@ -21,8 +16,6 @@ interface IFieldProps extends IBaseProps {
   placeholder?: string;
   required?: boolean;
   name: string;
-  register: UseFormRegister<any>;
-  error: FieldError | undefined;
 }
 
 const Field: FC<IFieldProps> = ({
@@ -31,30 +24,20 @@ const Field: FC<IFieldProps> = ({
   placeholder = "",
   required = false,
   name,
-  register,
-  error,
 
   ...rest
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
 
   return (
-    <label>
-      {name}
-      <Input
-        type={type}
-        id={id}
-        // name={name}
-        placeholder={placeholder}
-        // required={required}
-        {...register(name, { required: true })}
-        aria-invalid={error ? "true" : "false"}
-        // border={error ? "red" : "mainText"}
-        // backgroundColor={error ? "bgErrorColor" : ""}
-        {...commonProps}
-      />
-      {error && <p>{error?.message}</p>}
-    </label>
+    <Input
+      type={type}
+      id={id}
+      name={name}
+      placeholder={placeholder}
+      required={required}
+      {...commonProps}
+    />
   );
 };
 
