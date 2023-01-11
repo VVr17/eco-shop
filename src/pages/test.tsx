@@ -9,6 +9,7 @@ import { useState } from "react";
 import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
 import SelectExamples from "components/UIkit/Select/SelectExamples";
 import ProductItem from "components/ProductItem";
+import ModalExamples from "components/UIkit/Modal/ModalExamples";
 import Section from "components/Section";
 
 const Test = () => {
@@ -21,6 +22,25 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
+        <ModalExamples />
+        <SelectExamples />
+        <SubscribeInputExamples />
+        <FieldExamples />
+        <SearchExamples />
+        <ButtonExamples />
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          padding="20px"
+          gridGap="40px"
+        >
+          {/* <ProductItem /> */}
+          {/* <ProductItem isSale={true} /> */}
+          {/* <CartCard /> */}
+        </Box>
+        <Box padding="20px">
+          {/* <Checkbox
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />

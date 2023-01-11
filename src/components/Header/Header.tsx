@@ -72,11 +72,15 @@ const Header: React.FC = () => {
               </IconButton>
             ) : (
               <Button
+                id="tooltipID"
                 text="Cart"
                 iconLeft={FiShoppingBag}
                 hoverColor={theme.colors.hoverHeaderLink}
                 borderColor="transparent"
                 iconSize="24"
+                // onClick={() => {
+                //   setIsTooltipOpen(true);
+                // }}
               />
             )}
           </li>
