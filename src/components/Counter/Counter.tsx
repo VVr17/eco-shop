@@ -6,18 +6,18 @@ import { getCounterSets } from "helpers/getCounterSets";
 interface IProps {
   id: string;
   initialValue: number;
-  measure: "kg" | "g";
+  measure: string;
+  step: number;
 }
 
-const Counter: React.FC<IProps> = ({ initialValue, measure, id }) => {
+const Counter: React.FC<IProps> = ({ initialValue, measure, step, id }) => {
   const [value, setValue] = useState(initialValue);
-  const counterSets = getCounterSets(measure);
 
   const setIncrement = () => {
-    if (value < counterSets.max) setValue((prev) => prev + counterSets.step);
+    setValue((prev) => prev + step);
   };
   const setDecrement = () => {
-    if (value > counterSets.min) setValue((prev) => prev - counterSets.step);
+    if (value > step) setValue((prev) => prev - step);
   };
 
   return (
@@ -26,7 +26,7 @@ const Counter: React.FC<IProps> = ({ initialValue, measure, id }) => {
         <AiOutlineMinus size={12} />
       </button>
       <input type="text" value={value} readOnly />
-      {measure}
+      <span>{measure}</span>
       <button onClick={setIncrement}>
         <AiOutlinePlus size={12} />
       </button>

@@ -39,8 +39,9 @@ const Test = () => {
           {/* <ProductItem isSale={true} /> */}
           {/* <CartCard
             id={"123"}
-            initialVolume={300}
-            measure="g"
+            initialVolume={2.5}
+            measure="kg"
+            counterStep={0.5}
             title="Seedless Prune"
             imageUrl=""
             imageDimensions={{ width: 64, height: 64 }}

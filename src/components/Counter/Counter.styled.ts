@@ -35,7 +35,12 @@ export const CounterStyled = styled.div`
     border: none;
     background: none;
     text-align: center;
-    width: 21px;
+    width: 28px;
     font-size: ${({ theme }) => theme.fontSizes.xxs};
+  }
+
+  span {
+    width: 20px;
+    overflow-x: hidden;
   }
 `;
