@@ -8,9 +8,7 @@ import {
   Title,
 } from "./CartCard.styled";
 import { RxCross1 } from "react-icons/rx";
-import { useState } from "react";
 import Image from "next/image";
-import { getCounterSets } from "helpers/getCounterSets";
 
 interface IProps {
   id: string;
@@ -23,7 +21,8 @@ interface IProps {
   };
   currency: string;
   price: number;
-  measure: "kg" | "g";
+  measure: string;
+  counterStep: number;
 }
 
 const CartCard: React.FC<IProps> = ({
@@ -35,6 +34,7 @@ const CartCard: React.FC<IProps> = ({
   title,
   price,
   measure,
+  counterStep,
 }) => {
   const { height, width } = imageDimensions;
 
@@ -52,7 +52,12 @@ const CartCard: React.FC<IProps> = ({
           width="100%"
           alignItems="center"
         >
-          <Counter id={id} initialValue={initialVolume} measure={measure} />
+          <Counter
+            id={id}
+            initialValue={initialVolume}
+            measure={measure}
+            step={counterStep}
+          />
           <Price>
             {currency}
             {price}
