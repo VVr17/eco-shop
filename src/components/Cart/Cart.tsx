@@ -1,5 +1,7 @@
 import Box from "components/Box";
+import CartCard from "components/CartCard";
 import Button from "components/UIkit/Button";
+import { cartData } from "utils/fakeData/fakeCartData";
 
 const Cart = () => {
   return (
@@ -7,7 +9,23 @@ const Cart = () => {
       <Box as="h2" fontSize="s" lineHeight="1.375">
         My shopping cart:
       </Box>
-      <Box as="ul"></Box>
+      <Box as="ul">
+        {cartData.map(
+          ({ id, name, volume, unit, price, currency, imgPath }) => (
+            <CartCard
+              key={imgPath}
+              id={id}
+              currency={currency}
+              initialVolume={Number(volume)}
+              imageDimensions={{ width: 61, height: 61 }}
+              imageUrl={imgPath}
+              measure={unit}
+              price={Number(price)}
+              title={name}
+            />
+          )
+        )}
+      </Box>
       <Box
         display="flex"
         alignItems="center"

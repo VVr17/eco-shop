@@ -1,4 +1,4 @@
-export const data = [
+export const cartData = [
   {
     id: "1",
     name: "Jerky persimmon",
@@ -6,7 +6,7 @@ export const data = [
     unit: "kg",
     price: "8.6",
     currency: "$",
-    img: "./fakeImages/Jerky_persimmon.png",
+    imgPath: "/fakeImages/Jerky_persimmon.png",
   },
   {
     id: "2",
@@ -15,7 +15,7 @@ export const data = [
     unit: "kg",
     price: "28",
     currency: "$",
-    img: "./fakeImages/Macadamia.png",
+    imgPath: "/fakeImages/Macadamia.png",
   },
   {
     id: "3",
@@ -24,7 +24,7 @@ export const data = [
     unit: "g",
     price: "7.2",
     currency: "$",
-    img: "./fakeImages/Spiced_nuts.png",
+    imgPath: "/fakeImages/Spiced_nuts.png",
   },
   {
     id: "4",
@@ -33,7 +33,7 @@ export const data = [
     unit: "kg",
     price: "5.7",
     currency: "$",
-    img: "./fakeImages/Banana.png",
+    imgPath: "/fakeImages/Banana.png",
   },
   {
     id: "5",
@@ -42,7 +42,7 @@ export const data = [
     unit: "kg",
     price: "15.5",
     currency: "$",
-    img: "./fakeImages/kiwifruit.png",
+    imgPath: "/fakeImages/kiwifruit.png",
   },
   {
     id: "6",
@@ -51,7 +51,7 @@ export const data = [
     unit: "kg",
     price: "8.6",
     currency: "$",
-    img: "./fakeImages/Jerky_persimmon.png",
+    imgPath: "/fakeImages/Jerky_persimmon.png",
   },
   {
     id: "7",
@@ -60,7 +60,7 @@ export const data = [
     unit: "kg",
     price: "28",
     currency: "$",
-    img: "./fakeImages/Macadamia.png",
+    imgPath: "/fakeImages/Macadamia.png",
   },
   {
     id: "8",
@@ -69,7 +69,7 @@ export const data = [
     unit: "g",
     price: "7.2",
     currency: "$",
-    img: "./fakeImages/Spiced_nuts.png",
+    imgPath: "/fakeImages/Spiced_nuts.png",
   },
   {
     id: "9",
@@ -78,6 +78,6 @@ export const data = [
     unit: "kg",
     price: "5.7",
     currency: "$",
-    img: "./fakeImages/Banana.png",
+    imgPath: "/fakeImages/Banana.png",
   },
 ];
