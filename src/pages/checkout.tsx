@@ -1,3 +1,4 @@
+import Heading from "components/Heading";
 import Section from "components/Section";
 import Head from "next/head";
 
@@ -8,7 +9,9 @@ const Checkout = () => (
       <meta name="description" content="eco shop" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <Section>Checkout</Section>
+    <Section>
+      <Heading tag="h2" text="Checkout" />
+    </Section>
   </>
 );
 export default Checkout;

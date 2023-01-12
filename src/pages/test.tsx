@@ -22,12 +22,12 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <ModalExamples />
+        {/* <ModalExamples />
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />
         <SearchExamples />
-        <ButtonExamples />
+        <ButtonExamples /> */}
         <Box
           display="flex"
           flexDirection="column"
@@ -37,7 +37,16 @@ const Test = () => {
         >
           {/* <ProductItem /> */}
           {/* <ProductItem isSale={true} /> */}
-          {/* <CartCard /> */}
+          {/* <CartCard
+            id={"123"}
+            initialVolume={300}
+            measure="g"
+            title="Seedless Prune"
+            imageUrl=""
+            imageDimensions={{ width: 64, height: 64 }}
+            currency="$"
+            price={42.6}
+          /> */}
         </Box>
         <Box padding="20px">
           {/* <Checkbox
