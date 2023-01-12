@@ -1,12 +1,20 @@
 import Box from "components/Box";
 import CartCard from "components/CartCard";
 import Button from "components/UIkit/Button";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
-import { CartList, CartListItem } from "./Cart.styled";
+import { CartList, CartListItem, ModalBody } from "./Cart.styled";
 
 const Cart = () => {
+  const router = useRouter();
+
+  const onCheckoutButtonClick = () => {
+    router.push("/checkout");
+  };
+
   return (
-    <>
+    <ModalBody>
       <Box as="h2" fontSize="s" lineHeight="1.375">
         My shopping cart:
       </Box>
@@ -57,8 +65,10 @@ const Cart = () => {
         width="100%"
         color="lightText"
         mt="24px"
+        hoverColor="hoverAccent"
+        onClick={onCheckoutButtonClick}
       />
-    </>
+    </ModalBody>
   );
 };
 

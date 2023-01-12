@@ -1,3 +1,4 @@
+import { useResizeViewportRender } from "hooks/useResizeViewportRender";
 import {
   FC,
   ReactNode,
@@ -27,6 +28,8 @@ const ModalTooltip: FC<IModalTooltipProps> = ({
   useEffect(() => {
     setIsBrowser(true);
   }, []);
+
+  useResizeViewportRender();
 
   const onBackdropClick = (e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
@@ -61,13 +64,13 @@ const ModalTooltip: FC<IModalTooltipProps> = ({
   let posY: number = 0;
 
   if (refParent) {
-    // console.log(refParent.current?.getBoundingClientRect());
+    console.log(refParent.current);
     const { bottom, left, width } =
-      (refParent.current?.getBoundingClientRect() as {
+      refParent.current?.getBoundingClientRect() as {
         bottom: number;
         left: number;
         width: number;
-      }) || {};
+      };
 
     posX = left + width / 2;
     posY = bottom;
