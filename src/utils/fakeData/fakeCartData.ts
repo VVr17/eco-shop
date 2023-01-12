@@ -2,7 +2,8 @@ export const cartData = [
   {
     id: "1",
     name: "Jerky persimmon",
-    volume: "1",
+    initialVolume: "1",
+    increaseVolume: ".5",
     unit: "kg",
     price: "8.6",
     currency: "$",
@@ -11,7 +12,8 @@ export const cartData = [
   {
     id: "2",
     name: "Macadamia in the shell",
-    volume: "2",
+    initialVolume: "2",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "28",
     currency: "$",
@@ -20,7 +22,8 @@ export const cartData = [
   {
     id: "3",
     name: "Spiced nuts",
-    volume: "500",
+    initialVolume: "500",
+    increaseVolume: "100",
     unit: "g",
     price: "7.2",
     currency: "$",
@@ -29,7 +32,8 @@ export const cartData = [
   {
     id: "4",
     name: "Banana",
-    volume: "4",
+    initialVolume: "4",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "5.7",
     currency: "$",
@@ -38,7 +42,8 @@ export const cartData = [
   {
     id: "5",
     name: "Premium kiwifruit",
-    volume: "3",
+    initialVolume: "3",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "15.5",
     currency: "$",
@@ -47,7 +52,8 @@ export const cartData = [
   {
     id: "6",
     name: "Jerky persimmon two",
-    volume: "1",
+    initialVolume: "1",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "8.6",
     currency: "$",
@@ -56,7 +62,8 @@ export const cartData = [
   {
     id: "7",
     name: "Macadamia in the shell two",
-    volume: "2",
+    initialVolume: "2",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "28",
     currency: "$",
@@ -65,7 +72,8 @@ export const cartData = [
   {
     id: "8",
     name: "Spiced nuts two",
-    volume: "500",
+    initialVolume: "500",
+    increaseVolume: "100",
     unit: "g",
     price: "7.2",
     currency: "$",
@@ -74,7 +82,8 @@ export const cartData = [
   {
     id: "9",
     name: "Banana two",
-    volume: "4",
+    initialVolume: "4",
+    increaseVolume: "0.5",
     unit: "kg",
     price: "5.7",
     currency: "$",

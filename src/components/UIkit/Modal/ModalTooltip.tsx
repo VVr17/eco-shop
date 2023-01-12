@@ -63,11 +63,11 @@ const ModalTooltip: FC<IModalTooltipProps> = ({
   if (refParent) {
     // console.log(refParent.current?.getBoundingClientRect());
     const { bottom, left, width } =
-      refParent.current?.getBoundingClientRect() as {
+      (refParent.current?.getBoundingClientRect() as {
         bottom: number;
         left: number;
         width: number;
-      };
+      }) || {};
 
     posX = left + width / 2;
     posY = bottom;

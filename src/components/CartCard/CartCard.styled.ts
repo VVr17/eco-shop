@@ -13,7 +13,7 @@ export const ImageWrapper = styled.div<{
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.input};
+  /* background-color: ${({ theme }) => theme.colors.input}; */
   margin-right: ${({ theme }) => theme.space[3]}; ;
 `;
 
