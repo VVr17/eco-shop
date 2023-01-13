@@ -5,6 +5,7 @@ export const theme = {
     lightText: "#ffffff",
     mainText: "#383634",
     accent: "#4C7C7D",
+    hoverAccent: "#406566",
     secondaryAccent: "#E45959", // red
     mainBackground: "#F5F3F1",
     secondaryBackground: "#E5E5E5",
@@ -32,7 +33,6 @@ export const theme = {
     m: "20px",
     l: "24px",
     xl: "40px",
-    xxl: "56px",
   },
 
   transitionTiming: "250ms cubic-bezier(0.4, 0, 0.2, 1)",
