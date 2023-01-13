@@ -6,7 +6,7 @@ interface IProps {
 }
 const Container: React.FC<IProps> = ({ children }) => {
   return (
-    <Box px={[3, 3, 4, 4]} maxWidth={containerWidth} mx="auto">
+    <Box px={3} maxWidth={containerWidth} mx="auto">
       {children}
     </Box>
   );

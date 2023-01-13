@@ -61,10 +61,12 @@ export const CartList = styled("ul")`
 `;
 
 export const CartListItem = styled("li")`
-  border-bottom: 1px solid ${(p) => p.theme.colors.input};
+  :not(:first-of-type) {
+    padding-top: ${({ theme }) => theme.space[3]};
+  }
 
-  margin-bottom: 16px;
-  &:last-child {
-    margin-bottom: 0;
+  :not(:last-of-type) {
+    padding-bottom: ${({ theme }) => theme.space[3]};
+    border-bottom: 1px solid ${(p) => p.theme.colors.input};
   }
 `;

@@ -11,6 +11,7 @@ import SelectExamples from "components/UIkit/Select/SelectExamples";
 import ProductItem from "components/ProductItem";
 import ModalExamples from "components/UIkit/Modal/ModalExamples";
 import Section from "components/Section";
+import Cart from "components/Cart";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -22,12 +23,13 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <ModalExamples />
+        {/* <Cart /> */}
+        {/* <ModalExamples />
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />
         <SearchExamples />
-        <ButtonExamples />
+        <ButtonExamples /> */}
         <Box
           display="flex"
           flexDirection="column"
