@@ -12,6 +12,7 @@ import ProductItem from "components/ProductItem";
 import ModalExamples from "components/UIkit/Modal/ModalExamples";
 import Section from "components/Section";
 import Cart from "components/Cart";
+import ProductList from "components/ProductList";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -23,7 +24,8 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <Cart />
+        <ProductList />
+        {/* <Cart /> */}
         {/* <ModalExamples />
         <SelectExamples />
         <SubscribeInputExamples />

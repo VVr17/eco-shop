@@ -6,21 +6,23 @@ export const Card = styled.div`
   flex-direction: column;
   position: relative;
 
-  width: 168px;
-  height: 176px;
+  /* width: 168px; */
+  /* height: 176px; */
 
   background-color: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 24px;
   /* padding: ${({ theme }) => theme.space[4]}; */
+  margin-top: 16px;
   padding-top: 24px;
   padding-right: 24px;
   padding-left: 16px;
   padding-bottom: 16px;
 
   ${theme.mq.tablet} {
-    width: 264px;
-    height: 228px;
+    /* width: 264px; */
+    /* height: 228px; */
+    margin-top: 38px;
     padding-top: 32px;
     padding-right: 32px;
     padding-left: 24px;
@@ -30,7 +32,7 @@ export const Card = styled.div`
 
 export const ImageWrapper = styled.div`
   position: absolute;
-  top: -13px;
+  top: -16px;
   left: 16px;
   width: 72px;
   height: 72px;
@@ -52,11 +54,11 @@ export const Rating = styled.div`
   color: ${({ theme }) => theme.colors.accent};
   font-size: ${({ theme }) => theme.fontSizes.xxs};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 
   ${theme.mq.tablet} {
     flex-direction: row;
-    margin-bottom: 50px;
+    margin-bottom: 68px;
   }
 
   svg {
@@ -76,6 +78,10 @@ export const Title = styled.p`
 
   ${theme.mq.mobileOnly} {
     width: 100px;
+  }
+
+  ${theme.mq.tablet} {
+    margin-bottom: 24px;
   }
 `;
 

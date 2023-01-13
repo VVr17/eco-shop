@@ -17,7 +17,7 @@ interface IProps {
   isSale?: boolean;
 }
 const ProductItem = ({ isSale = false }) => {
-  const { isTablet } = useWindowSize();
+  const { isTablet, isDesktop } = useWindowSize();
 
   return (
     <Card>
@@ -36,7 +36,7 @@ const ProductItem = ({ isSale = false }) => {
         <Title>Seedless Prune</Title>
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          {isTablet && (
+          {(isTablet || isDesktop) && (
             <Button
               text="Add"
               iconRight={AiOutlinePlus}
