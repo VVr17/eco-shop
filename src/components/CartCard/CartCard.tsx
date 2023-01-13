@@ -20,7 +20,7 @@ interface IProps {
     height: number;
   };
   currency: string;
-  price: number;
+  price: string;
   measure: string;
   counterStep: number;
 }

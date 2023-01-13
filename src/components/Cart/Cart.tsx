@@ -39,7 +39,7 @@ const Cart = () => {
                 imageDimensions={{ width: 61, height: 61 }}
                 imageUrl={imgPath}
                 measure={unit}
-                price={Number(price)}
+                price={Number(price).toFixed(2)}
                 title={name}
               />
             </CartListItem>
