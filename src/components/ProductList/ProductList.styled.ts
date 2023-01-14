@@ -15,9 +15,11 @@ export const List = styled.ul`
 
   li {
     flex-basis: calc((100% - 8px) / 2);
+    margin-top: 16px;
 
     ${theme.mq.tablet} {
       flex-basis: calc((100% - 16px) / 3);
+      margin-top: 38px;
     }
 
     ${theme.mq.desktop} {

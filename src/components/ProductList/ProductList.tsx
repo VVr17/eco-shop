@@ -14,8 +14,8 @@ const ProductList = () => {
           <li key={id}>
             <ProductItem
               isSale={onSale}
-              price={price}
-              oldPrice={oldPrice}
+              price={Number(price).toFixed(2)}
+              oldPrice={Number(price).toFixed(2)}
               currency={currency}
               rating={rating}
               name={name}
