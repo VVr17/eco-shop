@@ -24,7 +24,6 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <ProductList />
         {/* <Cart /> */}
         {/* <ModalExamples />
         <SelectExamples />

@@ -63,6 +63,7 @@ export const Rating = styled.div`
 
   svg {
     color: inherit;
+    align-self: center;
 
     ${theme.mq.tablet} {
       margin-right: ${({ theme }) => theme.space[2]};

@@ -12,20 +12,39 @@ import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import Box from "components/Box";
 import { useWindowSize } from "hooks/useWindowSize";
 import ProductItemLabel from "./ProductItemLabel";
+import Image from "next/image";
 
 interface IProps {
   isSale?: boolean;
+  id: string;
+  name: string;
+  price: string;
+  oldPrice: string;
+  imageUrl: string;
+  rating: string;
+  currency: string;
 }
-const ProductItem = ({ isSale = false }) => {
+const ProductItem: React.FC<IProps> = ({
+  isSale = false,
+  id,
+  name,
+  price,
+  oldPrice,
+  imageUrl,
+  rating,
+  currency,
+}) => {
   const { isTablet, isDesktop } = useWindowSize();
 
   return (
     <Card>
       {isSale && <ProductItemLabel />}
-      <ImageWrapper></ImageWrapper>
+      <ImageWrapper>
+        <Image src={imageUrl} alt={name} width={72} height={72} />
+      </ImageWrapper>
       <Rating>
         <AiFillStar />
-        <p>5/5</p>
+        <p>{rating}/5</p>
       </Rating>
       <Box
         display="flex"
@@ -33,7 +52,7 @@ const ProductItem = ({ isSale = false }) => {
         justifyContent="space-between"
         flex="1"
       >
-        <Title>Seedless Prune</Title>
+        <Title>{name}</Title>
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
           {(isTablet || isDesktop) && (
@@ -52,9 +71,15 @@ const ProductItem = ({ isSale = false }) => {
               flexDirection={["row-reverse", "row-reverse", "column", "column"]}
               alignItems={["center", "center", "end", "end"]}
             >
-              {isSale && <PreviousPrice>$ 25.00</PreviousPrice>}
+              {isSale && (
+                <PreviousPrice>
+                  {currency} {oldPrice}
+                </PreviousPrice>
+              )}
 
-              <Price isSale={isSale}>$ 25.00</Price>
+              <Price isSale={isSale}>
+                {currency} {price}
+              </Price>
             </Box>
             <Weight>/ 500g</Weight>
           </Box>
