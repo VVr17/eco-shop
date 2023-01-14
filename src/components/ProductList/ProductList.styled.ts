@@ -8,7 +8,6 @@ export const List = styled.ul`
   column-gap: ${({ theme }) => theme.space[2]};
 
   ${theme.mq.desktop} {
-    /* max-width: 836px; //TODO:check after making filter */
     row-gap: ${({ theme }) => theme.space[4]};
     column-gap: 28px;
   }

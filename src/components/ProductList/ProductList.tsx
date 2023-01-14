@@ -6,7 +6,7 @@ const ProductList = () => {
   return (
     <List>
       {listsData.map((product) => {
-        console.log("product", product);
+        // console.log("product", product);
         const { currency, id, imgPath, name, oldPrice, onSale, price, rating } =
           product;
 
