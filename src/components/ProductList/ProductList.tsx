@@ -5,26 +5,35 @@ import { List } from "./ProductList.styled";
 const ProductList = () => {
   return (
     <List>
-      {listsData.map((product) => {
-        // console.log("product", product);
-        const { currency, id, imgPath, name, oldPrice, onSale, price, rating } =
-          product;
-
-        return (
+      {listsData.map(
+        ({
+          currency,
+          id,
+          imgPath,
+          name,
+          oldPrice,
+          onSale,
+          price,
+          rating,
+          increaseVolume,
+          measure,
+        }) => (
           <li key={id}>
             <ProductItem
               isSale={onSale}
               price={Number(price).toFixed(2)}
-              oldPrice={Number(price).toFixed(2)}
+              oldPrice={Number(oldPrice).toFixed(2)}
               currency={currency}
               rating={rating}
               name={name}
               id={id}
               imageUrl={imgPath}
+              measure={measure}
+              baseMeasure={increaseVolume}
             />
           </li>
-        );
-      })}
+        )
+      )}
     </List>
   );
 };

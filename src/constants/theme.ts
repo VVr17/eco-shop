@@ -44,6 +44,9 @@ export const theme = {
   ],
 
   mq: {
+    mediumMobileOnly: `@media screen and (min-width: ${
+      breakpoints[0]
+    }px) and (max-width: ${+breakpoints[1] - 0.02}px)`,
     mobileOnly: `@media screen and (max-width: ${+breakpoints[1] - 0.02}px)`,
     tablet: `@media screen and (min-width: ${breakpoints[1]}px)`,
     tabletOnly: `@media screen and (min-width: ${

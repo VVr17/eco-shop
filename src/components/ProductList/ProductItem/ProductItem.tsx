@@ -23,7 +23,10 @@ interface IProps {
   imageUrl: string;
   rating: string;
   currency: string;
+  measure: string;
+  baseMeasure: string;
 }
+
 const ProductItem: React.FC<IProps> = ({
   isSale = false,
   id,
@@ -33,6 +36,8 @@ const ProductItem: React.FC<IProps> = ({
   imageUrl,
   rating,
   currency,
+  measure,
+  baseMeasure,
 }) => {
   const { isTablet, isDesktop } = useWindowSize();
 
@@ -81,7 +86,10 @@ const ProductItem: React.FC<IProps> = ({
                 {currency} {price}
               </Price>
             </Box>
-            <Weight>/ 500g</Weight>
+            <Weight>
+              / {baseMeasure}
+              {measure}
+            </Weight>
           </Box>
         </Box>
       </Box>

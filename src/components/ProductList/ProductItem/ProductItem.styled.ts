@@ -10,19 +10,10 @@ export const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 24px;
-  /* padding: ${({ theme }) => theme.space[4]}; */
-  /* margin-top: 16px; */
-  padding-top: 24px;
-  padding-right: 24px;
-  padding-left: 16px;
-  padding-bottom: 16px;
+  padding: ${({ theme }) => theme.space[3]};
 
   ${theme.mq.tablet} {
-    /* margin-top: 38px; */
-    padding-top: 32px;
-    padding-right: 32px;
-    padding-left: 24px;
-    padding-bottom: 24px;
+    padding: 24px;
   }
 `;
 
