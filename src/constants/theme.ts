@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     lightText: "#ffffff",
     mainText: "#383634",
+    secondaryText: "rgba(56, 54, 52, 0.5)",
     accent: "#4C7C7D",
     hoverAccent: "#406566",
     secondaryAccent: "#E45959", // red

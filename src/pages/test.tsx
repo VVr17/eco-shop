@@ -13,8 +13,7 @@ import ModalExamples from "components/UIkit/Modal/ModalExamples";
 import Section from "components/Section";
 import Cart from "components/Cart";
 import ProductList from "components/ProductList";
-import MultiRangeSlider from "components/UIkit/MultiRageSlider/MultiRageSlider";
-import { RangeSecond } from "components/UIkit/MultiRageSlider/rangeSecond";
+import PriceRange from "components/UIkit/PriceRange";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -26,19 +25,14 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <MultiRangeSlider
-          min={0}
-          max={1000}
-          onChange={() => {
-            console.log("slider");
-          }}
-          // onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+        <PriceRange
+          currency="$"
+          initialMinPriceRange={4}
+          initialMaxPriceRange={10}
+          minPrice={0}
+          maxPrice={50}
+          step={1}
         />
-        <br />
-        <br />
-        <br />
-        <br />
-        <RangeSecond />
         {/* <Cart /> */}
         {/* <ModalExamples />
         <SelectExamples />

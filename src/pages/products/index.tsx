@@ -3,6 +3,7 @@ import Container from "components/Container";
 import Heading from "components/Heading";
 import ProductList from "components/ProductList";
 import Section from "components/Section";
+import PriceRange from "components/UIkit/PriceRange";
 import { theme } from "constants/theme";
 import Head from "next/head";
 
@@ -23,6 +24,14 @@ const Products = () => (
           mr={theme.space[5]}
         >
           Filter
+          <PriceRange
+            currency="$"
+            initialMinPriceRange={4}
+            initialMaxPriceRange={10}
+            minPrice={0}
+            maxPrice={50}
+            step={1}
+          />
         </Box>
         <Box flex={1}>
           <Heading tag="h2" text="Products" />

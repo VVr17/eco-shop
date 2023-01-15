@@ -4,8 +4,8 @@ import Layout from "../components/Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
 import { GlobalStyle } from "../styles/global.styled";
-
 import { Roboto } from "@next/font/google";
+import "rc-slider/assets/index.css";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
