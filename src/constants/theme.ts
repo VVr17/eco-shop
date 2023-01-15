@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     lightText: "#ffffff",
     mainText: "#383634",
+    secondaryText: "rgba(56, 54, 52, 0.5)",
     accent: "#4C7C7D",
     hoverAccent: "#406566",
     secondaryAccent: "#E45959", // red
@@ -44,6 +45,9 @@ export const theme = {
   ],
 
   mq: {
+    mediumMobileOnly: `@media screen and (min-width: ${
+      breakpoints[0]
+    }px) and (max-width: ${+breakpoints[1] - 0.02}px)`,
     mobileOnly: `@media screen and (max-width: ${+breakpoints[1] - 0.02}px)`,
     tablet: `@media screen and (min-width: ${breakpoints[1]}px)`,
     tabletOnly: `@media screen and (min-width: ${

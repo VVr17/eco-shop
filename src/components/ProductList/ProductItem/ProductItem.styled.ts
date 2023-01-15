@@ -5,32 +5,21 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
-  width: 168px;
-  height: 176px;
+  height: 100%;
 
   background-color: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 24px;
-  /* padding: ${({ theme }) => theme.space[4]}; */
-  padding-top: 24px;
-  padding-right: 24px;
-  padding-left: 16px;
-  padding-bottom: 16px;
+  padding: ${({ theme }) => theme.space[3]};
 
   ${theme.mq.tablet} {
-    width: 264px;
-    height: 228px;
-    padding-top: 32px;
-    padding-right: 32px;
-    padding-left: 24px;
-    padding-bottom: 24px;
+    padding: 24px;
   }
 `;
 
 export const ImageWrapper = styled.div`
   position: absolute;
-  top: -13px;
+  top: -16px;
   left: 16px;
   width: 72px;
   height: 72px;
@@ -52,15 +41,16 @@ export const Rating = styled.div`
   color: ${({ theme }) => theme.colors.accent};
   font-size: ${({ theme }) => theme.fontSizes.xxs};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 
   ${theme.mq.tablet} {
     flex-direction: row;
-    margin-bottom: 50px;
+    margin-bottom: 68px;
   }
 
   svg {
     color: inherit;
+    align-self: center;
 
     ${theme.mq.tablet} {
       margin-right: ${({ theme }) => theme.space[2]};
@@ -73,9 +63,11 @@ export const Title = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.s};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   margin-bottom: 12px;
+  max-height: 38px;
+  overflow-y: hidden;
 
-  ${theme.mq.mobileOnly} {
-    width: 100px;
+  ${theme.mq.tablet} {
+    margin-bottom: 24px;
   }
 `;
 

@@ -8,10 +8,12 @@ import FieldExamples from "components/UIkit/Field/FieldExamples";
 import { useState } from "react";
 import SubscribeInputExamples from "components/UIkit/SubscribeInput/SubscribeInputExamples";
 import SelectExamples from "components/UIkit/Select/SelectExamples";
-import ProductItem from "components/ProductItem";
+// import ProductItem from "components/ProductItem";
 import ModalExamples from "components/UIkit/Modal/ModalExamples";
 import Section from "components/Section";
 import Cart from "components/Cart";
+import ProductList from "components/ProductList";
+import PriceRange from "components/UIkit/PriceRange";
 
 const Test = () => {
   const [checked, setChecked] = useState(false);
@@ -23,23 +25,31 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <Cart />
+        <PriceRange
+          currency="$"
+          initialMinPriceRange={4}
+          initialMaxPriceRange={10}
+          minPrice={0}
+          maxPrice={50}
+          step={1}
+        />
+        {/* <Cart /> */}
         {/* <ModalExamples />
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />
         <SearchExamples />
         <ButtonExamples /> */}
-        <Box
+        {/* <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
           padding="20px"
           gridGap="40px"
-        >
-          {/* <ProductItem /> */}
-          {/* <ProductItem isSale={true} /> */}
-          {/* <CartCard
+        > */}
+        {/* <ProductItem /> */}
+        {/* <ProductItem isSale={true} /> */}
+        {/* <CartCard
             id={"123"}
             initialVolume={2.5}
             measure="kg"
@@ -50,9 +60,9 @@ const Test = () => {
             currency="$"
             price={42.6}
           /> */}
-        </Box>
-        <Box padding="20px">
-          {/* <Checkbox
+        {/* </Box> */}
+        {/* <Box padding="20px"> */}
+        {/* <Checkbox
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />
@@ -66,11 +76,11 @@ const Test = () => {
           gridGap="40px"
         >
           {/* <ProductItem /> */}
-          {/* <ProductItem isSale={true} /> */}
-          {/* <CartCard /> */}
-        </Box>
-        <Box padding="20px">
-          {/* <Checkbox
+        {/* <ProductItem isSale={true} /> */}
+        {/* <CartCard /> */}
+        {/* </Box> */}
+        {/* <Box padding="20px"> */}
+        {/* <Checkbox
             checked={checked}
             onChange={() => {
               setChecked((prev) => !prev);
@@ -83,7 +93,7 @@ const Test = () => {
               setChecked((prev) => !prev);
             }}
           /> */}
-        </Box>
+        {/* </Box> */}
       </Section>
     </>
   );
