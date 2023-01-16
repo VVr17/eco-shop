@@ -30,14 +30,14 @@ const SelectList: FC<ISelectListProps> = ({
   return (
     <DropDownListWrapper {...commonProps}>
       <DropDownList>
-        {list.map((country) => (
+        {list.map((item) => (
           <DropDownItem
-            key={country.name}
+            key={item.name}
             onClick={() => {
-              onSelectItem(country.name);
+              onSelectItem(item.name);
             }}
           >
-            {country.name}
+            {item.name}
           </DropDownItem>
         ))}
       </DropDownList>
