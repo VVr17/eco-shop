@@ -4,12 +4,12 @@ export const Label = styled.label`
   display: flex;
   /* justify-content: center; */
   align-items: center;
+  cursor: pointer;
 `;
 export const CheckboxWrapper = styled.div<{ hasLabel: boolean }>`
   display: inline-block;
   vertical-align: middle;
   font-size: 0;
-  cursor: pointer;
   padding: ${(p) => p.theme.space[1]}px;
   margin-right: ${({ theme, hasLabel }) => (hasLabel ? theme.space[3] : 0)};
 `;

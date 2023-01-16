@@ -1,14 +1,11 @@
 import Box from "components/Box";
 import { containerWidth } from "constants/constants";
+import { ContainerStyled } from "./Container.styled";
 
 interface IProps {
   children?: React.ReactNode;
 }
 const Container: React.FC<IProps> = ({ children }) => {
-  return (
-    <Box px={3} maxWidth={containerWidth} mx="auto">
-      {children}
-    </Box>
-  );
+  return <ContainerStyled>{children}</ContainerStyled>;
 };
 export default Container;

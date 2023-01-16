@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, FocusEventHandler, useState } from "react";
 import { theme } from "constants/theme";
 import Slider from "rc-slider";
 import Box from "components/Box";
@@ -89,6 +89,37 @@ const DoubleRange: React.FC<IProps> = ({
     }));
   };
 
+  const handleMinInputBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+    const { maxRange } = priceRange;
+    const data = event.target.value.match(/\d+/);
+
+    if (data && +data > maxRange) {
+      setPriceRange((prev) => ({
+        ...prev,
+        minRange: maxRange - step,
+      }));
+    }
+  };
+
+  const handleMaxInputBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+    const { minRange, maxRange } = priceRange;
+    const data = event.target.value.match(/\d+/);
+
+    if (data && +data < minRange) {
+      setPriceRange((prev) => ({
+        ...prev,
+        maxRange: minRange + step,
+      }));
+    }
+
+    if (data && +data > maxPrice) {
+      setPriceRange((prev) => ({
+        ...prev,
+        maxRange: maxPrice,
+      }));
+    }
+  };
+
   const { minRange, maxRange } = priceRange;
   return (
     <Box width="100%">
@@ -117,6 +148,7 @@ const DoubleRange: React.FC<IProps> = ({
             max={maxRange}
             value={`${currency} ${minRange}`}
             onChange={handleMinInputChange}
+            onBlur={handleMinInputBlur}
           />
         </Field>
         <Field>
@@ -126,6 +158,7 @@ const DoubleRange: React.FC<IProps> = ({
             max={maxPrice}
             value={`${currency} ${maxRange}`}
             onChange={handleMaxInputChange}
+            onBlur={handleMaxInputBlur}
           />
         </Field>
       </Box>
