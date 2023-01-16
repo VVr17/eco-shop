@@ -10,18 +10,15 @@ export const LogoWrapper = styled(Link)`
   background-color: ${({ theme }) => theme.colors.mainBackground};
   border-radius: 10px;
   transition: background-color ${(p) => p.theme.transitionTiming};
+  width: 83px;
+  height: 32px;
 
-  ${theme.mq.desktop} {
-    padding: ${(p) => p.theme.space[2]};
+  ${theme.mq.tablet} {
+    width: 93px;
+    height: 36px;
   }
 
-  img {
-    width: 83px;
-    height: 32px;
-
-    ${theme.mq.tablet} {
-      width: 93px;
-      height: 36px;
-    }
+  svg {
+    object-fit: contain;
   }
 `;

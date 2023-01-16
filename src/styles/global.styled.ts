@@ -6,6 +6,17 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(p) => p.theme.fontFamily};
     color: ${(p) => p.theme.colors.mainText}; 
     background-color: ${(p) => p.theme.colors.mainBackground};
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      background-color: ${(p) => p.theme.colors.input};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(p) => p.theme.colors.mainText};
+      border-radius: 2px;
+    }
+
   }
 
   html,
