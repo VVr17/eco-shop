@@ -25,8 +25,8 @@ export const HeaderContainer = styled.div`
 
   ${theme.mq.desktop} {
     width: ${({ theme }) => theme.breakpoints[2]};
-    padding-right: 135px;
-    padding-left: 135px;
+    padding-right: 48px;
+    padding-left: 48px;
   }
 `;
 
