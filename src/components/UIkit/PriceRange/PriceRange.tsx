@@ -102,13 +102,20 @@ const DoubleRange: React.FC<IProps> = ({
   };
 
   const handleMaxInputBlur: FocusEventHandler<HTMLInputElement> = (event) => {
-    const { minRange } = priceRange;
+    const { minRange, maxRange } = priceRange;
     const data = event.target.value.match(/\d+/);
 
     if (data && +data < minRange) {
       setPriceRange((prev) => ({
         ...prev,
         maxRange: minRange + step,
+      }));
+    }
+
+    if (data && +data > maxPrice) {
+      setPriceRange((prev) => ({
+        ...prev,
+        maxRange: maxPrice,
       }));
     }
   };
