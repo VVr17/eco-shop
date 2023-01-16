@@ -3,26 +3,30 @@ import styled from "styled-components";
 import { containerWidth } from "constants/constants";
 
 export const HeaderContainer = styled.div`
-  max-width: ${containerWidth[1]};
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  width: 100%;
+  padding-right: ${({ theme }) => theme.space[3]};
+  padding-left: ${({ theme }) => theme.space[3]};
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding-left: ${({ theme }) => theme.space[2]};
-  padding-right: ${({ theme }) => theme.space[2]};
+  padding-left: ${({ theme }) => theme.space[3]};
+  padding-right: ${({ theme }) => theme.space[3]};
+
+  ${theme.mq.mediumMobileOnly} {
+    width: ${({ theme }) => theme.breakpoints[0]};
+  }
 
   ${theme.mq.tablet} {
-    max-width: ${containerWidth[2]};
-    padding-left: 24px;
-    padding-right: 24px;
+    width: ${({ theme }) => theme.breakpoints[1]};
   }
 
   ${theme.mq.desktop} {
-    max-width: ${containerWidth[3]};
-    padding-left: ${({ theme }) => theme.space[3]};
-    padding-right: ${({ theme }) => theme.space[3]};
+    width: ${({ theme }) => theme.breakpoints[2]};
+    padding-right: 135px;
+    padding-left: 135px;
   }
 `;
 
