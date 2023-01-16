@@ -8,7 +8,7 @@ interface IProps {
 
 const Section: React.FC<IProps> = ({ children }) => {
   return (
-    <Box as="section" pt={[3, 3, 4, 4]} pb={[4, 4, 5, 5]}>
+    <Box as="section" pt={[3, 3, 4, 5]} pb={[4, 4, 5, 5]}>
       <Container>{children}</Container>
     </Box>
   );

@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
 
   return (
-    <Box as="header" pt={[3, 3, 3, 4]}>
+    <Box as="header" pt={3} pb={3}>
       <HeaderContainer>
         <LeftSideContainer>
           <Logo />

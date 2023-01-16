@@ -1,5 +1,3 @@
-import Checkbox from "components/UIkit/Checkbox";
-import { useState } from "react";
 import FilterItem from "./FilterItem";
 import { List } from "./FilterList.styled";
 
