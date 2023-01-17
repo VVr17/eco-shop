@@ -9,7 +9,7 @@ const FilterItem: React.FC<IProps> = ({ label }) => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <li key={label}>
+    <li>
       <Checkbox
         label={label}
         checked={checked}

@@ -11,7 +11,7 @@ const FilterList: React.FC<IProps> = ({ listItems }) => {
       {listItems && (
         <List>
           {listItems.map((item) => (
-            <FilterItem label={item} />
+            <FilterItem key={item} label={item} />
           ))}
         </List>
       )}
