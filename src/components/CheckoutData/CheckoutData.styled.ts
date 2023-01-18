@@ -25,3 +25,31 @@ export const Label = styled("label")`
   display: block;
   margin-bottom: ${(p) => p.theme.space[2]};
 `;
+
+export const Input = styled("input")`
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+
+  width: 100%;
+  padding: 14px 16px;
+  font-size: ${(p) => p.theme.fontSizes.xs};
+  line-height: 1.142;
+  color: ${(p) => p.theme.colors.mainText};
+
+  border: 1px solid ${(p) => p.theme.colors.input};
+  border-radius: 10px;
+
+  &:focus,
+  &:focus-visible {
+    border: none;
+    outline: 1px solid ${(p) => p.theme.colors.accent};
+  }
+`;
+
+export const PaymentFieldWrapper = styled("div")`
+  display: flex;
+  column-gap: ${(p) => p.theme.space[4]};
+  flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+`;

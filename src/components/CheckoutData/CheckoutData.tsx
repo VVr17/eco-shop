@@ -3,7 +3,14 @@ import Field from "components/UIkit/Field";
 import Select from "components/UIkit/Select";
 import { checkoutSections } from "utils/checkoutSections";
 import { countries } from "utils/countries";
-import { FieldSet, FieldWrapper, H3, Label } from "./CheckoutData.styled";
+import {
+  FieldSet,
+  FieldWrapper,
+  H3,
+  Input,
+  Label,
+  PaymentFieldWrapper,
+} from "./CheckoutData.styled";
 import { ICountry } from "types/types";
 
 const selectLists: any = {
@@ -35,50 +42,26 @@ const selectLists: any = {
 const CheckoutData = () => {
   return (
     <>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" mt={4}>
         <Box width="712px" border="1px solid grey">
           <Box>
             <H3>Personal information:</H3>
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_first_name">First name</Label>
-                <Field
-                  id="checkout_first_name"
-                  name="first_name"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_first_name" name="first_name" type="text" />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_last_name">Last name</Label>
-                <Field
-                  id="checkout_last_name"
-                  name="last_name"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_last_name" name="last_name" type="text" />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_phone">Phone</Label>
-                <Field
-                  id="checkout_phone"
-                  name="phone"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_phone" name="phone" type="text" />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_email">Email</Label>
-                <Field
-                  id="checkout_email"
-                  name="email"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_email" name="email" type="text" />
               </FieldWrapper>
             </FieldSet>
           </Box>
@@ -107,23 +90,11 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_street">Street</Label>
-                <Field
-                  id="checkout_street"
-                  name="street"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_street" name="street" type="text" />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_postcode">Postcode</Label>
-                <Field
-                  id="checkout_postcode"
-                  name="postcode"
-                  type="text"
-                  fontSize="15px"
-                  width="100%"
-                />
+                <Input id="checkout_postcode" name="postcode" type="text" />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_packaging">Packaging type</Label>
@@ -147,44 +118,36 @@ const CheckoutData = () => {
               </FieldWrapper>
             </FieldSet>
           </Box>
+          <Box>
+            <H3>Payment:</H3>
+            <FieldSet>
+              <FieldWrapper>
+                <Label htmlFor="checkout_card_number">Card number</Label>
+                <Input
+                  id="checkout_card_number"
+                  name="card_number"
+                  type="text"
+                />
+              </FieldWrapper>
 
-          {/* {checkoutSections.map(({ heading, fieldSet }) => (
-            <Box>
-              <H3>{heading}</H3>
-              <FieldSet>
-                {fieldSet.map(({ id, type, label, name }) => (
-                  <FieldWrapper>
-                    <Label htmlFor={id}>{label}</Label>
-                    {type === "text" && (
-                      <Field
-                        id={id}
-                        name={name}
-                        type="text"
-                        fontSize="15px"
-                        width="100%"
-                      />
-                    )}
-                    {type === "select" && (
-                      <Select
-                        list={selectLists[name as keyof any]}
-                        fontSize="15px"
-                        width="100%"
-                      />
-                    )}
-                    {type === "password" && (
-                      <Field
-                        id={id}
-                        name={name}
-                        type="password"
-                        fontSize="15px"
-                        width="100%"
-                      />
-                    )}
-                  </FieldWrapper>
-                ))}
-              </FieldSet>
-            </Box>
-          ))} */}
+              <PaymentFieldWrapper>
+                <FieldWrapper>
+                  <Label htmlFor="checkout_expiration_date">
+                    Expiration date
+                  </Label>
+                  <Input
+                    id="checkout_expiration_date"
+                    name="expiration_date"
+                    type="text"
+                  />
+                </FieldWrapper>
+                <FieldWrapper>
+                  <Label htmlFor="checkout_cvv">CVV code</Label>
+                  <Input id="checkout_cvv" name="cvv" type="password" />
+                </FieldWrapper>
+              </PaymentFieldWrapper>
+            </FieldSet>
+          </Box>
         </Box>
         <Box width="370px" border="1px solid grey" backgroundColor="grey">
           Your order:
