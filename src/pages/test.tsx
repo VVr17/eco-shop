@@ -16,7 +16,6 @@ import ProductList from "components/ProductList";
 import PriceRange from "components/UIkit/PriceRange";
 
 const Test = () => {
-  const [checked, setChecked] = useState(false);
   return (
     <>
       <Head>
@@ -78,21 +77,6 @@ const Test = () => {
           {/* <ProductItem /> */}
         {/* <ProductItem isSale={true} /> */}
         {/* <CartCard /> */}
-        {/* </Box> */}
-        {/* <Box padding="20px"> */}
-        {/* <Checkbox
-            checked={checked}
-            onChange={() => {
-              setChecked((prev) => !prev);
-            }}
-          />
-          <Checkbox
-            checked={checked}
-            label="checkbox with label"
-            onChange={() => {
-              setChecked((prev) => !prev);
-            }}
-          /> */}
         {/* </Box> */}
       </Section>
     </>
