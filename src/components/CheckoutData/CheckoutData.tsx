@@ -12,6 +12,7 @@ import {
   PaymentFieldWrapper,
 } from "./CheckoutData.styled";
 import { ICountry } from "types/types";
+import Checkbox from "components/UIkit/Checkbox";
 
 const selectLists: any = {
   country: countries,
@@ -73,9 +74,12 @@ const CheckoutData = () => {
                 <Select
                   id="checkout_country"
                   list={countries}
-                  fontSize="15px"
+                  fontSize="14px"
                   width="100%"
                   name="country"
+                  pt="14px"
+                  pb="14px"
+                  placeholder="--Country--"
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -120,6 +124,16 @@ const CheckoutData = () => {
           </Box>
           <Box>
             <H3>Payment:</H3>
+            <ul>
+              <li>
+                <div>
+                  {/* <input id="payment_applpay" type="checkbox" /> */}
+                  {/* <label htmlFor="payment_applpay">Apple Pay</label> */}
+                  <Checkbox label="Apple Pay" checked />
+                </div>
+                <div>logos</div>
+              </li>
+            </ul>
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_card_number">Card number</Label>

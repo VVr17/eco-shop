@@ -33,6 +33,10 @@ export const CartList = styled("ul")`
   max-height: 400px;
   overflow-y: auto;
 
+  /* scrollbar-width: 4px; */
+  /* scrollbar-color: transparent; */
+  scrollbar-width: thin;
+
   &::-webkit-scrollbar {
     width: 4px;
     background-color: ${(p) => p.theme.colors.input};

@@ -8,6 +8,12 @@ export const StyledSelect = styled("input")<IBaseProps>`
   ${(p) => getUIBaseStyles(p, p.theme)}
   width: 100%;
   border-width: 1px;
+
+  &:focus,
+  &:focus-visible {
+    border-color: transparent;
+    outline: 1px solid ${(p) => p.theme.colors.accent};
+  }
 `;
 
 export const IconWrapper = styled("span")`
@@ -78,8 +84,8 @@ export const DropDownList = styled("ul")`
 
 export const DropDownItem = styled("li")`
   cursor: pointer;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 
   border-bottom: 1px solid ${(p) => p.theme.colors.input};
 
