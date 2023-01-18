@@ -53,3 +53,35 @@ export const PaymentFieldWrapper = styled("div")`
   column-gap: ${(p) => p.theme.space[4]};
   flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
 `;
+
+export const PaymentMethodList = styled("ul")`
+  margin-bottom: 22px;
+`;
+
+export const PaymentMethodItem = styled("li")`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 0;
+
+  border-bottom: 1px solid rgba(56, 54, 52, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const PaymentLogoWrapper = styled("div")`
+  display: flex;
+  align-items: center;
+`;
+
+export const PaymentHeading = styled("div")`
+  margin-bottom: ${(p) => p.theme.space[2]};
+
+  font-size: ${(p) => p.theme.fontSizes.m};
+  line-height: 1.1;
+  font-weight: ${(p) => p.theme.fontWeight.medium};
+  color: ${(p) => p.theme.colors.mainText};
+`;

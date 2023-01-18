@@ -10,9 +10,14 @@ import {
   Input,
   Label,
   PaymentFieldWrapper,
+  PaymentHeading,
+  PaymentLogoWrapper,
+  PaymentMethodItem,
+  PaymentMethodList,
 } from "./CheckoutData.styled";
 import { ICountry } from "types/types";
 import Checkbox from "components/UIkit/Checkbox";
+// import applePayLogo from "../../../public/";
 
 const selectLists: any = {
   country: countries,
@@ -123,17 +128,21 @@ const CheckoutData = () => {
             </FieldSet>
           </Box>
           <Box>
-            <H3>Payment:</H3>
-            <ul>
-              <li>
-                <div>
-                  {/* <input id="payment_applpay" type="checkbox" /> */}
-                  {/* <label htmlFor="payment_applpay">Apple Pay</label> */}
-                  <Checkbox label="Apple Pay" checked />
-                </div>
-                <div>logos</div>
-              </li>
-            </ul>
+            <PaymentHeading>Payment:</PaymentHeading>
+            <PaymentMethodList>
+              <PaymentMethodItem>
+                <Checkbox label="Apple Pay" />
+                <PaymentLogoWrapper>logo1</PaymentLogoWrapper>
+              </PaymentMethodItem>
+              <PaymentMethodItem>
+                <Checkbox label="Pay Pal" />
+                <PaymentLogoWrapper>logo2</PaymentLogoWrapper>
+              </PaymentMethodItem>
+              <PaymentMethodItem>
+                <Checkbox label="Credit or debit card" />
+                <PaymentLogoWrapper>logo1 logo2</PaymentLogoWrapper>
+              </PaymentMethodItem>
+            </PaymentMethodList>
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_card_number">Card number</Label>
@@ -172,3 +181,7 @@ const CheckoutData = () => {
 };
 
 export default CheckoutData;
+
+// Selects -> placeholders
+// breakpoints
+// validation
