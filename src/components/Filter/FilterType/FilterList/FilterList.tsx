@@ -15,8 +15,8 @@ const FilterList: React.FC<IProps> = ({ listItems }) => {
               <Checkbox
                 label={item}
                 initialChecked={false}
-                onChange={(checked: boolean) => {
-                  console.log("checked", checked);
+                onChange={(checked) => {
+                  console.log("checked", item, checked);
                 }}
               />
             </li>

@@ -17,7 +17,6 @@ const Checkbox: React.FC<IProps> = ({
   initialChecked = false,
   label,
   onChange,
-  ...props
 }) => {
   const [checked, setChecked] = useState(initialChecked);
 
@@ -31,7 +30,7 @@ const Checkbox: React.FC<IProps> = ({
   return (
     <Label>
       <CheckboxWrapper hasLabel={!!label}>
-        <HiddenCheckbox checked={checked} onChange={handleChange} {...props} />
+        <HiddenCheckbox checked={checked} onChange={handleChange} />
         <StyledCheckbox checked={checked}>
           <Icon viewBox="2 2 20 20">
             <polyline points="20 6 9 17 4 12" />
