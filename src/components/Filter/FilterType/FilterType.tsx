@@ -1,6 +1,6 @@
 import PriceRange from "components/UIkit/PriceRange";
-import FilterList from "../FilterList";
-import { Filter, Title } from "./FilterType.styled";
+import FilterList from "./FilterList";
+import { Title } from "./FilterType.styled";
 
 interface IProps {
   name: string;
@@ -10,7 +10,7 @@ interface IProps {
 
 const FilterType: React.FC<IProps> = ({ name, type, listItems }) => {
   return (
-    <Filter>
+    <>
       <Title>{name}</Title>
       {type === "range" && (
         <PriceRange
@@ -23,7 +23,7 @@ const FilterType: React.FC<IProps> = ({ name, type, listItems }) => {
         />
       )}
       {type === "list" && <FilterList listItems={listItems} />}
-    </Filter>
+    </>
   );
 };
 

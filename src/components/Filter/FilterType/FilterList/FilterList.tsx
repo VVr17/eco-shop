@@ -1,6 +1,4 @@
 import Checkbox from "components/UIkit/Checkbox";
-import { useState } from "react";
-import FilterItem from "./FilterItem";
 import { List } from "./FilterList.styled";
 
 interface IProps {
@@ -13,7 +11,15 @@ const FilterList: React.FC<IProps> = ({ listItems }) => {
       {listItems && (
         <List>
           {listItems.map((item) => (
-            <FilterItem label={item} />
+            <li key={item}>
+              <Checkbox
+                label={item}
+                initialChecked={false}
+                onChange={(checked) => {
+                  console.log("checked", item, checked);
+                }}
+              />
+            </li>
           ))}
         </List>
       )}

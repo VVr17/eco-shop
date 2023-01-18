@@ -16,85 +16,101 @@ import {
   LeftSideContainer,
   RightSideContainer,
 } from "./Header.styled";
+import { useState } from "react";
+import Cart from "components/Cart";
+import ModalTooltip from "components/UIkit/Modal/ModalTooltip";
 
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   return (
-    <Box as="header" pt={[3, 3, 3, 4]}>
-      <HeaderContainer>
-        <LeftSideContainer>
-          <Logo />
-          {(isTablet || isDesktop) && <Search />}
-          {isDesktop && (
-            <Button
-              text="Categories"
-              iconLeft={CgMenuGridO}
-              backgroundColor={theme.colors.mainBackground}
-              hoverColor={theme.colors.hoverHeaderLink}
-              borderColor="transparent"
-              iconSize="24"
-            />
-          )}
-        </LeftSideContainer>
-
-        <RightSideContainer>
-          {isMobile && (
-            <li>
-              <IconButton aria-label="search">
-                <FiSearch size={DEFAULT_ICON_SIZE} />
-              </IconButton>
-            </li>
-          )}
-
-          <li>
-            {isMobile || isTablet ? (
-              <IconButton aria-label="auth">
-                <FiUser size={DEFAULT_ICON_SIZE} />
-              </IconButton>
-            ) : (
+    <>
+      <Box as="header" pt={3} pb={3}>
+        <HeaderContainer>
+          <LeftSideContainer>
+            <Logo />
+            {(isTablet || isDesktop) && <Search />}
+            {isDesktop && (
               <Button
-                text="User"
-                iconLeft={FiUser}
-                iconRight={BiChevronDown}
+                text="Categories"
+                iconLeft={CgMenuGridO}
                 backgroundColor={theme.colors.mainBackground}
                 hoverColor={theme.colors.hoverHeaderLink}
                 borderColor="transparent"
                 iconSize="24"
               />
             )}
-          </li>
+          </LeftSideContainer>
 
-          <li>
-            {isMobile || isTablet ? (
-              <IconButton aria-label="cart">
-                <FiShoppingBag size={DEFAULT_ICON_SIZE} />
-              </IconButton>
-            ) : (
-              <Button
-                id="tooltipID"
-                text="Cart"
-                iconLeft={FiShoppingBag}
-                hoverColor={theme.colors.hoverHeaderLink}
-                borderColor="transparent"
-                iconSize="24"
-                // onClick={() => {
-                //   setIsTooltipOpen(true);
-                // }}
-              />
+          <RightSideContainer>
+            {isMobile && (
+              <li>
+                <IconButton aria-label="search">
+                  <FiSearch size={DEFAULT_ICON_SIZE} />
+                </IconButton>
+              </li>
             )}
-          </li>
 
-          {(isMobile || isTablet) && (
             <li>
-              <IconButton aria-label="mobile-menu">
-                <RxHamburgerMenu size={DEFAULT_ICON_SIZE} />
-              </IconButton>
+              {isMobile || isTablet ? (
+                <IconButton aria-label="auth">
+                  <FiUser size={DEFAULT_ICON_SIZE} />
+                </IconButton>
+              ) : (
+                <Button
+                  text="User"
+                  iconLeft={FiUser}
+                  iconRight={BiChevronDown}
+                  backgroundColor={theme.colors.mainBackground}
+                  hoverColor={theme.colors.hoverHeaderLink}
+                  borderColor="transparent"
+                  iconSize="24"
+                />
+              )}
             </li>
-          )}
-        </RightSideContainer>
-      </HeaderContainer>
-    </Box>
+
+            <li>
+              {isMobile || isTablet ? (
+                <IconButton aria-label="cart">
+                  <FiShoppingBag size={DEFAULT_ICON_SIZE} />
+                </IconButton>
+              ) : (
+                <Button
+                  id="tooltipID"
+                  text="Cart"
+                  iconLeft={FiShoppingBag}
+                  hoverColor={theme.colors.hoverHeaderLink}
+                  borderColor="transparent"
+                  iconSize="24"
+                  onClick={() => {
+                    setIsTooltipOpen(true);
+                  }}
+                />
+              )}
+            </li>
+
+            {(isMobile || isTablet) && (
+              <li>
+                <IconButton aria-label="mobile-menu">
+                  <RxHamburgerMenu size={DEFAULT_ICON_SIZE} />
+                </IconButton>
+              </li>
+            )}
+          </RightSideContainer>
+        </HeaderContainer>
+      </Box>
+
+      {isTooltipOpen && (
+        <ModalTooltip
+          onClose={() => {
+            setIsTooltipOpen(false);
+          }}
+        >
+          <Cart />
+        </ModalTooltip>
+      )}
+    </>
   );
 };
 

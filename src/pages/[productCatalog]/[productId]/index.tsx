@@ -1,28 +1,27 @@
-import Container from "components/Container";
 import Heading from "components/Heading";
 import QueryLine from "components/QueryLine";
 import Section from "components/Section";
+import { splitRoute } from "helpers/splitRoute";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const Home = () => {
+const ProductCard = () => {
   const router = useRouter();
-  console.log("router.asPath", router.asPath);
+  const isParsed = !router.asPath.includes("[");
+  const message = splitRoute(router.asPath);
 
   return (
     <>
       <Head>
-        <title>Eco Shop</title>
+        <title>Product card</title>
         <meta name="description" content="eco shop" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
       <Section>
-        <QueryLine message={router.asPath} />
-        <Heading tag="h2" text="Home" />
+        {isParsed && <QueryLine message={message} />}
+        {/* <Heading tag="h2" text={message} /> */}
       </Section>
     </>
   );
 };
-
-export default Home;
+export default ProductCard;

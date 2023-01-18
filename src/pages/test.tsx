@@ -16,7 +16,6 @@ import ProductList from "components/ProductList";
 import PriceRange from "components/UIkit/PriceRange";
 
 const Test = () => {
-  const [checked, setChecked] = useState(false);
   return (
     <>
       <Head>
@@ -25,14 +24,14 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <PriceRange
+        {/* <PriceRange
           currency="$"
           initialMinPriceRange={4}
           initialMaxPriceRange={10}
           minPrice={0}
           maxPrice={50}
           step={1}
-        />
+        /> */}
         {/* <Cart /> */}
         <ModalExamples />
         {/* <SelectExamples /> */}
@@ -78,21 +77,6 @@ const Test = () => {
           {/* <ProductItem /> */}
         {/* <ProductItem isSale={true} /> */}
         {/* <CartCard /> */}
-        {/* </Box> */}
-        {/* <Box padding="20px"> */}
-        {/* <Checkbox
-            checked={checked}
-            onChange={() => {
-              setChecked((prev) => !prev);
-            }}
-          />
-          <Checkbox
-            checked={checked}
-            label="checkbox with label"
-            onChange={() => {
-              setChecked((prev) => !prev);
-            }}
-          /> */}
         {/* </Box> */}
       </Section>
     </>
