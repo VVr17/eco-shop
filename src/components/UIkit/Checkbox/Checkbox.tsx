@@ -21,10 +21,10 @@ const Checkbox: React.FC<IProps> = ({
   const [checked, setChecked] = useState(initialChecked);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const currentValue = event.currentTarget.checked;
-    setChecked(currentValue);
+    const isChecked = event.currentTarget.checked;
+    setChecked(isChecked);
 
-    if (onChange) onChange(currentValue);
+    if (onChange) onChange(isChecked);
   };
 
   return (

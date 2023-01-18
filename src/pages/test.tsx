@@ -24,14 +24,14 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        <PriceRange
+        {/* <PriceRange
           currency="$"
           initialMinPriceRange={4}
           initialMaxPriceRange={10}
           minPrice={0}
           maxPrice={50}
           step={1}
-        />
+        /> */}
         {/* <Cart /> */}
         {/* <ModalExamples />
         <SelectExamples />
