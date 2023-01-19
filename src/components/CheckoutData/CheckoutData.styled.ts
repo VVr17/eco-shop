@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { justifyContent } from "styled-system";
 
 export const H3 = styled("h3")`
   margin-bottom: 24px;
@@ -75,6 +76,7 @@ export const PaymentMethodItem = styled("li")`
 export const PaymentLogoWrapper = styled("div")`
   display: flex;
   align-items: center;
+  column-gap: 17px;
 `;
 
 export const PaymentHeading = styled("div")`
@@ -84,4 +86,49 @@ export const PaymentHeading = styled("div")`
   line-height: 1.1;
   font-weight: ${(p) => p.theme.fontWeight.medium};
   color: ${(p) => p.theme.colors.mainText};
+`;
+
+//------------------------------------------------------
+export const SummaryHeading = styled("h3")`
+  margin-bottom: ${(p) => p.theme.space[4]};
+
+  font-size: ${(p) => p.theme.fontSizes.m};
+  line-height: 1.1;
+  font-weight: ${(p) => p.theme.fontWeight.medium};
+  color: ${(p) => p.theme.colors.mainText};
+`;
+
+export const SummaryCostsList = styled("ul")`
+  color: rgba(56, 54, 52, 0.7);
+  font-size: ${(p) => p.theme.fontSizes.s};
+  line-height: 1.375;
+  padding-bottom: ${(p) => p.theme.space[3]};
+
+  border-bottom: 1px solid rgba(56, 54, 52, 0.1); ;
+`;
+
+export const SummaryCostItem = styled("li")`
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const SummaryCostName = styled("span")``;
+
+export const SummaryCostValue = styled("span")``;
+
+export const SummaryTotalWrapper = styled("div")`
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: ${(p) => p.theme.space[3]};
+
+  font-size: ${(p) => p.theme.fontSizes.m};
+  font-weight: ${(p) => p.theme.fontWeight.bold};
+  line-height: 1.1;
 `;

@@ -1,4 +1,6 @@
-export const cartData = [
+import { ICartCardData } from "types/types";
+
+export const cartData: ICartCardData[] = [
   {
     id: "1",
     name: "Jerky persimmon",

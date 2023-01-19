@@ -1,12 +1,16 @@
 import Box from "components/Box";
-import CartCard from "components/CartCard";
 import Button from "components/UIkit/Button";
+import CartList from "./CartList";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { cartData } from "utils/fakeData/fakeCartData";
-import { CartList, CartListItem, ModalBody } from "./Cart.styled";
+import { FC } from "react";
+import { ICartCardData } from "types/types";
+import { CartListWrapper, ModalBody } from "./Cart.styled";
 
-const Cart = () => {
+interface ICartProps {
+  data: ICartCardData[];
+}
+
+const Cart: FC<ICartProps> = ({ data }) => {
   const router = useRouter();
 
   const onCheckoutButtonClick = () => {
@@ -18,34 +22,9 @@ const Cart = () => {
       <Box as="h2" fontSize="s" lineHeight="1.375">
         My shopping cart:
       </Box>
-      <CartList>
-        {cartData.map(
-          ({
-            id,
-            name,
-            initialVolume,
-            increaseVolume,
-            unit,
-            price,
-            currency,
-            imgPath,
-          }) => (
-            <CartListItem key={id}>
-              <CartCard
-                id={id}
-                currency={currency}
-                initialVolume={Number(initialVolume)}
-                counterStep={Number(increaseVolume)}
-                imageDimensions={{ width: 61, height: 61 }}
-                imageUrl={imgPath}
-                measure={unit}
-                price={Number(price).toFixed(2)}
-                title={name}
-              />
-            </CartListItem>
-          )
-        )}
-      </CartList>
+      <CartListWrapper>
+        <CartList data={data} />
+      </CartListWrapper>
       <Box
         display="flex"
         alignItems="center"

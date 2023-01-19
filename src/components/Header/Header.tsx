@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import Cart from "components/Cart";
 import ModalTooltip from "components/UIkit/Modal/ModalTooltip";
+import { cartData } from "utils/fakeData/fakeCartData";
 
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
@@ -107,7 +108,7 @@ const Header: React.FC = () => {
             setIsTooltipOpen(false);
           }}
         >
-          <Cart />
+          <Cart data={cartData} />
         </ModalTooltip>
       )}
     </>

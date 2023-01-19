@@ -1,7 +1,6 @@
 import Box from "components/Box";
 import Field from "components/UIkit/Field";
 import Select from "components/UIkit/Select";
-import { checkoutSections } from "utils/checkoutSections";
 import { countries } from "utils/countries";
 import {
   FieldSet,
@@ -14,10 +13,23 @@ import {
   PaymentLogoWrapper,
   PaymentMethodItem,
   PaymentMethodList,
+  SummaryHeading,
+  SummaryCostsList,
+  SummaryCostItem,
+  SummaryCostName,
+  SummaryCostValue,
+  SummaryTotalWrapper,
 } from "./CheckoutData.styled";
-import { ICountry } from "types/types";
 import Checkbox from "components/UIkit/Checkbox";
-// import applePayLogo from "../../../public/";
+import ApplePayIcon from "assets/icons/applepay.svg";
+import PaypalIcon from "assets/icons/paypal.svg";
+import VisaIcon from "assets/icons/visa.svg";
+import MastercardIcon from "assets/icons/mastercard.svg";
+import { useState } from "react";
+import Button from "components/UIkit/Button";
+import Cart from "components/Cart";
+import { cartData } from "utils/fakeData/fakeCartData";
+import CartList from "components/Cart/CartList";
 
 const selectLists: any = {
   country: countries,
@@ -46,6 +58,12 @@ const selectLists: any = {
 };
 
 const CheckoutData = () => {
+  const [isCreditCard, SetIsCreditCard] = useState(false);
+
+  const CreditCardPmntHandler = (isChecked: boolean) => {
+    SetIsCreditCard(isChecked);
+  };
+
   return (
     <>
       <Box display="flex" justifyContent="space-between" mt={4}>
@@ -132,48 +150,88 @@ const CheckoutData = () => {
             <PaymentMethodList>
               <PaymentMethodItem>
                 <Checkbox label="Apple Pay" />
-                <PaymentLogoWrapper>logo1</PaymentLogoWrapper>
+                <PaymentLogoWrapper>
+                  <ApplePayIcon />
+                </PaymentLogoWrapper>
               </PaymentMethodItem>
               <PaymentMethodItem>
                 <Checkbox label="Pay Pal" />
-                <PaymentLogoWrapper>logo2</PaymentLogoWrapper>
+                <PaymentLogoWrapper>
+                  <PaypalIcon />
+                </PaymentLogoWrapper>
               </PaymentMethodItem>
               <PaymentMethodItem>
-                <Checkbox label="Credit or debit card" />
-                <PaymentLogoWrapper>logo1 logo2</PaymentLogoWrapper>
+                <Checkbox
+                  label="Credit or debit card"
+                  onChange={CreditCardPmntHandler}
+                />
+                <PaymentLogoWrapper>
+                  <MastercardIcon /> <VisaIcon />
+                </PaymentLogoWrapper>
               </PaymentMethodItem>
             </PaymentMethodList>
-            <FieldSet>
-              <FieldWrapper>
-                <Label htmlFor="checkout_card_number">Card number</Label>
-                <Input
-                  id="checkout_card_number"
-                  name="card_number"
-                  type="text"
-                />
-              </FieldWrapper>
 
-              <PaymentFieldWrapper>
+            {isCreditCard && (
+              <FieldSet>
                 <FieldWrapper>
-                  <Label htmlFor="checkout_expiration_date">
-                    Expiration date
-                  </Label>
+                  <Label htmlFor="checkout_card_number">Card number</Label>
                   <Input
-                    id="checkout_expiration_date"
-                    name="expiration_date"
+                    id="checkout_card_number"
+                    name="card_number"
                     type="text"
                   />
                 </FieldWrapper>
-                <FieldWrapper>
-                  <Label htmlFor="checkout_cvv">CVV code</Label>
-                  <Input id="checkout_cvv" name="cvv" type="password" />
-                </FieldWrapper>
-              </PaymentFieldWrapper>
-            </FieldSet>
+
+                <PaymentFieldWrapper>
+                  <FieldWrapper>
+                    <Label htmlFor="checkout_expiration_date">
+                      Expiration date
+                    </Label>
+                    <Input
+                      id="checkout_expiration_date"
+                      name="expiration_date"
+                      type="text"
+                    />
+                  </FieldWrapper>
+                  <FieldWrapper>
+                    <Label htmlFor="checkout_cvv">CVV code</Label>
+                    <Input id="checkout_cvv" name="cvv" type="password" />
+                  </FieldWrapper>
+                </PaymentFieldWrapper>
+              </FieldSet>
+            )}
           </Box>
         </Box>
-        <Box width="370px" border="1px solid grey" backgroundColor="grey">
-          Your order:
+        <Box width="370px" border="1px solid grey">
+          <SummaryHeading>Your order:</SummaryHeading>
+          <SummaryCostsList>
+            <SummaryCostItem>
+              <SummaryCostName>Subtotal:</SummaryCostName>
+              <SummaryCostValue>$60.30</SummaryCostValue>
+            </SummaryCostItem>
+            <SummaryCostItem>
+              <SummaryCostName>Delivery:</SummaryCostName>
+              <SummaryCostValue>$8.20</SummaryCostValue>
+            </SummaryCostItem>
+          </SummaryCostsList>
+          <SummaryTotalWrapper>
+            <SummaryCostName>Total:</SummaryCostName>
+            <SummaryCostValue>$68.50</SummaryCostValue>
+          </SummaryTotalWrapper>
+
+          <Button
+            text="Purchase"
+            backgroundColor="accent"
+            hoverColor="hoverAccent"
+            width="100%"
+            color="lightText"
+            mt="32px"
+            mb="56px"
+            pt="18px"
+            pb="18px"
+          />
+
+          <CartList data={cartData} />
         </Box>
       </Box>
     </>
