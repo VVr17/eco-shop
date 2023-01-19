@@ -1,3 +1,4 @@
+import { theme } from "constants/theme";
 import styled from "styled-components";
 import { justifyContent } from "styled-system";
 
@@ -131,4 +132,43 @@ export const SummaryTotalWrapper = styled("div")`
   font-size: ${(p) => p.theme.fontSizes.m};
   font-weight: ${(p) => p.theme.fontWeight.bold};
   line-height: 1.1;
+`;
+
+//-------------------------------------------------------
+export const CheckoutListWrapper = styled("div")<{ maxHeight: number }>`
+  margin-top: 56px;
+  padding-right: 16px;
+
+  /* max-height: 600px; */
+  max-height: ${(p) => (p.maxHeight ? p.maxHeight : 600)}px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: ${(p) => p.theme.colors.input};
+  }
+
+  /* &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(p) => p.theme.colors.mainText};
+    border-radius: 2px;
+  }
+
+  ${theme.mq.tabletOnly} {
+    padding-right: 0;
+    max-height: initial;
+    overflow-y: visible;
+  }
+
+  ${theme.mq.mobileOnly} {
+    padding-right: 0;
+    max-height: initial;
+    overflow-y: visible;
+  }
 `;

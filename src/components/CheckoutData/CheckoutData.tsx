@@ -19,13 +19,14 @@ import {
   SummaryCostName,
   SummaryCostValue,
   SummaryTotalWrapper,
+  CheckoutListWrapper,
 } from "./CheckoutData.styled";
 import Checkbox from "components/UIkit/Checkbox";
 import ApplePayIcon from "assets/icons/applepay.svg";
 import PaypalIcon from "assets/icons/paypal.svg";
 import VisaIcon from "assets/icons/visa.svg";
 import MastercardIcon from "assets/icons/mastercard.svg";
-import { useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import Button from "components/UIkit/Button";
 import Cart from "components/Cart";
 import { cartData } from "utils/fakeData/fakeCartData";
@@ -60,14 +61,37 @@ const selectLists: any = {
 const CheckoutData = () => {
   const [isCreditCard, SetIsCreditCard] = useState(false);
 
+  // const refForm = useRef(document.getElementById("checkoutForm"));
+  // const refForm = useRef();
+  const orderRef = useRef<HTMLInputElement>(null);
+  const cartRef = useRef<HTMLInputElement>(null);
+
   const CreditCardPmntHandler = (isChecked: boolean) => {
     SetIsCreditCard(isChecked);
   };
 
+  // console.log(refForm?.current?.getBoundingClientRect());
+  // console.log(refForm?.current);
+
+  // const { bottom: orderBottom } =
+  //   orderRef?.current?.getBoundingClientRect() as {
+  //     bottom: number;
+  //   };
+
+  // const { bottom: cartBottom } = cartRef?.current?.getBoundingClientRect() as {
+  //   bottom: number;
+  // };
+
+  // console.log(orderRef.current?.getBoundingClientRect());
+  // console.log(cartRef.current?.getBoundingClientRect());
+
+  // const dim = orderBottom - cartBottom;
+  // console.log(dim);
+
   return (
     <>
       <Box display="flex" justifyContent="space-between" mt={4}>
-        <Box width="712px" border="1px solid grey">
+        <Box width="712px" border="1px solid grey" id="checkoutForm">
           <Box>
             <H3>Personal information:</H3>
             <FieldSet>
@@ -202,7 +226,7 @@ const CheckoutData = () => {
             )}
           </Box>
         </Box>
-        <Box width="370px" border="1px solid grey">
+        <Box width="370px" border="1px solid grey" ref={orderRef}>
           <SummaryHeading>Your order:</SummaryHeading>
           <SummaryCostsList>
             <SummaryCostItem>
@@ -226,12 +250,13 @@ const CheckoutData = () => {
             width="100%"
             color="lightText"
             mt="32px"
-            mb="56px"
             pt="18px"
             pb="18px"
           />
 
-          <CartList data={cartData} />
+          <CheckoutListWrapper maxHeight={300} ref={cartRef}>
+            <CartList data={cartData} />
+          </CheckoutListWrapper>
         </Box>
       </Box>
     </>
