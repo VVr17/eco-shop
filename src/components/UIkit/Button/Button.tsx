@@ -1,4 +1,4 @@
-import { FC, HTMLInputTypeAttribute } from "react";
+import { FC, HTMLInputTypeAttribute, MouseEventHandler } from "react";
 import {
   StyledButton,
   IconRightWrapper,
@@ -19,7 +19,7 @@ interface IButtonProps extends IBaseProps {
   iconRight?: IconType | null;
   iconMargin?: string;
   iconSize?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: FC<IButtonProps> = ({

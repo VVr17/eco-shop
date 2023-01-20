@@ -6,17 +6,19 @@ const Filter = () => {
   return (
     <>
       <Title>Filter</Title>
-      <ul>
-        <FilterThumb key="price">
-          <FilterType type="range" name="price" />
-        </FilterThumb>
-        <FilterThumb key="volume">
-          <FilterType type="list" name="volume" listItems={volumes} />
-        </FilterThumb>
-        <FilterThumb key="brand">
-          <FilterType type="list" name="brand" listItems={brands} />
-        </FilterThumb>
-      </ul>
+      <form>
+        <ul>
+          <FilterThumb key="price">
+            <FilterType type="range" name="price" />
+          </FilterThumb>
+          <FilterThumb key="volume">
+            <FilterType type="list" name="volume" listItems={volumes} />
+          </FilterThumb>
+          <FilterThumb key="brand">
+            <FilterType type="list" name="brand" listItems={brands} />
+          </FilterThumb>
+        </ul>
+      </form>
     </>
   );
 };
