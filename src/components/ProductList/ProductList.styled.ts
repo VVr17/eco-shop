@@ -6,6 +6,7 @@ export const List = styled.ul`
   flex-wrap: wrap;
   row-gap: ${({ theme }) => theme.space[3]};
   column-gap: ${({ theme }) => theme.space[2]};
+  margin-bottom: ${({ theme }) => theme.space[5]};
 
   ${theme.mq.desktop} {
     row-gap: ${({ theme }) => theme.space[4]};
