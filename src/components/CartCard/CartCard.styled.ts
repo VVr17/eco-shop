@@ -18,7 +18,7 @@ export const ImageWrapper = styled.div<{
 `;
 
 export const Title = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.s};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   margin-bottom: ${({ theme }) => theme.space[2]};
 `;
 
