@@ -8,6 +8,7 @@ import Filter from "components/Filter";
 import { useRouter } from "next/router";
 import QueryLine from "components/QueryLine";
 import { splitRoute } from "helpers/splitRoute";
+import SortedFilter from "components/Filter/SortedFilter";
 
 const Products = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const Products = () => {
                 <Heading tag="h2" text={message} />
               </>
             )}
-
+            <SortedFilter />
             <ProductList />
           </Box>
         </Box>

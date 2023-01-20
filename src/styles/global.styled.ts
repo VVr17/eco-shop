@@ -47,9 +47,11 @@ h2 {
   line-height: 1.21;
   letter-spacing: 0.02em;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  margin-bottom:  ${({ theme }) => theme.space[3]};
   
   ${theme.mq.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.xl};
+      margin-bottom:  ${({ theme }) => theme.space[4]};
   }
   
   ${theme.mq.desktop} {

@@ -67,6 +67,10 @@ const ProductItem: React.FC<IProps> = ({
               iconMargin="16px"
               borderColor="input"
               hoverColor="accent"
+              onClick={(event) => {
+                event.stopPropagation();
+                // console.log(event);
+              }}
             />
           )}
 
