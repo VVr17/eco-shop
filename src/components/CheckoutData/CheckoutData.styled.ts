@@ -140,7 +140,9 @@ export const CheckoutListWrapper = styled("div")<{ maxHeight: number }>`
   padding-right: 16px;
 
   /* max-height: 600px; */
-  max-height: ${(p) => (p.maxHeight ? p.maxHeight : 600)}px;
+  max-height: ${(p) => (p.maxHeight ? p.maxHeight : 500)}px;
+  /* height: 100%; */
+  /* height: max-content; */
 
   overflow-y: auto;
 

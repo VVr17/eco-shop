@@ -26,7 +26,7 @@ import ApplePayIcon from "assets/icons/applepay.svg";
 import PaypalIcon from "assets/icons/paypal.svg";
 import VisaIcon from "assets/icons/visa.svg";
 import MastercardIcon from "assets/icons/mastercard.svg";
-import { RefObject, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import Button from "components/UIkit/Button";
 import Cart from "components/Cart";
 import { cartData } from "utils/fakeData/fakeCartData";
@@ -59,7 +59,8 @@ const selectLists: any = {
 };
 
 const CheckoutData = () => {
-  const [isCreditCard, SetIsCreditCard] = useState(false);
+  const [isCreditCard, setIsCreditCard] = useState(false);
+  const [cartHeight, setCartHeight] = useState(0);
 
   // const refForm = useRef(document.getElementById("checkoutForm"));
   // const refForm = useRef();
@@ -67,16 +68,36 @@ const CheckoutData = () => {
   const cartRef = useRef<HTMLInputElement>(null);
 
   const CreditCardPmntHandler = (isChecked: boolean) => {
-    SetIsCreditCard(isChecked);
+    setIsCreditCard(isChecked);
   };
+
+  // useEffect(() => {
+  //   const rectOrder = orderRef?.current?.getBoundingClientRect();
+  //   const rectCart = cartRef?.current?.getBoundingClientRect();
+  //   // console.log(cartRef);
+
+  //   if (rectOrder && rectCart) {
+  //     const height =
+  //       Math.trunc(rectCart.height) +
+  //       (Math.trunc(rectOrder.bottom) - Math.trunc(rectCart.bottom)) -
+  //       1;
+  //     if (cartHeight !== height) {
+  //       setCartHeight(height);
+  //       // console.log(cartHeight);
+  //       // console.log(height);
+  //       // console.log("rectOrder", rectOrder);
+  //       // console.log("rectCart", rectCart);
+  //     }
+  //   }
+  // });
 
   // console.log(refForm?.current?.getBoundingClientRect());
   // console.log(refForm?.current);
 
   // const { bottom: orderBottom } =
-  //   orderRef?.current?.getBoundingClientRect() as {
-  //     bottom: number;
-  //   };
+  // orderRef?.current?.getBoundingClientRect() as {
+  //   bottom: number;
+  // };
 
   // const { bottom: cartBottom } = cartRef?.current?.getBoundingClientRect() as {
   //   bottom: number;
@@ -88,6 +109,19 @@ const CheckoutData = () => {
   // const dim = orderBottom - cartBottom;
   // console.log(dim);
 
+  // const rectOrder = orderRef?.current?.getBoundingClientRect();
+  // const rectCart = cartRef?.current?.getBoundingClientRect();
+
+  // console.log(rectOrder, rectCart);
+
+  // let cartHeight = 0;
+  // if (rectOrder && rectCart) {
+  //   setCartHeight(rectCart.height + (rectOrder.bottom - rectCart.bottom));
+  //   // cartHeight = rectCart.height + (rectOrder.bottom - rectCart.bottom);
+  //   // dim = rectOrder.bottom - rectCart.bottom;
+  // }
+
+  // console.log(cartHeight);
   return (
     <>
       <Box display="flex" justifyContent="space-between" mt={4}>
@@ -254,7 +288,7 @@ const CheckoutData = () => {
             pb="18px"
           />
 
-          <CheckoutListWrapper maxHeight={300} ref={cartRef}>
+          <CheckoutListWrapper maxHeight={cartHeight} ref={cartRef}>
             <CartList data={cartData} />
           </CheckoutListWrapper>
         </Box>
