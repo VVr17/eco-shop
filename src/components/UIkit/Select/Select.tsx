@@ -9,14 +9,15 @@ import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ICountry } from "types/types";
 import SelectList from "./SelectList";
-import { getEventListeners } from "events";
 
 interface ISelectProps extends IBaseProps {
   list: ICountry[];
   id?: HTMLInputTypeAttribute;
-  name?: string;
+  name: string;
   width?: string;
   placeholder?: string;
+  register?: any;
+  className?: string;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -25,6 +26,8 @@ const Select: FC<ISelectProps> = ({
   name,
   width = DEFAULT_STYLES_VALUE,
   placeholder = "",
+  register = null,
+  className = "",
 
   ...rest
 }) => {
@@ -36,7 +39,7 @@ const Select: FC<ISelectProps> = ({
   const refSelect = useRef();
 
   const toggleDropDownList = () => {
-    console.log("toggle", isOpen);
+    // console.log("toggle", !isOpen);
     setIsOpen(!isOpen);
   };
 
@@ -47,12 +50,14 @@ const Select: FC<ISelectProps> = ({
 
   const closeDropDownList = (e: any) => {
     if (refSelect.current !== e.target) {
-      console.log(" click outside");
       setIsOpen(false);
-
-      console.dir(document);
     }
   };
+
+  // let registerProps = null;
+  // if (register) {
+  //   registerProps = { ...register(name) };
+  // }
 
   return (
     <Box
@@ -69,6 +74,9 @@ const Select: FC<ISelectProps> = ({
         onClick={toggleDropDownList}
         value={value}
         placeholder={placeholder}
+        // {...registerProps}
+        {...register}
+        className={className}
       />
       <IconWrapper>
         <FiChevronDown size="20px" />

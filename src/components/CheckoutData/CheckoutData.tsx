@@ -37,10 +37,14 @@ import { cartData } from "utils/fakeData/fakeCartData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import CheckoutInput from "./CheckoutInput";
 
 const schema = yup
   .object({
-    first_name: yup.string().required("Required field"),
+    first_name: yup
+      .string()
+      .max(50, "Required maximum 50 symbols")
+      .required("Required field"),
   })
   .required();
 
@@ -85,8 +89,6 @@ const CheckoutData = () => {
     resolver: yupResolver(schema),
   });
 
-  // console.log(errors);
-
   const CreditCardPmntHandler = (isChecked: boolean) => {
     setIsCreditCard(isChecked);
   };
@@ -105,7 +107,7 @@ const CheckoutData = () => {
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_first_name">First name</Label>
-                <Input
+                {/* <Input
                   id="checkout_first_name"
                   {...register("first_name")}
                   type="text"
@@ -113,7 +115,14 @@ const CheckoutData = () => {
                 />
                 <ErrorMessage>
                   {errors.first_name?.message as string}
-                </ErrorMessage>
+                </ErrorMessage> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_first_name"
+                  name="first_name"
+                  type="text"
+                />
                 {/* <Input
                   id="checkout_first_name"
                   {...register("first_name", {
@@ -126,15 +135,36 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_last_name">Last name</Label>
-                <Input id="checkout_last_name" name="last_name" type="text" />
+                {/* <Input id="checkout_last_name" name="last_name" type="text" /> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_last_name"
+                  name="last_name"
+                  type="text"
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_phone">Phone</Label>
-                <Input id="checkout_phone" name="phone" type="text" />
+                {/* <Input id="checkout_phone" name="phone" type="text" /> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_phone"
+                  name="phone"
+                  type="text"
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_email">Email</Label>
-                <Input id="checkout_email" name="email" type="text" />
+                {/* <Input id="checkout_email" name="email" type="text" /> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_email"
+                  name="email"
+                  type="text"
+                />
               </FieldWrapper>
             </FieldSet>
           </CheckoutDataBlock>
@@ -152,7 +182,10 @@ const CheckoutData = () => {
                   pt="14px"
                   pb="14px"
                   placeholder="--Country--"
+                  register={{ ...register("country") }}
+                  className={errors.country ? "hasError" : ""}
                 />
+                {/* <ErrorMessage>{errors.country?.message as string}</ErrorMessage> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_city">Town / City</Label>
@@ -166,11 +199,25 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_street">Street</Label>
-                <Input id="checkout_street" name="street" type="text" />
+                {/* <Input id="checkout_street" name="street" type="text" /> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_street"
+                  name="street"
+                  type="text"
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_postcode">Postcode</Label>
-                <Input id="checkout_postcode" name="postcode" type="text" />
+                {/* <Input id="checkout_postcode" name="postcode" type="text" /> */}
+                <CheckoutInput
+                  register={register}
+                  errors={errors}
+                  id="checkout_postcode"
+                  name="postcode"
+                  type="text"
+                />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_packaging">Packaging type</Label>
@@ -224,7 +271,14 @@ const CheckoutData = () => {
               <FieldSet>
                 <FieldWrapper>
                   <Label htmlFor="checkout_card_number">Card number</Label>
-                  <Input
+                  {/* <Input
+                    id="checkout_card_number"
+                    name="card_number"
+                    type="text"
+                  /> */}
+                  <CheckoutInput
+                    register={register}
+                    errors={errors}
                     id="checkout_card_number"
                     name="card_number"
                     type="text"
@@ -236,7 +290,14 @@ const CheckoutData = () => {
                     <Label htmlFor="checkout_expiration_date">
                       Expiration date
                     </Label>
-                    <Input
+                    {/* <Input
+                      id="checkout_expiration_date"
+                      name="expiration_date"
+                      type="text"
+                    /> */}
+                    <CheckoutInput
+                      register={register}
+                      errors={errors}
                       id="checkout_expiration_date"
                       name="expiration_date"
                       type="text"
@@ -244,7 +305,14 @@ const CheckoutData = () => {
                   </FieldWrapper>
                   <FieldWrapper>
                     <Label htmlFor="checkout_cvv">CVV code</Label>
-                    <Input id="checkout_cvv" name="cvv" type="password" />
+                    {/* <Input id="checkout_cvv" name="cvv" type="password" /> */}
+                    <CheckoutInput
+                      register={register}
+                      errors={errors}
+                      id="checkout_cvv"
+                      name="cvv"
+                      type="password"
+                    />
                   </FieldWrapper>
                 </PaymentFieldWrapper>
               </FieldSet>
