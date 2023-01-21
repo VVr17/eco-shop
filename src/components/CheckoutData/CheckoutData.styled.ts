@@ -1,6 +1,42 @@
-import { theme } from "constants/theme";
 import styled from "styled-components";
-import { justifyContent } from "styled-system";
+import { theme } from "constants/theme";
+
+export const CheckoutMainContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: ${(p) => p.theme.space[4]};
+  ${theme.mq.desktop} {
+    flex-direction: row;
+  }
+
+  ${theme.mq.tabletOnly} {
+  }
+
+  ${theme.mq.mobileOnly} {
+  }
+`;
+
+export const CheckoutForm = styled("div")`
+  ${theme.mq.desktop} {
+    width: 712px;
+  }
+`;
+
+export const CheckoutOrder = styled("div")`
+  width: 100%;
+
+  ${theme.mq.desktop} {
+    width: 370px;
+  }
+`;
+
+export const CheckoutDataBlock = styled("div")`
+  ${theme.mq.mobileOnly} {
+  }
+`;
 
 export const H3 = styled("h3")`
   margin-bottom: 24px;
@@ -21,6 +57,10 @@ export const FieldSet = styled("div")`
 
 export const FieldWrapper = styled("div")`
   flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+
+  ${theme.mq.mobileOnly} {
+    flex-basis: 100%;
+  }
 `;
 
 export const Label = styled("label")`
@@ -135,8 +175,21 @@ export const SummaryTotalWrapper = styled("div")`
 `;
 
 //-------------------------------------------------------
-export const CheckoutListWrapper = styled("div")<{ maxHeight: number }>`
-  margin-top: 56px;
+
+export const OrderPurchaseContainer = styled("div")`
+  display: flex;
+  flex-direction: column-reverse;
+
+  margin-top: ${(p) => p.theme.space[4]};
+
+  ${theme.mq.desktop} {
+    flex-direction: column;
+    margin-top: 0;
+  }
+`;
+
+export const OrderListWrapper = styled("div")<{ maxHeight: number }>`
+  /* margin-top: 56px; */
   padding-right: 16px;
 
   /* max-height: 600px; */

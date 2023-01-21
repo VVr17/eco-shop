@@ -20,6 +20,12 @@ import {
   SummaryCostValue,
   SummaryTotalWrapper,
   CheckoutListWrapper,
+  CheckoutMainContainer,
+  CheckoutForm,
+  CheckoutDataBlock,
+  CheckoutOrder,
+  OrderListWrapper,
+  OrderPurchaseContainer,
 } from "./CheckoutData.styled";
 import Checkbox from "components/UIkit/Checkbox";
 import ApplePayIcon from "assets/icons/applepay.svg";
@@ -124,9 +130,9 @@ const CheckoutData = () => {
   // console.log(cartHeight);
   return (
     <>
-      <Box display="flex" justifyContent="space-between" mt={4}>
-        <Box width="712px" border="0px solid grey" id="checkoutForm">
-          <Box>
+      <CheckoutMainContainer>
+        <CheckoutForm id="checkoutForm">
+          <CheckoutDataBlock>
             <H3>Personal information:</H3>
             <FieldSet>
               <FieldWrapper>
@@ -146,8 +152,8 @@ const CheckoutData = () => {
                 <Input id="checkout_email" name="email" type="text" />
               </FieldWrapper>
             </FieldSet>
-          </Box>
-          <Box>
+          </CheckoutDataBlock>
+          <CheckoutDataBlock>
             <H3>Delivery details:</H3>
             <FieldSet>
               <FieldWrapper>
@@ -202,8 +208,8 @@ const CheckoutData = () => {
                 />
               </FieldWrapper>
             </FieldSet>
-          </Box>
-          <Box>
+          </CheckoutDataBlock>
+          <CheckoutDataBlock>
             <PaymentHeading>Payment:</PaymentHeading>
             <PaymentMethodList>
               <PaymentMethodItem>
@@ -258,9 +264,9 @@ const CheckoutData = () => {
                 </PaymentFieldWrapper>
               </FieldSet>
             )}
-          </Box>
-        </Box>
-        <Box width="370px" border="0px solid grey" ref={orderRef}>
+          </CheckoutDataBlock>
+        </CheckoutForm>
+        <CheckoutOrder ref={orderRef}>
           <SummaryHeading>Your order:</SummaryHeading>
           <SummaryCostsList>
             <SummaryCostItem>
@@ -277,22 +283,25 @@ const CheckoutData = () => {
             <SummaryCostValue>$68.50</SummaryCostValue>
           </SummaryTotalWrapper>
 
-          <Button
-            text="Purchase"
-            backgroundColor="accent"
-            hoverColor="hoverAccent"
-            width="100%"
-            color="lightText"
-            mt="32px"
-            pt="18px"
-            pb="18px"
-          />
+          <OrderPurchaseContainer>
+            <Button
+              text="Purchase"
+              backgroundColor="accent"
+              hoverColor="hoverAccent"
+              width="100%"
+              color="lightText"
+              mt="32px"
+              mb="56px"
+              pt="18px"
+              pb="18px"
+            />
 
-          <CheckoutListWrapper maxHeight={cartHeight} ref={cartRef}>
-            <CartList data={cartData} />
-          </CheckoutListWrapper>
-        </Box>
-      </Box>
+            <OrderListWrapper maxHeight={cartHeight} ref={cartRef}>
+              <CartList data={cartData} />
+            </OrderListWrapper>
+          </OrderPurchaseContainer>
+        </CheckoutOrder>
+      </CheckoutMainContainer>
     </>
   );
 };
