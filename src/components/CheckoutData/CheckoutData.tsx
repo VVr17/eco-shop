@@ -125,7 +125,7 @@ const CheckoutData = () => {
   return (
     <>
       <Box display="flex" justifyContent="space-between" mt={4}>
-        <Box width="712px" border="1px solid grey" id="checkoutForm">
+        <Box width="712px" border="0px solid grey" id="checkoutForm">
           <Box>
             <H3>Personal information:</H3>
             <FieldSet>
@@ -260,7 +260,7 @@ const CheckoutData = () => {
             )}
           </Box>
         </Box>
-        <Box width="370px" border="1px solid grey" ref={orderRef}>
+        <Box width="370px" border="0px solid grey" ref={orderRef}>
           <SummaryHeading>Your order:</SummaryHeading>
           <SummaryCostsList>
             <SummaryCostItem>
