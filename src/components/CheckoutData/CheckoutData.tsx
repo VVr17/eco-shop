@@ -1,6 +1,11 @@
-import Box from "components/Box";
-import Field from "components/UIkit/Field";
 import Select from "components/UIkit/Select";
+import Checkbox from "components/UIkit/Checkbox";
+import ApplePayIcon from "assets/icons/applepay.svg";
+import PaypalIcon from "assets/icons/paypal.svg";
+import VisaIcon from "assets/icons/visa.svg";
+import MastercardIcon from "assets/icons/mastercard.svg";
+import Button from "components/UIkit/Button";
+import CartList from "components/Cart/CartList";
 import { countries } from "utils/countries";
 import {
   FieldSet,
@@ -19,24 +24,24 @@ import {
   SummaryCostName,
   SummaryCostValue,
   SummaryTotalWrapper,
-  CheckoutListWrapper,
   CheckoutMainContainer,
-  CheckoutForm,
   CheckoutDataBlock,
   CheckoutOrder,
   OrderListWrapper,
   OrderPurchaseContainer,
+  CheckoutFields,
 } from "./CheckoutData.styled";
-import Checkbox from "components/UIkit/Checkbox";
-import ApplePayIcon from "assets/icons/applepay.svg";
-import PaypalIcon from "assets/icons/paypal.svg";
-import VisaIcon from "assets/icons/visa.svg";
-import MastercardIcon from "assets/icons/mastercard.svg";
-import { RefObject, useEffect, useRef, useState } from "react";
-import Button from "components/UIkit/Button";
-import Cart from "components/Cart";
+import { useRef, useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
-import CartList from "components/Cart/CartList";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    first_name: yup.string().required("Required field"),
+  })
+  .required();
 
 const selectLists: any = {
   country: countries,
@@ -68,76 +73,52 @@ const CheckoutData = () => {
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
 
-  // const refForm = useRef(document.getElementById("checkoutForm"));
-  // const refForm = useRef();
   const orderRef = useRef<HTMLInputElement>(null);
   const cartRef = useRef<HTMLInputElement>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  // console.log(errors);
 
   const CreditCardPmntHandler = (isChecked: boolean) => {
     setIsCreditCard(isChecked);
   };
 
-  // useEffect(() => {
-  //   const rectOrder = orderRef?.current?.getBoundingClientRect();
-  //   const rectCart = cartRef?.current?.getBoundingClientRect();
-  //   // console.log(cartRef);
+  const onSubmitForm = (data: any) => {
+    // e.preventDefault();
+    console.log(data);
+  };
 
-  //   if (rectOrder && rectCart) {
-  //     const height =
-  //       Math.trunc(rectCart.height) +
-  //       (Math.trunc(rectOrder.bottom) - Math.trunc(rectCart.bottom)) -
-  //       1;
-  //     if (cartHeight !== height) {
-  //       setCartHeight(height);
-  //       // console.log(cartHeight);
-  //       // console.log(height);
-  //       // console.log("rectOrder", rectOrder);
-  //       // console.log("rectCart", rectCart);
-  //     }
-  //   }
-  // });
-
-  // console.log(refForm?.current?.getBoundingClientRect());
-  // console.log(refForm?.current);
-
-  // const { bottom: orderBottom } =
-  // orderRef?.current?.getBoundingClientRect() as {
-  //   bottom: number;
-  // };
-
-  // const { bottom: cartBottom } = cartRef?.current?.getBoundingClientRect() as {
-  //   bottom: number;
-  // };
-
-  // console.log(orderRef.current?.getBoundingClientRect());
-  // console.log(cartRef.current?.getBoundingClientRect());
-
-  // const dim = orderBottom - cartBottom;
-  // console.log(dim);
-
-  // const rectOrder = orderRef?.current?.getBoundingClientRect();
-  // const rectCart = cartRef?.current?.getBoundingClientRect();
-
-  // console.log(rectOrder, rectCart);
-
-  // let cartHeight = 0;
-  // if (rectOrder && rectCart) {
-  //   setCartHeight(rectCart.height + (rectOrder.bottom - rectCart.bottom));
-  //   // cartHeight = rectCart.height + (rectOrder.bottom - rectCart.bottom);
-  //   // dim = rectOrder.bottom - rectCart.bottom;
-  // }
-
-  // console.log(cartHeight);
   return (
     <>
-      <CheckoutMainContainer>
-        <CheckoutForm id="checkoutForm">
+      <CheckoutMainContainer onSubmit={handleSubmit(onSubmitForm)}>
+        <CheckoutFields id="checkoutForm">
           <CheckoutDataBlock>
             <H3>Personal information:</H3>
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_first_name">First name</Label>
-                <Input id="checkout_first_name" name="first_name" type="text" />
+                <Input
+                  id="checkout_first_name"
+                  {...register("first_name")}
+                  type="text"
+                />
+                <p>{errors.first_name?.message as string}</p>
+                {/* <Input
+                  id="checkout_first_name"
+                  {...register("first_name", {
+                    required: "This is required",
+                    minLength: { value: 4, message: "min length  is 4" },
+                  })}
+                  type="text"
+                />
+                <p>{errors.first_name?.message as string}</p> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_last_name">Last name</Label>
@@ -265,7 +246,7 @@ const CheckoutData = () => {
               </FieldSet>
             )}
           </CheckoutDataBlock>
-        </CheckoutForm>
+        </CheckoutFields>
         <CheckoutOrder ref={orderRef}>
           <SummaryHeading>Your order:</SummaryHeading>
           <SummaryCostsList>
@@ -285,6 +266,7 @@ const CheckoutData = () => {
 
           <OrderPurchaseContainer>
             <Button
+              type="submit"
               text="Purchase"
               backgroundColor="accent"
               hoverColor="hoverAccent"
@@ -309,5 +291,60 @@ const CheckoutData = () => {
 export default CheckoutData;
 
 // Selects -> placeholders
-// breakpoints
+
 // validation
+
+// const refForm = useRef(document.getElementById("checkoutForm"));
+// const refForm = useRef();
+
+// useEffect(() => {
+//   const rectOrder = orderRef?.current?.getBoundingClientRect();
+//   const rectCart = cartRef?.current?.getBoundingClientRect();
+//   // console.log(cartRef);
+
+//   if (rectOrder && rectCart) {
+//     const height =
+//       Math.trunc(rectCart.height) +
+//       (Math.trunc(rectOrder.bottom) - Math.trunc(rectCart.bottom)) -
+//       1;
+//     if (cartHeight !== height) {
+//       setCartHeight(height);
+//       // console.log(cartHeight);
+//       // console.log(height);
+//       // console.log("rectOrder", rectOrder);
+//       // console.log("rectCart", rectCart);
+//     }
+//   }
+// });
+
+// console.log(refForm?.current?.getBoundingClientRect());
+// console.log(refForm?.current);
+
+// const { bottom: orderBottom } =
+// orderRef?.current?.getBoundingClientRect() as {
+//   bottom: number;
+// };
+
+// const { bottom: cartBottom } = cartRef?.current?.getBoundingClientRect() as {
+//   bottom: number;
+// };
+
+// console.log(orderRef.current?.getBoundingClientRect());
+// console.log(cartRef.current?.getBoundingClientRect());
+
+// const dim = orderBottom - cartBottom;
+// console.log(dim);
+
+// const rectOrder = orderRef?.current?.getBoundingClientRect();
+// const rectCart = cartRef?.current?.getBoundingClientRect();
+
+// console.log(rectOrder, rectCart);
+
+// let cartHeight = 0;
+// if (rectOrder && rectCart) {
+//   setCartHeight(rectCart.height + (rectOrder.bottom - rectCart.bottom));
+//   // cartHeight = rectCart.height + (rectOrder.bottom - rectCart.bottom);
+//   // dim = rectOrder.bottom - rectCart.bottom;
+// }
+
+// console.log(cartHeight);

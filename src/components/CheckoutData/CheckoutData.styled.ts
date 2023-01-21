@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "constants/theme";
 
-export const CheckoutMainContainer = styled("div")`
+export const CheckoutMainContainer = styled("form")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,7 +19,7 @@ export const CheckoutMainContainer = styled("div")`
   }
 `;
 
-export const CheckoutForm = styled("div")`
+export const CheckoutFields = styled("div")`
   ${theme.mq.desktop} {
     width: 712px;
   }
@@ -89,6 +89,8 @@ export const Input = styled("input")`
     outline: 1px solid ${(p) => p.theme.colors.accent};
   }
 `;
+
+export const ErrorMessage = styled("p")``;
 
 export const PaymentFieldWrapper = styled("div")`
   display: flex;
