@@ -2,6 +2,7 @@ import Box from "components/Box";
 import Button from "components/UIkit/Button";
 import CartList from "./CartList";
 import { useRouter } from "next/router";
+
 import { FC } from "react";
 import { ICartCardData } from "types/types";
 import { CartListWrapper, ModalBody } from "./Cart.styled";

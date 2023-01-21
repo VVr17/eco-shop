@@ -6,11 +6,10 @@ export const Card = styled.div`
   flex-direction: column;
   position: relative;
   height: 100%;
-
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.cardBackground};
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  border-radius: 24px;
   padding: ${({ theme }) => theme.space[3]};
+  border-radius: 24px;
 
   ${theme.mq.tablet} {
     padding: 24px;

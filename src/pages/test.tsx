@@ -24,15 +24,8 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
-        {/* <PriceRange
-          currency="$"
-          initialMinPriceRange={4}
-          initialMaxPriceRange={10}
-          minPrice={0}
-          maxPrice={50}
-          step={1}
-        /> */}
         {/* <Cart /> */}
+
         <ModalExamples />
         {/* <SelectExamples /> */}
         {/* <SubscribeInputExamples /> */}
@@ -62,22 +55,14 @@ const Test = () => {
         {/* </Box> */}
         {/* <Box padding="20px"> */}
         {/* <Checkbox
+
+        {/* <ModalExamples /> */}
+
         <SelectExamples />
         <SubscribeInputExamples />
         <FieldExamples />
         <SearchExamples />
         <ButtonExamples />
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          padding="20px"
-          gridGap="40px"
-        >
-          {/* <ProductItem /> */}
-        {/* <ProductItem isSale={true} /> */}
-        {/* <CartCard /> */}
-        {/* </Box> */}
       </Section>
     </>
   );

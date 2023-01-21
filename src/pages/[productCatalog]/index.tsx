@@ -8,6 +8,9 @@ import Filter from "components/Filter";
 import { useRouter } from "next/router";
 import QueryLine from "components/QueryLine";
 import { splitRoute } from "helpers/splitRoute";
+import SortedFilter from "components/Filter/SortedFilter";
+import { FiRefreshCw } from "react-icons/fi";
+import Button from "components/UIkit/Button";
 
 const Products = () => {
   const router = useRouter();
@@ -38,8 +41,17 @@ const Products = () => {
                 <Heading tag="h2" text={message} />
               </>
             )}
-
+            <SortedFilter />
             <ProductList />
+            <Box display="flex" width="100%" justifyContent="center">
+              <Button
+                width="264px"
+                text="Load more"
+                borderColor="border"
+                backgroundColor="transparent"
+                iconLeft={FiRefreshCw}
+              />
+            </Box>
           </Box>
         </Box>
       </Section>
