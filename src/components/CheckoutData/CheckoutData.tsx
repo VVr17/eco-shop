@@ -30,6 +30,7 @@ import {
   OrderListWrapper,
   OrderPurchaseContainer,
   CheckoutFields,
+  ErrorMessage,
 } from "./CheckoutData.styled";
 import { useRef, useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
@@ -108,8 +109,11 @@ const CheckoutData = () => {
                   id="checkout_first_name"
                   {...register("first_name")}
                   type="text"
+                  className={errors.first_name ? "hasError" : ""}
                 />
-                <p>{errors.first_name?.message as string}</p>
+                <ErrorMessage>
+                  {errors.first_name?.message as string}
+                </ErrorMessage>
                 {/* <Input
                   id="checkout_first_name"
                   {...register("first_name", {

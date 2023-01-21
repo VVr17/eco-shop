@@ -88,9 +88,20 @@ export const Input = styled("input")`
     border: none;
     outline: 1px solid ${(p) => p.theme.colors.accent};
   }
+
+  &.hasError {
+    outline: 1px solid ${(p) => p.theme.colors.secondaryAccent};
+  }
 `;
 
-export const ErrorMessage = styled("p")``;
+export const ErrorMessage = styled("p")`
+  padding-top: 3px;
+  padding-left: ${(p) => p.theme.space[3]};
+
+  font-size: ${(p) => p.theme.fontSizes.xs};
+
+  color: ${(p) => p.theme.colors.secondaryAccent};
+`;
 
 export const PaymentFieldWrapper = styled("div")`
   display: flex;
