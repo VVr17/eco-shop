@@ -4,7 +4,14 @@ import {
   IBaseProps,
   UI_BASE_PROPS,
 } from "components/UIkit/base/uiBaseProps";
-import { FC, HTMLInputTypeAttribute, useRef, useState } from "react";
+import {
+  FC,
+  HTMLInputTypeAttribute,
+  MutableRefObject,
+  SyntheticEvent,
+  useRef,
+  useState,
+} from "react";
 import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ICountry } from "types/types";
@@ -40,6 +47,7 @@ const Select: FC<ISelectProps> = ({
 
   const toggleDropDownList = () => {
     // console.log("toggle", !isOpen);
+    // e.stopPropagation();
     setIsOpen(!isOpen);
   };
 
@@ -48,7 +56,7 @@ const Select: FC<ISelectProps> = ({
     setIsOpen(false);
   };
 
-  const closeDropDownList = (e: any) => {
+  const closeDropDownList = (e: SyntheticEvent) => {
     if (refSelect.current !== e.target) {
       setIsOpen(false);
     }
@@ -59,13 +67,14 @@ const Select: FC<ISelectProps> = ({
   //   registerProps = { ...register(name) };
   // }
 
+  console.log("render");
+
   return (
     <Box
       position="relative"
       width={width === DEFAULT_STYLES_VALUE ? "340px" : width}
     >
       <StyledSelect
-        ref={refSelect as any}
         id={id}
         name={name}
         type="text"
@@ -75,7 +84,8 @@ const Select: FC<ISelectProps> = ({
         value={value}
         placeholder={placeholder}
         // {...registerProps}
-        // {...register}
+        {...register}
+        ref={refSelect as MutableRefObject<undefined>}
         className={className}
       />
       <IconWrapper>
@@ -87,6 +97,7 @@ const Select: FC<ISelectProps> = ({
           list={list}
           commonProps={commonProps}
           onSelectItem={onSelectItem}
+          // onClose={() => {}}
           onClose={closeDropDownList}
         />
       )}
