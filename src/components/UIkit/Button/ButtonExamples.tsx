@@ -3,8 +3,15 @@ import Button from "./Button";
 import { FiRefreshCw } from "react-icons/fi";
 import { AiOutlinePlus, AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
+import { createRef, Ref, RefObject } from "react";
 
 const ButtonExamples = () => {
+  const testForwardedRef = createRef();
+
+  const onClickForwardedRefButton = () => {
+    console.log(testForwardedRef.current);
+  };
+
   return (
     <Box p="30px" backgroundColor="white">
       <br />
@@ -17,6 +24,15 @@ const ButtonExamples = () => {
         p={3}
         gridGap={4}
       >
+        <Button
+          ref={testForwardedRef as RefObject<HTMLButtonElement>}
+          text="TEST FORWARD REF"
+          iconMargin="16px"
+          borderColor="input"
+          hoverColor="accent"
+          onClick={onClickForwardedRefButton}
+        />
+
         <Button
           text="Add"
           iconRight={AiOutlinePlus}

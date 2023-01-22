@@ -1,4 +1,4 @@
-import { FC, HTMLInputTypeAttribute, MouseEventHandler } from "react";
+import React, { FC, HTMLInputTypeAttribute, MouseEventHandler } from "react";
 import {
   StyledButton,
   IconRightWrapper,
@@ -22,36 +22,49 @@ interface IButtonProps extends IBaseProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button: FC<IButtonProps> = ({
-  type = "button",
-  text,
-  iconLeft: IconLeft = null,
-  iconRight: IconRight = null,
-  iconMargin = DEFAULT_STYLES_VALUE,
-  iconSize,
-  id,
-  onClick,
-  ...rest
-}) => {
-  const commonProps = { ...UI_BASE_PROPS, ...rest };
+export type Ref = HTMLButtonElement;
 
-  // console.log(`text: ${text}`, commonProps);
-  return (
-    <StyledButton id={id} type={type} onClick={onClick} {...commonProps}>
-      {IconLeft && (
-        <IconLeftWrapper iconMargin={iconMargin}>
-          <IconLeft size={iconSize} />
-        </IconLeftWrapper>
-      )}
-      {text}
+const Button = React.forwardRef<Ref, IButtonProps>(
+  (
+    {
+      type = "button",
+      text,
+      iconLeft: IconLeft = null,
+      iconRight: IconRight = null,
+      iconMargin = DEFAULT_STYLES_VALUE,
+      iconSize,
+      id,
+      onClick,
+      ...rest
+    },
+    ref
+  ) => {
+    const commonProps = { ...UI_BASE_PROPS, ...rest };
 
-      {IconRight && (
-        <IconRightWrapper iconMargin={iconMargin}>
-          <IconRight size={iconSize} />
-        </IconRightWrapper>
-      )}
-    </StyledButton>
-  );
-};
+    // console.log(`text: ${text}`, commonProps);
+    return (
+      <StyledButton
+        ref={ref}
+        id={id}
+        type={type}
+        onClick={onClick}
+        {...commonProps}
+      >
+        {IconLeft && (
+          <IconLeftWrapper iconMargin={iconMargin}>
+            <IconLeft size={iconSize} />
+          </IconLeftWrapper>
+        )}
+        {text}
+
+        {IconRight && (
+          <IconRightWrapper iconMargin={iconMargin}>
+            <IconRight size={iconSize} />
+          </IconRightWrapper>
+        )}
+      </StyledButton>
+    );
+  }
+);
 
 export default Button;
