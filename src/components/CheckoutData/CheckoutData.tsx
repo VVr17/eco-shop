@@ -199,15 +199,9 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.city ? "hasError" : ""}
                 />
-                {/* <CheckoutSelect
-                  name="test_select"
-                  register={register}
-                  list={selectLists.city}
-                /> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_street">Street</Label>
-                {/* <Input id="checkout_street" name="street" type="text" /> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -218,7 +212,6 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_postcode">Postcode</Label>
-                {/* <Input id="checkout_postcode" name="postcode" type="text" /> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -379,6 +372,8 @@ export default CheckoutData;
 // validation
 
 //cancel Enter on submit
+// form data local storage
+
 //--------------------------------
 
 // const refForm = useRef(document.getElementById("checkoutForm"));
