@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { ICountry } from "types/types";
+import { ISelectList } from "types/types";
 import {
   DropDownItem,
   DropDownList,
@@ -7,7 +7,7 @@ import {
 } from "./Select.styled";
 
 interface ISelectListProps {
-  list: ICountry[];
+  list: ISelectList[];
   commonProps?: any;
   onSelectItem: (value: string) => void;
   onClose: (e: any) => void;
@@ -30,14 +30,14 @@ const SelectList: FC<ISelectListProps> = ({
   return (
     <DropDownListWrapper {...commonProps}>
       <DropDownList>
-        {list.map((country) => (
+        {list.map(({ name }) => (
           <DropDownItem
-            key={country.name}
+            key={name}
             onClick={() => {
-              onSelectItem(country.name);
+              onSelectItem(name);
             }}
           >
-            {country.name}
+            {name}
           </DropDownItem>
         ))}
       </DropDownList>

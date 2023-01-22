@@ -7,12 +7,12 @@ import {
 import { FC, HTMLInputTypeAttribute, useRef, useState } from "react";
 import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
-import { ICountry } from "types/types";
+import { ISelectList } from "types/types";
 import SelectList from "./SelectList";
 import { getEventListeners } from "events";
 
 interface ISelectProps extends IBaseProps {
-  list: ICountry[];
+  list: ISelectList[];
   id?: HTMLInputTypeAttribute;
   name?: string;
   width?: string;
@@ -50,7 +50,7 @@ const Select: FC<ISelectProps> = ({
       console.log(" click outside");
       setIsOpen(false);
 
-      console.dir(document);
+      // console.dir(document);
     }
   };
 
