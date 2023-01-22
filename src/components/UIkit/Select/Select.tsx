@@ -85,8 +85,8 @@ const Select: FC<ISelectProps> = ({
         placeholder={placeholder}
         // {...registerProps}
         {...register}
-        ref={refSelect as MutableRefObject<undefined>}
         className={className}
+        ref={refSelect as MutableRefObject<undefined>}
       />
       <IconWrapper>
         <FiChevronDown size="20px" />
