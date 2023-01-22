@@ -38,6 +38,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import CheckoutInput from "./CheckoutInput";
+import CheckoutSelect from "./CheckoutSelect";
+import SelectReg from "components/UIkit/Select/SelectReg";
 
 const schema = yup
   .object({
@@ -173,7 +175,7 @@ const CheckoutData = () => {
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_country">Country / Region</Label>
-                <Select
+                <SelectReg
                   id="checkout_country"
                   list={countries}
                   fontSize="14px"
@@ -182,20 +184,26 @@ const CheckoutData = () => {
                   pt="14px"
                   pb="14px"
                   placeholder="--Country--"
-                  register={{ ...register("country") }}
+                  register={register}
                   className={errors.country ? "hasError" : ""}
                 />
-                {/* <ErrorMessage>{errors.country?.message as string}</ErrorMessage> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_city">Town / City</Label>
-                <Select
+                <SelectReg
                   id="checkout_city"
                   list={selectLists.city}
                   fontSize="15px"
                   width="100%"
                   name="city"
+                  register={register}
+                  className={errors.city ? "hasError" : ""}
                 />
+                {/* <CheckoutSelect
+                  name="test_select"
+                  register={register}
+                  list={selectLists.city}
+                /> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_street">Street</Label>
@@ -221,22 +229,26 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_packaging">Packaging type</Label>
-                <Select
+                <SelectReg
                   id="checkout_packaging"
                   list={selectLists.packaging}
                   fontSize="15px"
                   width="100%"
                   name="packaging"
+                  register={register}
+                  className={errors.packaging ? "hasError" : ""}
                 />
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_shipping">Shipping option</Label>
-                <Select
+                <SelectReg
                   id="checkout_shipping"
                   list={selectLists.shipping}
                   fontSize="15px"
                   width="100%"
                   name="shipping"
+                  register={register}
+                  className={errors.shipping ? "hasError" : ""}
                 />
               </FieldWrapper>
             </FieldSet>
@@ -365,6 +377,9 @@ export default CheckoutData;
 // Selects -> placeholders
 
 // validation
+
+//cancel Enter on submit
+//--------------------------------
 
 // const refForm = useRef(document.getElementById("checkoutForm"));
 // const refForm = useRef();

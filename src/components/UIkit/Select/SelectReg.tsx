@@ -18,6 +18,7 @@ import SelectList from "./SelectList";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface ISelectProps extends IBaseProps {
+  register: UseFormRegister<FieldValues>;
   list: ISelectList[];
   id?: HTMLInputTypeAttribute;
   name: string;
@@ -26,13 +27,13 @@ interface ISelectProps extends IBaseProps {
   className?: string;
 }
 
-const Select: FC<ISelectProps> = ({
+const SelectReg: FC<ISelectProps> = ({
   list,
   id,
   name,
   width = DEFAULT_STYLES_VALUE,
   placeholder = "",
-
+  register,
   className = "",
 
   ...rest
@@ -43,6 +44,7 @@ const Select: FC<ISelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const refSelect: { current: HTMLInputElement | null } = useRef(null);
+  const { ref, ...restRegisterProps } = register(name);
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
@@ -66,7 +68,7 @@ const Select: FC<ISelectProps> = ({
       width={width === DEFAULT_STYLES_VALUE ? "340px" : width}
     >
       <StyledSelect
-        // {...restRegisterProps}
+        {...restRegisterProps}
         name={name}
         id={id}
         type="text"
@@ -76,7 +78,10 @@ const Select: FC<ISelectProps> = ({
         placeholder={placeholder}
         value={value}
         className={className}
-        ref={refSelect}
+        ref={(e) => {
+          ref(e);
+          refSelect.current = e;
+        }}
       />
       <IconWrapper>
         <FiChevronDown size="20px" />
@@ -95,4 +100,4 @@ const Select: FC<ISelectProps> = ({
   );
 };
 
-export default Select;
+export default SelectReg;
