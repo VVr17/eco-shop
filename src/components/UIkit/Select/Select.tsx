@@ -4,19 +4,27 @@ import {
   IBaseProps,
   UI_BASE_PROPS,
 } from "components/UIkit/base/uiBaseProps";
-import { FC, HTMLInputTypeAttribute, useRef, useState } from "react";
+import {
+  FC,
+  HTMLInputTypeAttribute,
+  MutableRefObject,
+  SyntheticEvent,
+  useRef,
+  useState,
+} from "react";
 import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ISelectList } from "types/types";
 import SelectList from "./SelectList";
-import { getEventListeners } from "events";
 
 interface ISelectProps extends IBaseProps {
   list: ISelectList[];
   id?: HTMLInputTypeAttribute;
-  name?: string;
+  name: string;
   width?: string;
   placeholder?: string;
+  register?: any;
+  className?: string;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -25,6 +33,8 @@ const Select: FC<ISelectProps> = ({
   name,
   width = DEFAULT_STYLES_VALUE,
   placeholder = "",
+  register = null,
+  className = "",
 
   ...rest
 }) => {
@@ -36,7 +46,8 @@ const Select: FC<ISelectProps> = ({
   const refSelect = useRef();
 
   const toggleDropDownList = () => {
-    console.log("toggle", isOpen);
+    // console.log("toggle", !isOpen);
+    // e.stopPropagation();
     setIsOpen(!isOpen);
   };
 
@@ -45,14 +56,18 @@ const Select: FC<ISelectProps> = ({
     setIsOpen(false);
   };
 
-  const closeDropDownList = (e: any) => {
+  const closeDropDownList = (e: SyntheticEvent) => {
     if (refSelect.current !== e.target) {
-      console.log(" click outside");
       setIsOpen(false);
-
-      // console.dir(document);
     }
   };
+
+  // let registerProps = null;
+  // if (register) {
+  //   registerProps = { ...register(name) };
+  // }
+
+  console.log("render");
 
   return (
     <Box
@@ -60,7 +75,6 @@ const Select: FC<ISelectProps> = ({
       width={width === DEFAULT_STYLES_VALUE ? "340px" : width}
     >
       <StyledSelect
-        ref={refSelect as any}
         id={id}
         name={name}
         type="text"
@@ -69,6 +83,10 @@ const Select: FC<ISelectProps> = ({
         onClick={toggleDropDownList}
         value={value}
         placeholder={placeholder}
+        // {...registerProps}
+        {...register}
+        className={className}
+        ref={refSelect as MutableRefObject<undefined>}
       />
       <IconWrapper>
         <FiChevronDown size="20px" />
@@ -79,6 +97,7 @@ const Select: FC<ISelectProps> = ({
           list={list}
           commonProps={commonProps}
           onSelectItem={onSelectItem}
+          // onClose={() => {}}
           onClose={closeDropDownList}
         />
       )}

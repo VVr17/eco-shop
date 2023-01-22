@@ -1,8 +1,9 @@
 import Box from "components/Box";
 import Modal from "./Modal";
 import ModalTooltip from "./ModalTooltip";
-import { useState } from "react";
 import Cart from "components/Cart";
+import { useState } from "react";
+import { cartData } from "utils/fakeData/fakeCartData";
 
 const ModalExamples = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +46,7 @@ const ModalExamples = () => {
             setIsTooltipOpen(false);
           }}
         >
-          <Cart />
+          <Cart data={cartData} />
         </ModalTooltip>
       )}
     </Box>

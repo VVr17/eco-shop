@@ -27,11 +27,14 @@ export const ModalBody = styled("div")`
   }
 `;
 
-export const CartList = styled("ul")`
+export const CartListWrapper = styled("div")`
   margin-top: 24px;
   padding-right: 32px;
+
   max-height: 400px;
   overflow-y: auto;
+
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -58,6 +61,43 @@ export const CartList = styled("ul")`
     max-height: initial;
     overflow-y: visible;
   }
+`;
+
+export const CartListStyled = styled("ul")`
+  /* margin-top: 24px;
+  padding-right: 32px; */
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+
+  /* scrollbar-width: 4px; */
+  /* scrollbar-color: transparent; */
+  /* scrollbar-width: thin; */
+
+  /* &::-webkit-scrollbar {
+    width: 4px;
+    background-color: ${(p) => p.theme.colors.input};
+  } */
+
+  /* &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+
+  /* &::-webkit-scrollbar-thumb {
+    background-color: ${(p) => p.theme.colors.mainText};
+    border-radius: 2px;
+  } */
+  /* 
+  ${theme.mq.tabletOnly} {
+    padding-right: 0;
+    max-height: initial;
+    overflow-y: visible;
+  } */
+
+  /* ${theme.mq.mobileOnly} {
+    padding-right: 0;
+    max-height: initial;
+    overflow-y: visible;
+  } */
 `;
 
 export const CartListItem = styled("li")`

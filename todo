@@ -1,18 +1,14 @@
 /* 
 
-Counter - 1kg +
+REACT HOOK FORM
 
-Button - add disabled 
 
-subscribe input
+
 
 inputs validation (tel, email, cvv, password, 
 
-questions to Vira : breakpoints -> how it works?
 
 
-
-react portal - Modal error- (any?)
 
 id and name props to Button
 
@@ -25,5 +21,15 @@ modal height in Tablet
 
 
 mobile and table cart modal???  
+
+
+crossbrowser scroll
+
+
+
+cart -> close on button "to checkout"
+
+
+ModalBody change for ...Wrapper
 
 */
