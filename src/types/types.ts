@@ -12,3 +12,7 @@ export interface ICartCardData {
   currency: string;
   imgPath: string;
 }
+
+export interface ISelectList {
+  name: string;
+}

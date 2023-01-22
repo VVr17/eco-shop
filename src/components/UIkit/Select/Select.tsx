@@ -14,11 +14,11 @@ import {
 } from "react";
 import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
-import { ICountry } from "types/types";
+import { ISelectList } from "types/types";
 import SelectList from "./SelectList";
 
 interface ISelectProps extends IBaseProps {
-  list: ICountry[];
+  list: ISelectList[];
   id?: HTMLInputTypeAttribute;
   name: string;
   width?: string;
