@@ -75,7 +75,7 @@ const Select: FC<ISelectProps> = ({
         value={value}
         placeholder={placeholder}
         // {...registerProps}
-        {...register}
+        // {...register}
         className={className}
       />
       <IconWrapper>
