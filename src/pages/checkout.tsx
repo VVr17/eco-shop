@@ -16,11 +16,6 @@ const Checkout = () => (
 
     <Container>
       <Breadcrumb />
-      {/* <Box as="p" pt={5} pb={3}>
-        Homepage/Checkout
-      </Box> */}
-    </Container>
-    <Container>
       <Heading tag="h2" text="Checkout" />
     </Container>
     <Container>
