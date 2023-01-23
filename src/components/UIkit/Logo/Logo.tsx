@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <LogoWrapper href="/">
       {/* <LogoIcon /> */}
-      <Image src={"logo.svg"} width={83} height={32} alt="logo" />
+      <Image src={"/logo.svg"} width={83} height={32} alt="logo" />
     </LogoWrapper>
   );
 };

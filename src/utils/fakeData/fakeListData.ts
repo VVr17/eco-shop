@@ -1,3 +1,8 @@
+export const catalog = [
+  { id: "1", name: "Dried Fruits" },
+  { id: "2", name: "Nuts" },
+];
+
 export const listsData = [
   {
     id: "1",

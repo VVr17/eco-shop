@@ -6,16 +6,58 @@ import { theme } from "constants/theme";
 import Head from "next/head";
 import Filter from "components/Filter";
 import { useRouter } from "next/router";
-import QueryLine from "components/QueryLine";
+import QueryLine from "components/UIkit/Breadcrumb";
 import { splitRoute } from "helpers/splitRoute";
 import SortedFilter from "components/Filter/SortedFilter";
 import { FiRefreshCw } from "react-icons/fi";
 import Button from "components/UIkit/Button";
+import { GetServerSideProps } from "next";
+import { listsData, catalog } from "utils/fakeData/fakeListData";
+import Breadcrumb from "components/UIkit/Breadcrumb";
+import { IProduct } from "types/product";
 
-const Products = () => {
+// return props for component
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const productCatalogId = context.params?.productCatalogId as string;
+
+  // const response = await fetch(
+  //   `https://jsonplaceholder.typicode.com/users/${id}`
+  // );
+  // const data = await response.json();
+
+  if (productCatalogId !== "1") {
+    return {
+      notFound: true,
+    };
+  }
+
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+
+  const data = listsData;
+
+  return {
+    props: {
+      products: data,
+      catalogId: productCatalogId,
+      catalogName: catalog[0].name,
+    },
+  };
+};
+
+interface IProps {
+  products: IProduct[];
+  catalogId: string;
+  catalogName: string;
+}
+
+const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
   const router = useRouter();
-  const isParsed = !router.asPath.includes("[");
-  const message = splitRoute(router.asPath);
+  // const isParsed = !router.asPath.includes("[");
+  // const message = splitRoute(router.asPath);
 
   return (
     <>
@@ -35,14 +77,15 @@ const Products = () => {
             <Filter />
           </Box>
           <Box flex={1}>
-            {isParsed && (
-              <>
-                <QueryLine message={message} />
-                <Heading tag="h2" text={message} />
-              </>
-            )}
+            <Breadcrumb
+              route={[
+                { href: "/", name: "Homepage" },
+                { href: `${catalogId}`, name: catalogName },
+              ]}
+            />
+            <Heading tag="h2" text={catalogName} />
             <SortedFilter />
-            <ProductList />
+            <ProductList products={products} />
             <Box display="flex" width="100%" justifyContent="center">
               <Button
                 width="264px"
@@ -50,6 +93,7 @@ const Products = () => {
                 borderColor="border"
                 backgroundColor="transparent"
                 iconLeft={FiRefreshCw}
+                hoverColor="accent"
               />
             </Box>
           </Box>
