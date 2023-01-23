@@ -19,14 +19,8 @@ const Home = () => {
       </Head>
 
       <Section>
-        <Breadcrumb route={[{ href: "/", name: "Homepage" }]} />
+        <Breadcrumb />
         <Heading tag="h2" text="Home" />
-
-        {/* <>
-          {catalog.map(({ id, name }) => (
-            <Link href={`/${id}`}>{name}</Link>
-          ))}
-        </> */}
       </Section>
     </>
   );

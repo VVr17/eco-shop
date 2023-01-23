@@ -3,6 +3,7 @@ import CheckoutData from "components/CheckoutData";
 import Container from "components/Container";
 import Heading from "components/Heading";
 import Section from "components/Section";
+import Breadcrumb from "components/UIkit/Breadcrumb";
 import Head from "next/head";
 
 const Checkout = () => (
@@ -14,9 +15,10 @@ const Checkout = () => (
     </Head>
 
     <Container>
-      <Box as="p" pt={5} pb={3}>
+      <Breadcrumb />
+      {/* <Box as="p" pt={5} pb={3}>
         Homepage/Checkout
-      </Box>
+      </Box> */}
     </Container>
     <Container>
       <Heading tag="h2" text="Checkout" />

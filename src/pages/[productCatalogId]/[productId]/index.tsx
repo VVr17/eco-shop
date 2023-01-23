@@ -11,6 +11,7 @@ import { productData } from "utils/fakeData/fakeProductCardData";
 import { catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import { IProduct } from "types/product";
+import { homePageRoute } from "constants/constants";
 
 // return props for component
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -76,7 +77,7 @@ const Product: React.FC<IProps> = ({
       <Section>
         <Breadcrumb
           route={[
-            { href: "/", name: "Homepage" },
+            homePageRoute,
             { href: `${catalogId}`, name: catalogName },
             { href: `${productId}`, name: productName },
           ]}

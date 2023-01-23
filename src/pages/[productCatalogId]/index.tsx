@@ -15,6 +15,7 @@ import { GetServerSideProps } from "next";
 import { listsData, catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import { IProduct } from "types/product";
+import { homePageRoute } from "constants/constants";
 
 // return props for component
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -79,7 +80,7 @@ const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
           <Box flex={1}>
             <Breadcrumb
               route={[
-                { href: "/", name: "Homepage" },
+                homePageRoute,
                 { href: `${catalogId}`, name: catalogName },
               ]}
             />
