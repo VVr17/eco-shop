@@ -13,6 +13,7 @@ import Box from "components/Box";
 import { useWindowSize } from "hooks/useWindowSize";
 import ProductItemLabel from "./ProductItemLabel";
 import Image from "next/image";
+import { useRef } from "react";
 
 interface IProps {
   isSale?: boolean;
@@ -40,6 +41,16 @@ const ProductItem: React.FC<IProps> = ({
   baseMeasure,
 }) => {
   const { isTablet, isDesktop } = useWindowSize();
+  const refButton = useRef(); //TODO: ref to no propagate
+
+  // const notToPropagate = (e: any) => {
+  //   if (refSelect.current !== e.target) {
+  //     console.log(" click outside");
+  //     setIsOpen(false);
+
+  //     // console.dir(document);
+  //   }
+  // };
 
   return (
     <Card>
@@ -62,15 +73,16 @@ const ProductItem: React.FC<IProps> = ({
         <Box display="flex" justifyContent="space-between" alignItems="center">
           {(isTablet || isDesktop) && (
             <Button
+              // ref={refButton as any}
               text="Add"
               iconRight={AiOutlinePlus}
               iconMargin="16px"
               borderColor="input"
               hoverColor="accent"
-              onClick={(event) => {
-                event.stopPropagation();
-                // console.log(event);
-              }}
+              // onClick={(event) => {
+              //   event.stopPropagation();
+              //   // console.log(event);
+              // }}
             />
           )}
 
