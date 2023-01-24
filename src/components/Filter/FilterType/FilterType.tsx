@@ -4,25 +4,44 @@ import { Title } from "./FilterType.styled";
 
 interface IProps {
   name: string;
-  type: "range" | "list";
+  type: "range" | "list" | "listWithSearch";
   listItems?: string[];
+  onCheckboxChange?: (value: string, checked: boolean) => void;
+  onPriceChange?: (min: number, max: number) => void;
 }
 
-const FilterType: React.FC<IProps> = ({ name, type, listItems }) => {
+const FilterType: React.FC<IProps> = ({
+  name,
+  type,
+  listItems,
+  onCheckboxChange,
+  onPriceChange,
+}) => {
   return (
     <>
       <Title>{name}</Title>
-      {type === "range" && (
+      {type === "range" && onPriceChange && (
         <PriceRange
           currency="$"
-          initialMinPriceRange={4}
-          initialMaxPriceRange={10}
           minPrice={0}
           maxPrice={50}
+          // initialMinPriceRange={0}
+          // initialMaxPriceRange={50}
           step={1}
+          onPriceSubmit={onPriceChange}
         />
       )}
-      {type === "list" && <FilterList listItems={listItems} />}
+      {type === "list" && onCheckboxChange && (
+        <FilterList listItems={listItems} onCheckboxChange={onCheckboxChange} />
+      )}
+
+      {type === "listWithSearch" && onCheckboxChange && (
+        <FilterList
+          listItems={listItems}
+          withSearch={true}
+          onCheckboxChange={onCheckboxChange}
+        />
+      )}
     </>
   );
 };

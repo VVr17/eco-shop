@@ -1,13 +1,14 @@
-import Container from "components/Container";
 import Heading from "components/Heading";
-import QueryLine from "components/QueryLine";
 import Section from "components/Section";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { catalog } from "utils/fakeData/fakeListData";
+import Breadcrumb from "components/UIkit/Breadcrumb";
 
 const Home = () => {
   const router = useRouter();
-  console.log("router.asPath", router.asPath);
+  // console.log("router.asPath", router.asPath);
 
   return (
     <>
@@ -18,7 +19,7 @@ const Home = () => {
       </Head>
 
       <Section>
-        <QueryLine message={router.asPath} />
+        <Breadcrumb />
         <Heading tag="h2" text="Home" />
       </Section>
     </>

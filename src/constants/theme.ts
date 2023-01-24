@@ -15,6 +15,7 @@ export const theme = {
     cardBackground: "#FFFFFF",
     cartBorder: "rgba(56, 54, 52, 0.08)",
     hoverHeaderLink: "rgba(76, 124, 125, 0.4)",
+    backButton: "rgba(56, 54, 52, 0.8)",
   },
 
   space: ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px", "512px"],
@@ -24,6 +25,7 @@ export const theme = {
   fontWeight: {
     normal: 400,
     medium: 500,
+    semiBold: 600,
     bold: 700,
   },
 

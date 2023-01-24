@@ -1,8 +1,14 @@
-import { ChangeEventHandler, FocusEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FocusEventHandler,
+  FormEventHandler,
+  MouseEvent,
+  useState,
+} from "react";
 import { theme } from "constants/theme";
 import Slider from "rc-slider";
 import Box from "components/Box";
-import { Field, PriceBox } from "./PriceRange.styled";
+import { Field, PriceBox, SubmitButton } from "./PriceRange.styled";
 
 const styles = {
   slider: { marginBottom: theme.space[3] },
@@ -30,22 +36,24 @@ interface IProps {
   minPrice: number;
   maxPrice: number;
   step: number;
-  initialMinPriceRange: number;
-  initialMaxPriceRange: number;
+  // initialMinPriceRange: number;
+  // initialMaxPriceRange: number;
   currency: string;
+  onPriceSubmit: (min: number, max: number) => void;
 }
 
-const DoubleRange: React.FC<IProps> = ({
+const PriceRange: React.FC<IProps> = ({
   minPrice,
   maxPrice,
   step,
   currency,
-  initialMinPriceRange,
-  initialMaxPriceRange,
+  onPriceSubmit,
+  // initialMinPriceRange,
+  // initialMaxPriceRange,
 }) => {
   const [priceRange, setPriceRange] = useState({
-    minRange: initialMinPriceRange,
-    maxRange: initialMaxPriceRange,
+    minRange: minPrice,
+    maxRange: maxPrice,
   });
 
   const handleChange = (_input: number | number[]) => {
@@ -120,6 +128,13 @@ const DoubleRange: React.FC<IProps> = ({
     }
   };
 
+  const onSubmit = (
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    event.preventDefault();
+    onPriceSubmit(minRange, maxRange);
+  };
+
   const { minRange, maxRange } = priceRange;
   return (
     <Box width="100%">
@@ -161,9 +176,10 @@ const DoubleRange: React.FC<IProps> = ({
             onBlur={handleMaxInputBlur}
           />
         </Field>
+        <SubmitButton onClick={(event) => onSubmit(event)}> OK </SubmitButton>
       </Box>
     </Box>
   );
 };
 
-export default DoubleRange;
+export default PriceRange;

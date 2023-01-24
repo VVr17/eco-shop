@@ -1,31 +1,31 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { listsData } from "utils/fakeData/fakeListData";
+import { MouseEvent, MouseEventHandler } from "react";
+import { IProduct } from "types/product";
 import ProductItem from "./ProductItem";
 import { List } from "./ProductList.styled";
 
-// import Link from "next/link";
-//  <Link
-//    className={pathname === path ? styles.active : null}
-//    key={id}
-//    href={path}
-//  >
-//    <p>{title}</p>
-// </Link>;
-// const { pathname } = useRouter();
-/**
- *  <Link href={`/contacts/${id}`}>
-                <strong>{name}</strong> ({email})
-              </Link>
- */
+interface IProps {
+  products: IProduct[];
+}
 
-const ProductList = () => {
+const ProductList: React.FC<IProps> = ({ products }) => {
   const router = useRouter();
   // console.log("router", router.asPath);
 
+  const handleClick = (
+    event: MouseEvent<HTMLLIElement, globalThis.MouseEvent>,
+    id: string
+  ) => {
+    const target = event.target as Element;
+    if (target.nodeName === "BUTTON") return;
+
+    router.push(`${router.asPath}/${id}`);
+  };
+
   return (
     <List>
-      {listsData.map(
+      {products.map(
         ({
           currency,
           id,
@@ -38,7 +38,12 @@ const ProductList = () => {
           increaseVolume,
           measure,
         }) => (
-          <li key={id} onClick={() => router.push(`${router.asPath}/${id}`)}>
+          <li
+            key={id}
+            onClick={(event) => {
+              handleClick(event, id);
+            }}
+          >
             <ProductItem
               isSale={onSale}
               price={Number(price).toFixed(2)}
