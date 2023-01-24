@@ -87,7 +87,6 @@ const Select: FC<ISelectProps> = ({
           list={list}
           commonProps={commonProps}
           onSelectItem={onSelectItem}
-          // onClose={() => {}}
           onClose={closeDropDownList}
         />
       )}

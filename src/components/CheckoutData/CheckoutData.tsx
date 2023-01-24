@@ -1,4 +1,3 @@
-import Select from "components/UIkit/Select";
 import Checkbox from "components/UIkit/Checkbox";
 import ApplePayIcon from "assets/icons/applepay.svg";
 import PaypalIcon from "assets/icons/paypal.svg";
@@ -6,12 +5,13 @@ import VisaIcon from "assets/icons/visa.svg";
 import MastercardIcon from "assets/icons/mastercard.svg";
 import Button from "components/UIkit/Button";
 import CartList from "components/Cart/CartList";
-import { countries } from "utils/countries";
+import CheckoutInput from "./CheckoutInput";
+import SelectReg from "components/UIkit/Select/SelectReg";
+// import { countries } from "utils/countries";
 import {
   FieldSet,
   FieldWrapper,
   H3,
-  Input,
   Label,
   PaymentFieldWrapper,
   PaymentHeading,
@@ -32,26 +32,19 @@ import {
   CheckoutFields,
   ErrorMessage,
 } from "./CheckoutData.styled";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import CheckoutInput from "./CheckoutInput";
-import CheckoutSelect from "./CheckoutSelect";
-import SelectReg from "components/UIkit/Select/SelectReg";
-
-const schema = yup
-  .object({
-    first_name: yup
-      .string()
-      .max(50, "Required maximum 50 symbols")
-      .required("Required field"),
-  })
-  .required();
+import {
+  checkoutValidationSchema,
+  packagingList,
+  shippingList,
+} from "utils/checkout";
+import { getCities, getCountries } from "services/countriesApi";
 
 const selectLists: any = {
-  country: countries,
+  // country: countries,
   city: [
     {
       name: "Kyiv",
@@ -63,22 +56,25 @@ const selectLists: any = {
       name: "Paris",
     },
   ],
-  packaging: [
-    { name: "Without plastic" },
-    { name: "Customized box" },
-    { name: "Ceramic plate" },
-  ],
-
-  shipping: [
-    { name: "By courier" },
-    { name: "Nova Poshta" },
-    { name: "Self pick-up" },
-  ],
 };
 
 const CheckoutData = () => {
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await getCountries();
+        console.log(response.data);
+        setCountries(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
 
   const orderRef = useRef<HTMLInputElement>(null);
   const cartRef = useRef<HTMLInputElement>(null);
@@ -88,7 +84,7 @@ const CheckoutData = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(checkoutValidationSchema),
   });
 
   const CreditCardPmntHandler = (isChecked: boolean) => {
@@ -96,8 +92,18 @@ const CheckoutData = () => {
   };
 
   const onSubmitForm = (data: any) => {
-    // e.preventDefault();
     console.log(data);
+  };
+
+  const onCountrySelectHandler = async (country: string) => {
+    try {
+      const response = await getCities(country);
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+      alert(`We don't work in ${country} yet `);
+      setCountries([]);
+    }
   };
 
   return (
@@ -109,15 +115,6 @@ const CheckoutData = () => {
             <FieldSet>
               <FieldWrapper>
                 <Label htmlFor="checkout_first_name">First name</Label>
-                {/* <Input
-                  id="checkout_first_name"
-                  {...register("first_name")}
-                  type="text"
-                  className={errors.first_name ? "hasError" : ""}
-                />
-                <ErrorMessage>
-                  {errors.first_name?.message as string}
-                </ErrorMessage> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -125,19 +122,9 @@ const CheckoutData = () => {
                   name="first_name"
                   type="text"
                 />
-                {/* <Input
-                  id="checkout_first_name"
-                  {...register("first_name", {
-                    required: "This is required",
-                    minLength: { value: 4, message: "min length  is 4" },
-                  })}
-                  type="text"
-                />
-                <p>{errors.first_name?.message as string}</p> */}
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_last_name">Last name</Label>
-                {/* <Input id="checkout_last_name" name="last_name" type="text" /> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -148,7 +135,6 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_phone">Phone</Label>
-                {/* <Input id="checkout_phone" name="phone" type="text" /> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -159,7 +145,6 @@ const CheckoutData = () => {
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_email">Email</Label>
-                {/* <Input id="checkout_email" name="email" type="text" /> */}
                 <CheckoutInput
                   register={register}
                   errors={errors}
@@ -186,7 +171,9 @@ const CheckoutData = () => {
                   placeholder="--Country--"
                   register={register}
                   className={errors.country ? "hasError" : ""}
+                  onSelect={onCountrySelectHandler}
                 />
+                <ErrorMessage>{errors.country?.message as string}</ErrorMessage>
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_city">Town / City</Label>
@@ -196,9 +183,11 @@ const CheckoutData = () => {
                   fontSize="15px"
                   width="100%"
                   name="city"
+                  placeholder="--City--"
                   register={register}
                   className={errors.city ? "hasError" : ""}
                 />
+                <ErrorMessage>{errors.city?.message as string}</ErrorMessage>
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_street">Street</Label>
@@ -224,25 +213,33 @@ const CheckoutData = () => {
                 <Label htmlFor="checkout_packaging">Packaging type</Label>
                 <SelectReg
                   id="checkout_packaging"
-                  list={selectLists.packaging}
+                  list={packagingList}
                   fontSize="15px"
                   width="100%"
                   name="packaging"
+                  placeholder="--Packaging--"
                   register={register}
                   className={errors.packaging ? "hasError" : ""}
                 />
+                <ErrorMessage>
+                  {errors.packaging?.message as string}
+                </ErrorMessage>
               </FieldWrapper>
               <FieldWrapper>
                 <Label htmlFor="checkout_shipping">Shipping option</Label>
                 <SelectReg
                   id="checkout_shipping"
-                  list={selectLists.shipping}
+                  list={shippingList}
                   fontSize="15px"
                   width="100%"
                   name="shipping"
+                  placeholder="--Shipping--"
                   register={register}
                   className={errors.shipping ? "hasError" : ""}
                 />
+                <ErrorMessage>
+                  {errors.shipping?.message as string}
+                </ErrorMessage>
               </FieldWrapper>
             </FieldSet>
           </CheckoutDataBlock>
@@ -276,11 +273,6 @@ const CheckoutData = () => {
               <FieldSet>
                 <FieldWrapper>
                   <Label htmlFor="checkout_card_number">Card number</Label>
-                  {/* <Input
-                    id="checkout_card_number"
-                    name="card_number"
-                    type="text"
-                  /> */}
                   <CheckoutInput
                     register={register}
                     errors={errors}

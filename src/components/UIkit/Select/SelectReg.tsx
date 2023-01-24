@@ -25,6 +25,7 @@ interface ISelectProps extends IBaseProps {
   width?: string;
   placeholder?: string;
   className?: string;
+  onSelect?: (value: string) => void;
 }
 
 const SelectReg: FC<ISelectProps> = ({
@@ -35,6 +36,7 @@ const SelectReg: FC<ISelectProps> = ({
   placeholder = "",
   register,
   className = "",
+  onSelect,
 
   ...rest
 }) => {
@@ -54,6 +56,7 @@ const SelectReg: FC<ISelectProps> = ({
     setValue(value);
     setIsOpen(false);
     refSelect.current?.focus();
+    onSelect && onSelect(value);
   };
 
   const closeDropDownList = (e: SyntheticEvent) => {
