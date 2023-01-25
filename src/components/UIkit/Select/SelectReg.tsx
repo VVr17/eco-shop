@@ -1,4 +1,5 @@
 import Box from "components/Box";
+import SelectList from "./SelectList";
 import {
   DEFAULT_STYLES_VALUE,
   IBaseProps,
@@ -8,13 +9,13 @@ import {
   FC,
   HTMLInputTypeAttribute,
   SyntheticEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
 import { IconWrapper, StyledSelect } from "./Select.styled";
 import { FiChevronDown } from "react-icons/fi";
 import { ISelectList } from "types/types";
-import SelectList from "./SelectList";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface ISelectProps extends IBaseProps {
@@ -25,7 +26,7 @@ interface ISelectProps extends IBaseProps {
   width?: string;
   placeholder?: string;
   className?: string;
-  onSelect?: (value: string) => void;
+  onSelect?: (value: string, callback: () => void) => void;
 }
 
 const SelectReg: FC<ISelectProps> = ({
@@ -48,6 +49,12 @@ const SelectReg: FC<ISelectProps> = ({
   const refSelect: { current: HTMLInputElement | null } = useRef(null);
   const { ref, ...restRegisterProps } = register(name);
 
+  useEffect(() => {
+    if (list.length === 0) {
+      setValue("");
+    }
+  }, [list]);
+
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
   };
@@ -56,7 +63,11 @@ const SelectReg: FC<ISelectProps> = ({
     setValue(value);
     setIsOpen(false);
     refSelect.current?.focus();
-    onSelect && onSelect(value);
+
+    const setDefaultValue = () => {
+      setValue("");
+    };
+    onSelect && onSelect(value, setDefaultValue);
   };
 
   const closeDropDownList = (e: SyntheticEvent) => {
@@ -95,7 +106,6 @@ const SelectReg: FC<ISelectProps> = ({
           list={list}
           commonProps={commonProps}
           onSelectItem={onSelectItem}
-          // onClose={() => {}}
           onClose={closeDropDownList}
         />
       )}

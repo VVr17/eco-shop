@@ -1,13 +1,12 @@
-import Checkbox from "components/UIkit/Checkbox";
-import ApplePayIcon from "assets/icons/applepay.svg";
-import PaypalIcon from "assets/icons/paypal.svg";
-import VisaIcon from "assets/icons/visa.svg";
-import MastercardIcon from "assets/icons/mastercard.svg";
-import Button from "components/UIkit/Button";
+import { Checkbox, Button, SelectReg } from "components/UIkit";
+import {
+  ApplePayIcon,
+  PaypalIcon,
+  VisaIcon,
+  MastercardIcon,
+} from "assets/icons/paymentIcons";
 import CartList from "components/Cart/CartList";
 import CheckoutInput from "./CheckoutInput";
-import SelectReg from "components/UIkit/Select/SelectReg";
-// import { countries } from "utils/countries";
 import {
   FieldSet,
   FieldWrapper,
@@ -43,37 +42,40 @@ import {
 } from "utils/checkout";
 import { getCities, getCountries } from "services/countriesApi";
 
-const selectLists: any = {
-  // country: countries,
-  city: [
-    {
-      name: "Kyiv",
-    },
-    {
-      name: "London",
-    },
-    {
-      name: "Paris",
-    },
-  ],
-};
-
 const CheckoutData = () => {
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
+  const formRef: { current: HTMLFormElement | null } = useRef(null);
 
   useEffect(() => {
+    // Fetch countries on first render
     (async () => {
       try {
         const response = await getCountries();
-        console.log(response.data);
         setCountries(response.data);
       } catch (err) {
-        console.log(err);
+        console.log("something went wrong. Error:", err);
+        alert("something went wrong");
       }
     })();
+
+    //Prevent onEnter form submit
+    const onEnterSubmit = (e: Event & { code: string }) => {
+      if (e.code === "Enter") {
+        e.preventDefault();
+        console.log("no submit");
+        return;
+      }
+      console.log("submit");
+    };
+
+    formRef.current?.addEventListener("keydown", onEnterSubmit);
+
+    return () => {
+      formRef.current?.removeEventListener("keydown", onEnterSubmit);
+    };
   }, []);
 
   const orderRef = useRef<HTMLInputElement>(null);
@@ -91,24 +93,31 @@ const CheckoutData = () => {
     setIsCreditCard(isChecked);
   };
 
-  const onSubmitForm = (data: any) => {
+  const onSubmitForm = (data: Object) => {
     console.log(data);
   };
 
-  const onCountrySelectHandler = async (country: string) => {
+  const onCountrySelectHandler = async (
+    country: string,
+    setDefaultValue: () => void
+  ) => {
     try {
       const response = await getCities(country);
-      console.log(response.data);
+      setCities(response.data);
     } catch (err) {
-      console.log(err);
       alert(`We don't work in ${country} yet `);
-      setCountries([]);
+      setDefaultValue();
+      setCities([]);
     }
   };
 
   return (
     <>
-      <CheckoutMainContainer onSubmit={handleSubmit(onSubmitForm)}>
+      <CheckoutMainContainer
+        // id="checkoutFormID"
+        ref={formRef}
+        onSubmit={handleSubmit(onSubmitForm)}
+      >
         <CheckoutFields id="checkoutForm">
           <CheckoutDataBlock>
             <H3>Personal information:</H3>
@@ -179,7 +188,7 @@ const CheckoutData = () => {
                 <Label htmlFor="checkout_city">Town / City</Label>
                 <SelectReg
                   id="checkout_city"
-                  list={selectLists.city}
+                  list={cities}
                   fontSize="15px"
                   width="100%"
                   name="city"
@@ -359,66 +368,8 @@ const CheckoutData = () => {
 
 export default CheckoutData;
 
-// Selects -> placeholders
-
-// validation
-
-//cancel Enter on submit
+//Refactor - split component
 // form data local storage
+//Page - server render
 
 //--------------------------------
-
-// const refForm = useRef(document.getElementById("checkoutForm"));
-// const refForm = useRef();
-
-// useEffect(() => {
-//   const rectOrder = orderRef?.current?.getBoundingClientRect();
-//   const rectCart = cartRef?.current?.getBoundingClientRect();
-//   // console.log(cartRef);
-
-//   if (rectOrder && rectCart) {
-//     const height =
-//       Math.trunc(rectCart.height) +
-//       (Math.trunc(rectOrder.bottom) - Math.trunc(rectCart.bottom)) -
-//       1;
-//     if (cartHeight !== height) {
-//       setCartHeight(height);
-//       // console.log(cartHeight);
-//       // console.log(height);
-//       // console.log("rectOrder", rectOrder);
-//       // console.log("rectCart", rectCart);
-//     }
-//   }
-// });
-
-// console.log(refForm?.current?.getBoundingClientRect());
-// console.log(refForm?.current);
-
-// const { bottom: orderBottom } =
-// orderRef?.current?.getBoundingClientRect() as {
-//   bottom: number;
-// };
-
-// const { bottom: cartBottom } = cartRef?.current?.getBoundingClientRect() as {
-//   bottom: number;
-// };
-
-// console.log(orderRef.current?.getBoundingClientRect());
-// console.log(cartRef.current?.getBoundingClientRect());
-
-// const dim = orderBottom - cartBottom;
-// console.log(dim);
-
-// const rectOrder = orderRef?.current?.getBoundingClientRect();
-// const rectCart = cartRef?.current?.getBoundingClientRect();
-
-// console.log(rectOrder, rectCart);
-
-// let cartHeight = 0;
-// if (rectOrder && rectCart) {
-//   setCartHeight(rectCart.height + (rectOrder.bottom - rectCart.bottom));
-//   // cartHeight = rectCart.height + (rectOrder.bottom - rectCart.bottom);
-//   // dim = rectOrder.bottom - rectCart.bottom;
-// }
-
-// console.log(cartHeight);
