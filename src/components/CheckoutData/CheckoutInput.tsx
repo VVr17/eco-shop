@@ -12,6 +12,7 @@ interface ICheckoutInput {
     }>
   >;
   name: string;
+  defaultValue?: string;
 }
 
 const CheckoutInput: FC<ICheckoutInput> = ({
@@ -20,6 +21,7 @@ const CheckoutInput: FC<ICheckoutInput> = ({
   type,
   errors,
   name,
+  defaultValue,
 }) => {
   return (
     <>
@@ -28,6 +30,7 @@ const CheckoutInput: FC<ICheckoutInput> = ({
         {...register(name)}
         type={type}
         className={errors[name] ? "hasError" : ""}
+        value={defaultValue}
       />
       <ErrorMessage>{errors[name]?.message as string}</ErrorMessage>
     </>

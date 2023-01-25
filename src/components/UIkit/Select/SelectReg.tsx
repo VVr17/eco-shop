@@ -27,6 +27,7 @@ interface ISelectProps extends IBaseProps {
   placeholder?: string;
   className?: string;
   onSelect?: (value: string, callback: () => void) => void;
+  defaultValue?: string;
 }
 
 const SelectReg: FC<ISelectProps> = ({
@@ -38,6 +39,7 @@ const SelectReg: FC<ISelectProps> = ({
   register,
   className = "",
   onSelect,
+  defaultValue,
 
   ...rest
 }) => {
@@ -54,6 +56,12 @@ const SelectReg: FC<ISelectProps> = ({
       setValue("");
     }
   }, [list]);
+
+  useEffect(() => {
+    if (defaultValue) {
+      onSelectItem(defaultValue);
+    }
+  }, [defaultValue]);
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);

@@ -42,6 +42,8 @@ import {
 } from "utils/checkout";
 import { getCities, getCountries } from "services/countriesApi";
 
+const initialValues = {};
+
 const CheckoutData = () => {
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
@@ -130,6 +132,7 @@ const CheckoutData = () => {
                   id="checkout_first_name"
                   name="first_name"
                   type="text"
+                  defaultValue={`def val`}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -181,6 +184,7 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.country ? "hasError" : ""}
                   onSelect={onCountrySelectHandler}
+                  defaultValue={`Ukraine`}
                 />
                 <ErrorMessage>{errors.country?.message as string}</ErrorMessage>
               </FieldWrapper>
@@ -195,6 +199,7 @@ const CheckoutData = () => {
                   placeholder="--City--"
                   register={register}
                   className={errors.city ? "hasError" : ""}
+                  defaultValue={`Babin`}
                 />
                 <ErrorMessage>{errors.city?.message as string}</ErrorMessage>
               </FieldWrapper>
