@@ -17,10 +17,10 @@ const checkoutValidationSchema = yup.object({
   //   )
   //   .required("Required field"),
   // email: yup.string().email("Invalid email").required("Required field"),
-  // country: yup
-  //   .string()
-  //   .not(["--Country--"], "Required field")
-  //   .required("Required field"),
+  country: yup
+    .string()
+    .not(["--Country--"], "Required field")
+    .required("Required field"),
   // city: yup
   //   .string()
   //   .not(["--City--"], "Required field")

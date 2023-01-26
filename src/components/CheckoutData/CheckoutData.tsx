@@ -42,16 +42,68 @@ import {
 } from "utils/checkout";
 import { getCities, getCountries } from "services/countriesApi";
 
-const initialValues = {};
+const CHECKOUT_STORAGE_KEY = "checkoutFormData";
+
+const initialValues = {
+  first_name: "",
+  last_name: "",
+  phone: "",
+  email: "",
+  country: "",
+  city: "",
+  street: "",
+  postcode: "",
+  packaging: "",
+  shipping: "",
+};
 
 const CheckoutData = () => {
+  const [checkoutFormData, setCheckoutFormData] = useState({});
+
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const formRef: { current: HTMLFormElement | null } = useRef(null);
 
+  const storageFormData =
+    typeof localStorage !== "undefined"
+      ? localStorage.getItem(CHECKOUT_STORAGE_KEY)
+      : null;
+  const defaultFormValues = !storageFormData ? initialValues : storageFormData;
+
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(checkoutValidationSchema),
+    defaultValues: defaultFormValues as any,
+  });
+
+  // const test = watch(["first_name"]);
+  // console.log(test);
+
+  // useEffect(() => {
+  //   console.log(test);
+  // }, [test]);
+
+  // useEffect(() => {
+  //   const subscription = watch(
+  //     (value, { name, type }) => console.log(value, name, type)
+  //     // setCheckoutFormData((prevState) => ({
+  //     //   ...prevState,
+  //     //   [name as string]: value,
+  //     // }))
+  //   );
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
+
   useEffect(() => {
+    // Init form data
+    // const data = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+
     // Fetch countries on first render
     (async () => {
       try {
@@ -67,10 +119,8 @@ const CheckoutData = () => {
     const onEnterSubmit = (e: Event & { code: string }) => {
       if (e.code === "Enter") {
         e.preventDefault();
-        console.log("no submit");
         return;
       }
-      console.log("submit");
     };
 
     formRef.current?.addEventListener("keydown", onEnterSubmit);
@@ -82,14 +132,6 @@ const CheckoutData = () => {
 
   const orderRef = useRef<HTMLInputElement>(null);
   const cartRef = useRef<HTMLInputElement>(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(checkoutValidationSchema),
-  });
 
   const CreditCardPmntHandler = (isChecked: boolean) => {
     setIsCreditCard(isChecked);
@@ -113,6 +155,20 @@ const CheckoutData = () => {
     }
   };
 
+  // console.log(checkoutFormData);
+  const {
+    first_name,
+    last_name,
+    phone,
+    email,
+    country,
+    city,
+    street,
+    postcode,
+    packaging,
+    shipping,
+  } = initialValues;
+
   return (
     <>
       <CheckoutMainContainer
@@ -132,7 +188,7 @@ const CheckoutData = () => {
                   id="checkout_first_name"
                   name="first_name"
                   type="text"
-                  defaultValue={`def val`}
+                  defaultValue={first_name}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -143,6 +199,7 @@ const CheckoutData = () => {
                   id="checkout_last_name"
                   name="last_name"
                   type="text"
+                  defaultValue={last_name}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -153,6 +210,7 @@ const CheckoutData = () => {
                   id="checkout_phone"
                   name="phone"
                   type="text"
+                  defaultValue={phone}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -163,6 +221,7 @@ const CheckoutData = () => {
                   id="checkout_email"
                   name="email"
                   type="text"
+                  defaultValue={email}
                 />
               </FieldWrapper>
             </FieldSet>
@@ -184,7 +243,7 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.country ? "hasError" : ""}
                   onSelect={onCountrySelectHandler}
-                  defaultValue={`Ukraine`}
+                  defaultValue={country}
                 />
                 <ErrorMessage>{errors.country?.message as string}</ErrorMessage>
               </FieldWrapper>
@@ -199,7 +258,7 @@ const CheckoutData = () => {
                   placeholder="--City--"
                   register={register}
                   className={errors.city ? "hasError" : ""}
-                  defaultValue={`Babin`}
+                  defaultValue={city}
                 />
                 <ErrorMessage>{errors.city?.message as string}</ErrorMessage>
               </FieldWrapper>
@@ -211,6 +270,7 @@ const CheckoutData = () => {
                   id="checkout_street"
                   name="street"
                   type="text"
+                  defaultValue={street}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -221,6 +281,7 @@ const CheckoutData = () => {
                   id="checkout_postcode"
                   name="postcode"
                   type="text"
+                  defaultValue={postcode}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -234,6 +295,7 @@ const CheckoutData = () => {
                   placeholder="--Packaging--"
                   register={register}
                   className={errors.packaging ? "hasError" : ""}
+                  defaultValue={packaging}
                 />
                 <ErrorMessage>
                   {errors.packaging?.message as string}
@@ -250,6 +312,7 @@ const CheckoutData = () => {
                   placeholder="--Shipping--"
                   register={register}
                   className={errors.shipping ? "hasError" : ""}
+                  defaultValue={shipping}
                 />
                 <ErrorMessage>
                   {errors.shipping?.message as string}
@@ -378,3 +441,12 @@ export default CheckoutData;
 //Page - server render
 
 //--------------------------------
+
+/*
+1) Init -> ask storage if yes -> from storage, if no -> initial object
+2) State {} -> setState after chacnge -> useEffect
+3) Save to storage
+
+
+
+*/
