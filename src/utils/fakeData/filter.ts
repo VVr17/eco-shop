@@ -1,4 +1,7 @@
-export const volumes = ["<10", "10-20", "20-30", "30-40", "40-50"];
+export const volumes = ["<10", "10-20", "21-30", "31-40", "41-50"];
+
+export const form = ["Prepackaged", "On weight"];
+
 export const brands = [
   "Artisana",
   "Barney",

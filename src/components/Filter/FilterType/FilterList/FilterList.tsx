@@ -1,6 +1,6 @@
 import Checkbox from "components/UIkit/Checkbox";
-
-import { FiSearch } from "react-icons/fi";
+import FilterSearch from "components/UIkit/FilterSearch";
+import { useState } from "react";
 import { List } from "./FilterList.styled";
 
 interface IProps {
@@ -14,26 +14,27 @@ const FilterList: React.FC<IProps> = ({
   withSearch = false,
   onCheckboxChange,
 }) => {
+  const [search, setSearch] = useState("");
+  const visibleItems = !withSearch
+    ? listItems
+    : listItems?.filter((item) =>
+        item.toLowerCase().includes(search.toLowerCase())
+      );
+
   return (
     <>
       {withSearch && (
-        <>
-          <input
-            type="text"
-            name="search"
-            // value={searchValue}
-            // onChange={onSearchHandler}
-            // placeholder={placeholder}
-            // {...commonProps}
-          />
-          <button type="submit">
-            <FiSearch size={"18px"} />
-          </button>
-        </>
+        <FilterSearch
+          placeholder="Name of brand"
+          searchValue={search}
+          onSearchHandler={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
       )}
-      {listItems && (
+      {visibleItems && (
         <List>
-          {listItems.map((item) => (
+          {visibleItems.map((item) => (
             <li key={item}>
               <Checkbox
                 label={item}

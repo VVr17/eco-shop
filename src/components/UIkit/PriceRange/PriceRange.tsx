@@ -9,6 +9,8 @@ import { theme } from "constants/theme";
 import Slider from "rc-slider";
 import Box from "components/Box";
 import { Field, PriceBox, SubmitButton } from "./PriceRange.styled";
+import { useDispatch } from "react-redux";
+import { setPriceFilter } from "redux/filter/filterSlice";
 
 const styles = {
   slider: { marginBottom: theme.space[3] },
@@ -36,10 +38,7 @@ interface IProps {
   minPrice: number;
   maxPrice: number;
   step: number;
-  // initialMinPriceRange: number;
-  // initialMaxPriceRange: number;
   currency: string;
-  onPriceSubmit: (min: number, max: number) => void;
 }
 
 const PriceRange: React.FC<IProps> = ({
@@ -47,10 +46,8 @@ const PriceRange: React.FC<IProps> = ({
   maxPrice,
   step,
   currency,
-  onPriceSubmit,
-  // initialMinPriceRange,
-  // initialMaxPriceRange,
 }) => {
+  const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState({
     minRange: minPrice,
     maxRange: maxPrice,
@@ -132,7 +129,7 @@ const PriceRange: React.FC<IProps> = ({
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     event.preventDefault();
-    onPriceSubmit(minRange, maxRange);
+    dispatch(setPriceFilter({ min: minRange, max: maxRange }));
   };
 
   const { minRange, maxRange } = priceRange;

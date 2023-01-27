@@ -1,5 +1,7 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import { store } from "redux/store";
 import Layout from "../components/Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
@@ -20,14 +22,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
         font-family: ${roboto.style.fontFamily};
       }
     `}</style>
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </Layout>
-      <GlobalStyle />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <main>
+            <Component {...pageProps} />
+          </main>
+        </Layout>
+        <GlobalStyle />
+      </ThemeProvider>
+    </Provider>
   </>
 );
 

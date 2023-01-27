@@ -1,104 +1,84 @@
 import { useState } from "react";
-import { brands, volumes } from "utils/fakeData/filter";
+import { useDispatch } from "react-redux";
+import {
+  addBrandFilter,
+  addFormFilter,
+  addVolumeFilter,
+  removeBrandFilter,
+  removeFormFilter,
+  removeVolumeFilter,
+} from "redux/filter/filterSlice";
+import { brands, form, volumes } from "utils/fakeData/filter";
 import { FilterThumb, Title } from "./Filter.styled";
 import FilterType from "./FilterType";
 
-interface IFilterState {
-  price: { min: number; max: number };
-  volume: string[];
-  brand: string[];
-}
-
 const Filter = () => {
-  const [filterState, setFilterState] = useState<IFilterState>({
-    price: { min: 0, max: 0 },
-    volume: [],
-    brand: [],
-  });
-
-  const onPriceChange = (min: number, max: number) => {
-    console.log("onPriceChange", min, max);
-    setFilterState((prevState) => ({
-      ...prevState,
-      price: { min, max },
-    }));
-  };
+  const dispatch = useDispatch();
 
   const onVolumeChange = (value: string, checked: boolean) => {
     console.log("onVolumeChange", value);
     if (checked) {
-      setFilterState((prevState) => ({
-        ...prevState,
-        volume: [...prevState.volume, value],
-      }));
+      dispatch(addVolumeFilter(value));
       return;
     }
-
-    setFilterState((prevState) => {
-      const updatedVolumes = prevState.volume.filter(
-        (stateValue) => stateValue !== value
-      );
-
-      return {
-        ...prevState,
-        volume: [...updatedVolumes],
-      };
-    });
+    dispatch(removeVolumeFilter(value));
   };
 
   const onBrandChange = (value: string, checked: boolean) => {
     console.log("onBrandChange", value);
+
     if (checked) {
-      setFilterState((prevState) => ({
-        ...prevState,
-        brand: [...prevState.brand, value],
-      }));
+      dispatch(addBrandFilter(value));
       return;
     }
 
-    setFilterState((prevState) => {
-      const updatedBrands = prevState.brand.filter(
-        (stateValue) => stateValue !== value
-      );
-
-      return {
-        ...prevState,
-        brand: [...updatedBrands],
-      };
-    });
+    dispatch(removeBrandFilter(value));
   };
 
-  console.log("filterState", filterState);
+  const onFormChange = (value: string, checked: boolean) => {
+    console.log("onFormChange", value);
+
+    if (checked) {
+      dispatch(addFormFilter(value));
+      return;
+    }
+
+    dispatch(removeFormFilter(value));
+  };
+
   return (
     <>
       <Title>Filter</Title>
-      <form>
-        <ul>
-          <FilterThumb key="price">
-            <FilterType
-              type="range"
-              name="price"
-              onPriceChange={onPriceChange}
-            />
-          </FilterThumb>
-          <FilterThumb key="volume">
-            <FilterType
-              type="list"
-              name="volume"
-              listItems={volumes}
-              onCheckboxChange={onVolumeChange}
-            />
-          </FilterThumb>
-          <FilterThumb key="brand">
-            <FilterType
-              type="listWithSearch"
-              name="brand"
-              listItems={brands}
-              onCheckboxChange={onBrandChange}
-            />
-          </FilterThumb>
-        </ul>
-      </form>
+
+      <ul>
+        <FilterThumb key="price">
+          <FilterType type="range" name="price" />
+        </FilterThumb>
+        <FilterThumb key="form">
+          <FilterType
+            type="list"
+            name="form"
+            listItems={form}
+            onCheckboxChange={onFormChange}
+          />
+        </FilterThumb>
+        <FilterThumb key="volume">
+          <FilterType
+            type="list"
+            name="volume"
+            listItems={volumes}
+            onCheckboxChange={onVolumeChange}
+          />
+        </FilterThumb>
+        <FilterThumb key="brand">
+          <FilterType
+            type="listWithSearch"
+            name="brand"
+            listItems={brands}
+            onCheckboxChange={onBrandChange}
+          />
+        </FilterThumb>
+      </ul>
     </>
   );
 };
