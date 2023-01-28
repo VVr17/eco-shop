@@ -1,49 +1,35 @@
+import { filterTypes } from "constants/filterTypes";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { selectFilter } from "redux/filter/filterSelectors";
 import {
-  addBrandFilter,
-  addFormFilter,
-  addVolumeFilter,
-  removeBrandFilter,
-  removeFormFilter,
-  removeVolumeFilter,
+  defaultPriceRange,
+  setBrandFilter,
+  setFormFilter,
+  setVolumeFilter,
 } from "redux/filter/filterSlice";
-import { brands, form, volumes } from "utils/fakeData/filter";
 import { FilterThumb, Title } from "./Filter.styled";
 import FilterType from "./FilterType";
 
 const Filter = () => {
   const dispatch = useDispatch();
+  const { volume, form, brand, price } = useSelector(selectFilter);
+  console.log("price", price);
 
   const onVolumeChange = (value: string, checked: boolean) => {
     console.log("onVolumeChange", value);
-    if (checked) {
-      dispatch(addVolumeFilter(value));
-      return;
-    }
-    dispatch(removeVolumeFilter(value));
+    dispatch(setVolumeFilter({ value, checked }));
   };
 
   const onBrandChange = (value: string, checked: boolean) => {
     console.log("onBrandChange", value);
-
-    if (checked) {
-      dispatch(addBrandFilter(value));
-      return;
-    }
-
-    dispatch(removeBrandFilter(value));
+    dispatch(setBrandFilter({ value, checked }));
   };
 
   const onFormChange = (value: string, checked: boolean) => {
     console.log("onFormChange", value);
-
-    if (checked) {
-      dispatch(addFormFilter(value));
-      return;
-    }
-
-    dispatch(removeFormFilter(value));
+    dispatch(setFormFilter({ value, checked }));
   };
 
   return (
@@ -51,30 +37,34 @@ const Filter = () => {
       <Title>Filter</Title>
 
       <ul>
-        <FilterThumb key="price">
-          <FilterType type="range" name="price" />
+        <FilterThumb key={filterTypes.price}>
+          <FilterType
+            type="range"
+            priceRange={defaultPriceRange}
+            name={filterTypes.price}
+          />
         </FilterThumb>
-        <FilterThumb key="form">
+        <FilterThumb key={filterTypes.form}>
           <FilterType
             type="list"
-            name="form"
+            name={filterTypes.form}
             listItems={form}
             onCheckboxChange={onFormChange}
           />
         </FilterThumb>
-        <FilterThumb key="volume">
+        <FilterThumb key={filterTypes.volume}>
           <FilterType
             type="list"
-            name="volume"
-            listItems={volumes}
+            name={filterTypes.volume}
+            listItems={volume}
             onCheckboxChange={onVolumeChange}
           />
         </FilterThumb>
-        <FilterThumb key="brand">
+        <FilterThumb key={filterTypes.brand}>
           <FilterType
             type="listWithSearch"
-            name="brand"
-            listItems={brands}
+            name={filterTypes.brand}
+            listItems={brand}
             onCheckboxChange={onBrandChange}
           />
         </FilterThumb>

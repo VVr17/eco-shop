@@ -1,22 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ICheckboxType, IFilter, IPriceRange } from "types/filter";
+import { brands, form, volumes } from "utils/fakeData/filter";
 
-interface IPriceRange {
-  min: number;
-  max: number;
-}
+export const defaultPriceRange = { min: 0, max: 50 };
 
-interface IFilter {
-  price: IPriceRange;
-  volume: string[];
-  brand: string[];
-  form: string[];
-}
-
-const filterInitialState: IFilter = {
-  price: { min: 0, max: 0 },
-  volume: [],
-  brand: [],
-  form: [],
+export const filterInitialState: IFilter = {
+  price: defaultPriceRange,
+  volume: volumes,
+  brand: brands,
+  form: form,
 };
 
 const filterSlice = createSlice({
@@ -26,36 +18,44 @@ const filterSlice = createSlice({
     setPriceFilter(state, { payload }: PayloadAction<IPriceRange>) {
       state.price = payload;
     },
-    addVolumeFilter(state, { payload }: PayloadAction<string>) {
-      state.volume.push(payload);
+    setVolumeFilter(state, { payload }: PayloadAction<ICheckboxType>) {
+      state.volume = state.volume.map((item) => {
+        if (item.value == payload.value) {
+          item.checked = payload.checked;
+        }
+        return item;
+      });
     },
-    removeVolumeFilter(state, { payload }: PayloadAction<string>) {
-      state.volume = state.volume.filter(
-        (stateValue) => stateValue !== payload
-      );
+    setBrandFilter(state, { payload }: PayloadAction<ICheckboxType>) {
+      state.brand = state.brand.map((item) => {
+        if (item.value == payload.value) {
+          item.checked = payload.checked;
+        }
+        return item;
+      });
     },
-    addBrandFilter(state, { payload }: PayloadAction<string>) {
-      state.brand.push(payload);
+    setFormFilter(state, { payload }: PayloadAction<ICheckboxType>) {
+      state.form = state.form.map((item) => {
+        if (item.value == payload.value) {
+          item.checked = payload.checked;
+        }
+        return item;
+      });
     },
-    removeBrandFilter(state, { payload }: PayloadAction<string>) {
-      state.brand = state.brand.filter((stateValue) => stateValue !== payload);
-    },
-    addFormFilter(state, { payload }: PayloadAction<string>) {
-      state.form.push(payload);
-    },
-    removeFormFilter(state, { payload }: PayloadAction<string>) {
-      state.form = state.form.filter((stateValue) => stateValue !== payload);
+    removeAllFilters(state) {
+      state.brand = brands;
+      state.price = { min: defaultPriceRange.min, max: defaultPriceRange.max };
+      state.form = form;
+      state.volume = volumes;
     },
   },
 });
 
 export const {
   setPriceFilter,
-  addVolumeFilter,
-  removeVolumeFilter,
-  addBrandFilter,
-  removeBrandFilter,
-  addFormFilter,
-  removeFormFilter,
+  setVolumeFilter,
+  setBrandFilter,
+  setFormFilter,
+  removeAllFilters,
 } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;

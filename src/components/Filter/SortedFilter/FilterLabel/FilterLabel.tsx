@@ -3,6 +3,14 @@ import React from "react";
 import { Label, Type, Value } from "./FilterLabel.styled";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
+import { filterTypes } from "constants/filterTypes";
+import {
+  defaultPriceRange,
+  setBrandFilter,
+  setFormFilter,
+  setPriceFilter,
+  setVolumeFilter,
+} from "redux/filter/filterSlice";
 
 interface IProps {
   type: string;
@@ -11,8 +19,19 @@ interface IProps {
 const FilterLabel: React.FC<IProps> = ({ type, value }) => {
   const dispatch = useDispatch();
 
-  const handleClick = (type: string, value: string) => {
-    console.log("type", type, value);
+  const handleRemoveClick = (type: string, value: string) => {
+    if (type === filterTypes.price) {
+      dispatch(setPriceFilter(defaultPriceRange));
+    }
+    if (type === filterTypes.volume) {
+      dispatch(setVolumeFilter({ value, checked: false }));
+    }
+    if (type === filterTypes.brand) {
+      dispatch(setBrandFilter({ value, checked: false }));
+    }
+    if (type === filterTypes.form) {
+      dispatch(setFormFilter({ value, checked: false }));
+    }
   };
 
   return (
@@ -21,7 +40,7 @@ const FilterLabel: React.FC<IProps> = ({ type, value }) => {
         <Type>{type}:</Type>
         <Value>{value}</Value>
       </Box>
-      <button onClick={() => handleClick(type, value)}>
+      <button onClick={() => handleRemoveClick(type, value)}>
         <RxCross1 size={14} />
       </button>
     </Label>

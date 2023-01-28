@@ -1,21 +1,25 @@
-export const volumes = ["<10", "10-20", "21-30", "31-40", "41-50"];
+export const volumes = [
+  { value: "<10", checked: false },
+  { value: "10-20", checked: false },
+  { value: "21-30", checked: false },
+  { value: "31-40", checked: false },
+  { value: "41-50", checked: false },
+];
 
-export const form = ["Prepackaged", "On weight"];
+export const form = [
+  { value: "Prepackaged", checked: false },
+  { value: "On weight", checked: false },
+];
 
 export const brands = [
-  "Artisana",
-  "Barney",
-  "Betty Lou’s",
-  "Dastony",
-  "Gopal’s",
-  "Artisana2",
-  "Barney2",
-  "Betty Lou’s2",
-  "Dastony2",
-  "Gopal’s2",
-  "Artisana3",
-  "Barney4",
-  "Betty Lou’s4",
-  "Dastony4",
-  "Gopal’s4",
+  { value: "Artisana", checked: false },
+  { value: "Barney", checked: false },
+  { value: "Betty Lou’s", checked: false },
+  { value: "Dastony", checked: false },
+  { value: "Gopal’s", checked: false },
+  { value: "Artisana2", checked: false },
+  { value: "Barney2", checked: false },
+  { value: "Betty Lou’s2", checked: false },
+  { value: "Dastony2", checked: false },
+  { value: "Gopal’s2", checked: false },
 ];
