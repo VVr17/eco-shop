@@ -3,12 +3,17 @@ import {
   FocusEventHandler,
   FormEventHandler,
   MouseEvent,
+  useEffect,
   useState,
 } from "react";
 import { theme } from "constants/theme";
 import Slider from "rc-slider";
 import Box from "components/Box";
 import { Field, PriceBox, SubmitButton } from "./PriceRange.styled";
+import { useDispatch } from "react-redux";
+import { defaultPriceRange, setPriceFilter } from "redux/filter/filterSlice";
+import { useSelector } from "react-redux";
+import { selectFilter } from "redux/filter/filterSelectors";
 
 const styles = {
   slider: { marginBottom: theme.space[3] },
@@ -33,28 +38,33 @@ const styles = {
 };
 
 interface IProps {
-  minPrice: number;
-  maxPrice: number;
+  // minPrice: number;
+  // maxPrice: number;
   step: number;
-  // initialMinPriceRange: number;
-  // initialMaxPriceRange: number;
   currency: string;
-  onPriceSubmit: (min: number, max: number) => void;
 }
 
 const PriceRange: React.FC<IProps> = ({
-  minPrice,
-  maxPrice,
+  // minPrice,
+  // maxPrice,
   step,
   currency,
-  onPriceSubmit,
-  // initialMinPriceRange,
-  // initialMaxPriceRange,
 }) => {
+  const dispatch = useDispatch();
+  const { price } = useSelector(selectFilter);
+  const minPrice = defaultPriceRange.min;
+  const maxPrice = defaultPriceRange.max;
   const [priceRange, setPriceRange] = useState({
-    minRange: minPrice,
-    maxRange: maxPrice,
+    minRange: 0,
+    maxRange: 0,
   });
+
+  useEffect(() => {
+    setPriceRange({
+      minRange: price.min,
+      maxRange: price.max,
+    });
+  }, [price]);
 
   const handleChange = (_input: number | number[]) => {
     const inputValue = _input as number[];
@@ -110,7 +120,7 @@ const PriceRange: React.FC<IProps> = ({
   };
 
   const handleMaxInputBlur: FocusEventHandler<HTMLInputElement> = (event) => {
-    const { minRange, maxRange } = priceRange;
+    const { minRange } = priceRange;
     const data = event.target.value.match(/\d+/);
 
     if (data && +data < minRange) {
@@ -132,7 +142,7 @@ const PriceRange: React.FC<IProps> = ({
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     event.preventDefault();
-    onPriceSubmit(minRange, maxRange);
+    dispatch(setPriceFilter({ min: minRange, max: maxRange }));
   };
 
   const { minRange, maxRange } = priceRange;

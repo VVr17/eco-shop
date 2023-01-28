@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
-export const Label = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.input};
   border-radius: 10px;
+`;
+
+export const Label = styled.div`
+  display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: ${({ theme }) => theme.space[3]};
-  padding-right: ${({ theme }) => theme.space[3]};
 `;
 
 export const Type = styled.p`

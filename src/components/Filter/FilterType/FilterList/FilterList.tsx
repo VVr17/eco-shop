@@ -1,11 +1,15 @@
 import Checkbox from "components/UIkit/Checkbox";
-
-import { FiSearch } from "react-icons/fi";
+import FilterSearch from "components/UIkit/FilterSearch";
+import ListCheckbox from "components/UIkit/ListCheckbox";
+import { useState } from "react";
+import { ICheckboxType } from "types/filter";
+import { boolean } from "yup";
 import { List } from "./FilterList.styled";
 
 interface IProps {
-  listItems?: string[];
+  listItems?: ICheckboxType[];
   withSearch?: boolean;
+  isChecked?: boolean;
   onCheckboxChange: (value: string, checked: boolean) => void;
 }
 
@@ -14,32 +18,33 @@ const FilterList: React.FC<IProps> = ({
   withSearch = false,
   onCheckboxChange,
 }) => {
+  const [search, setSearch] = useState("");
+  const visibleItems = !withSearch
+    ? listItems
+    : listItems?.filter(({ value }) =>
+        value.toLowerCase().includes(search.toLowerCase())
+      );
+
   return (
     <>
       {withSearch && (
-        <>
-          <input
-            type="text"
-            name="search"
-            // value={searchValue}
-            // onChange={onSearchHandler}
-            // placeholder={placeholder}
-            // {...commonProps}
-          />
-          <button type="submit">
-            <FiSearch size={"18px"} />
-          </button>
-        </>
+        <FilterSearch
+          placeholder="Name of brand"
+          searchValue={search}
+          onSearchHandler={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
       )}
-      {listItems && (
+      {visibleItems && (
         <List>
-          {listItems.map((item) => (
-            <li key={item}>
-              <Checkbox
-                label={item}
-                initialChecked={false}
+          {visibleItems.map(({ checked, value }) => (
+            <li key={value}>
+              <ListCheckbox
+                label={value}
+                checked={checked}
                 onChange={(checked) => {
-                  onCheckboxChange(item, checked);
+                  onCheckboxChange(value, checked);
                 }}
               />
             </li>

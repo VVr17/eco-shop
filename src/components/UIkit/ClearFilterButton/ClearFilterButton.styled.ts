@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const IconButtonStyled = styled.button`
+export const ButtonStyled = styled.button`
   margin: 0;
   padding: ${(p) => p.theme.space[2]};
   border: none;
@@ -14,17 +14,9 @@ export const IconButtonStyled = styled.button`
   border-radius: 10px;
   outline: none;
   transition: background-color ${(p) => p.theme.transitionTiming};
+  text-decoration: underline;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.hoverHeaderLink};
-  }
-
-  :disabled {
-    opacity: 0.2;
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
+    background-color: ${({ theme }) => theme.colors.input};
   }
 `;
