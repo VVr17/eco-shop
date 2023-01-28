@@ -1,9 +1,9 @@
-import Box from "components/Box";
 import React from "react";
-import { Label, Type, Value, Wrapper } from "./FilterLabel.styled";
-import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
+import { RxCross1 } from "react-icons/rx";
+import DeleteIconButton from "components/UIkit/DeleteIconButton";
 import { filterTypes } from "constants/filterTypes";
+import { Label, Type, Value, Wrapper } from "./FilterLabel.styled";
 import {
   defaultPriceRange,
   setBrandFilter,
@@ -11,7 +11,6 @@ import {
   setPriceFilter,
   setVolumeFilter,
 } from "redux/filter/filterSlice";
-import DeleteIconButton from "components/UIkit/DeleteIconButton";
 
 interface IProps {
   type: string;

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler } from "react";
 import {
   CheckboxWrapper,
   HiddenCheckbox,

@@ -1,9 +1,7 @@
-import Checkbox from "components/UIkit/Checkbox";
-import FilterSearch from "components/UIkit/FilterSearch";
-import ListCheckbox from "components/UIkit/ListCheckbox";
 import { useState } from "react";
+import FilterSearch from "components/UIkit/FilterSearch";
 import { ICheckboxType } from "types/filter";
-import { boolean } from "yup";
+import ListCheckbox from "components/UIkit/ListCheckbox";
 import { List } from "./FilterList.styled";
 
 interface IProps {

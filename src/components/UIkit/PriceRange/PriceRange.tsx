@@ -1,19 +1,18 @@
 import {
   ChangeEventHandler,
   FocusEventHandler,
-  FormEventHandler,
   MouseEvent,
   useEffect,
   useState,
 } from "react";
-import { theme } from "constants/theme";
-import Slider from "rc-slider";
-import Box from "components/Box";
-import { Field, PriceBox, SubmitButton } from "./PriceRange.styled";
-import { useDispatch } from "react-redux";
-import { defaultPriceRange, setPriceFilter } from "redux/filter/filterSlice";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import Box from "components/Box";
+import { defaultPriceRange, setPriceFilter } from "redux/filter/filterSlice";
+import { Field, PriceBox, SubmitButton } from "./PriceRange.styled";
+import Slider from "rc-slider";
 import { selectFilter } from "redux/filter/filterSelectors";
+import { theme } from "constants/theme";
 
 const styles = {
   slider: { marginBottom: theme.space[3] },

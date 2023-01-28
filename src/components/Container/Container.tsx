@@ -1,5 +1,3 @@
-import Box from "components/Box";
-import { containerWidth } from "constants/constants";
 import { ContainerStyled } from "./Container.styled";
 
 interface IProps {

@@ -1,8 +1,6 @@
-import PriceRange from "components/UIkit/PriceRange";
-import { useSelector } from "react-redux";
-import { selectFilter } from "redux/filter/filterSelectors";
-import { ICheckboxType, IPriceRange } from "types/filter";
 import FilterList from "./FilterList";
+import { ICheckboxType } from "types/filter";
+import PriceRange from "components/UIkit/PriceRange";
 import { Title } from "./FilterType.styled";
 
 interface IProps {

@@ -1,17 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import Box from "components/Box";
 import ClearFilterButton from "components/UIkit/ClearFilterButton";
-import Select from "components/UIkit/Select";
-import { filterTypes } from "constants/filterTypes";
-import { theme } from "constants/theme";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { selectFilter } from "redux/filter/filterSelectors";
 import { defaultPriceRange, removeAllFilters } from "redux/filter/filterSlice";
-import { ISelectList } from "types/types";
 import FilterLabel from "./FilterLabel";
+import { filterTypes } from "constants/filterTypes";
 import { Labels, Sort, SortLabel, SortWrapper } from "./SortedFilter.styled";
-
-const sortBy: ISelectList[] = [{ name: "Ascending" }, { name: "Deschending" }];
+import Select from "components/UIkit/Select";
+import { selectFilter } from "redux/filter/filterSelectors";
+import { theme } from "constants/theme";
 
 const SortedFilter = () => {
   const dispatch = useDispatch();
@@ -35,7 +31,7 @@ const SortedFilter = () => {
           <Select
             width="148px"
             name="sort"
-            list={[{ name: "Ascending" }, { name: "Descending" }]}
+            list={[{ name: "price ascending" }, { name: "price descending" }]}
             placeholder="Relevancy"
             backgroundColor={theme.colors.mainBackground}
           />
@@ -51,7 +47,11 @@ const SortedFilter = () => {
         {volume.map(({ value, checked }) => {
           if (checked) {
             return (
-              <FilterLabel key={value} type={filterTypes.form} value={value} />
+              <FilterLabel
+                key={value}
+                type={filterTypes.volume}
+                value={value}
+              />
             );
           }
         })}

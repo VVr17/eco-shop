@@ -1,32 +1,27 @@
+import { useSelector, useDispatch } from "react-redux";
 import { filterTypes } from "constants/filterTypes";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import FilterType from "./FilterType";
+import { FilterThumb, Title } from "./Filter.styled";
 import { selectFilter } from "redux/filter/filterSelectors";
 import {
   setBrandFilter,
   setFormFilter,
   setVolumeFilter,
 } from "redux/filter/filterSlice";
-import { FilterThumb, Title } from "./Filter.styled";
-import FilterType from "./FilterType";
 
 const Filter = () => {
   const dispatch = useDispatch();
   const { volume, form, brand } = useSelector(selectFilter);
 
   const onVolumeChange = (value: string, checked: boolean) => {
-    console.log("onVolumeChange", value);
     dispatch(setVolumeFilter({ value, checked }));
   };
 
   const onBrandChange = (value: string, checked: boolean) => {
-    console.log("onBrandChange", value);
     dispatch(setBrandFilter({ value, checked }));
   };
 
   const onFormChange = (value: string, checked: boolean) => {
-    console.log("onFormChange", value);
     dispatch(setFormFilter({ value, checked }));
   };
 
