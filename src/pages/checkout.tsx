@@ -14,13 +14,11 @@ const Checkout = () => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
 
-    <Container>
+    <Section>
       <Breadcrumb />
       <Heading tag="h2" text="Checkout" />
-    </Container>
-    <Container>
       <CheckoutData />
-    </Container>
+    </Section>
   </>
 );
 export default Checkout;
