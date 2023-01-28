@@ -8,7 +8,6 @@ import { Title } from "./FilterType.styled";
 interface IProps {
   name: string;
   type: "range" | "list" | "listWithSearch";
-  priceRange?: IPriceRange;
   listItems?: ICheckboxType[];
   onCheckboxChange?: (value: string, checked: boolean) => void;
 }
@@ -18,19 +17,11 @@ const FilterType: React.FC<IProps> = ({
   type,
   listItems,
   onCheckboxChange,
-  priceRange,
 }) => {
   return (
     <>
       <Title>{name}</Title>
-      {type === "range" && priceRange && (
-        <PriceRange
-          currency="$"
-          minPrice={priceRange.min}
-          maxPrice={priceRange.max}
-          step={1}
-        />
-      )}
+      {type === "range" && <PriceRange currency="$" step={1} />}
       {type === "list" && onCheckboxChange && (
         <FilterList listItems={listItems} onCheckboxChange={onCheckboxChange} />
       )}

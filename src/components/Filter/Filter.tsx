@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { selectFilter } from "redux/filter/filterSelectors";
 import {
-  defaultPriceRange,
   setBrandFilter,
   setFormFilter,
   setVolumeFilter,
@@ -14,8 +13,7 @@ import FilterType from "./FilterType";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const { volume, form, brand, price } = useSelector(selectFilter);
-  console.log("price", price);
+  const { volume, form, brand } = useSelector(selectFilter);
 
   const onVolumeChange = (value: string, checked: boolean) => {
     console.log("onVolumeChange", value);
@@ -38,11 +36,7 @@ const Filter = () => {
 
       <ul>
         <FilterThumb key={filterTypes.price}>
-          <FilterType
-            type="range"
-            priceRange={defaultPriceRange}
-            name={filterTypes.price}
-          />
+          <FilterType type="range" name={filterTypes.price} />
         </FilterThumb>
         <FilterThumb key={filterTypes.form}>
           <FilterType

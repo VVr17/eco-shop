@@ -1,13 +1,15 @@
 import Box from "components/Box";
+import ClearFilterButton from "components/UIkit/ClearFilterButton";
 import Select from "components/UIkit/Select";
 import { filterTypes } from "constants/filterTypes";
+import { theme } from "constants/theme";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectFilter } from "redux/filter/filterSelectors";
 import { defaultPriceRange, removeAllFilters } from "redux/filter/filterSlice";
 import { ISelectList } from "types/types";
 import FilterLabel from "./FilterLabel";
-import { Labels } from "./SortedFilter.styled";
+import { Labels, Sort, SortLabel, SortWrapper } from "./SortedFilter.styled";
 
 const sortBy: ISelectList[] = [{ name: "Ascending" }, { name: "Deschending" }];
 
@@ -25,15 +27,20 @@ const SortedFilter = () => {
 
   return (
     <Box marginBottom={[32, 32, 48, 48]}>
-      <Box marginBottom={32}>
+      <SortWrapper>
         <p>Showed 84 goods</p>
 
-        <Select
-          name="sort"
-          list={[{ name: "Ascending" }, { name: "Descending" }]}
-          placeholder="Sort by"
-        />
-      </Box>
+        <Sort>
+          <SortLabel>Sort by</SortLabel>
+          <Select
+            width="148px"
+            name="sort"
+            list={[{ name: "Ascending" }, { name: "Descending" }]}
+            placeholder="Relevancy"
+            backgroundColor={theme.colors.mainBackground}
+          />
+        </Sort>
+      </SortWrapper>
       <Labels>
         {isPriceSet && (
           <FilterLabel
@@ -41,43 +48,30 @@ const SortedFilter = () => {
             value={`${price.min} - ${price.max} $`}
           />
         )}
-        {volume.length !== 0 &&
-          volume.map(({ value, checked }) => (
-            <>
-              {checked && (
-                <FilterLabel
-                  key={value}
-                  type={filterTypes.volume}
-                  value={value}
-                />
-              )}
-            </>
-          ))}
-        {form.length !== 0 &&
-          form.map(({ value, checked }) => (
-            <>
-              {checked && (
-                <FilterLabel
-                  key={value}
-                  type={filterTypes.form}
-                  value={value}
-                />
-              )}
-            </>
-          ))}
-        {brand.length !== 0 &&
-          brand.map(({ value, checked }) => (
-            <>
-              {checked && (
-                <FilterLabel
-                  key={value}
-                  type={filterTypes.brand}
-                  value={value}
-                />
-              )}
-            </>
-          ))}
-        <button onClick={handleRemoveAll}>Clear all filters</button>
+        {volume.map(({ value, checked }) => {
+          if (checked) {
+            return (
+              <FilterLabel key={value} type={filterTypes.form} value={value} />
+            );
+          }
+        })}
+        {form.map(({ value, checked }) => {
+          if (checked) {
+            return (
+              <FilterLabel key={value} type={filterTypes.form} value={value} />
+            );
+          }
+        })}
+        {brand.map(({ value, checked }) => {
+          if (checked) {
+            return (
+              <FilterLabel key={value} type={filterTypes.brand} value={value} />
+            );
+          }
+        })}
+        <ClearFilterButton onClick={handleRemoveAll}>
+          Clear all filters
+        </ClearFilterButton>
       </Labels>
     </Box>
   );

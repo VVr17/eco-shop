@@ -1,6 +1,6 @@
 import Box from "components/Box";
 import React from "react";
-import { Label, Type, Value } from "./FilterLabel.styled";
+import { Label, Type, Value, Wrapper } from "./FilterLabel.styled";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { filterTypes } from "constants/filterTypes";
@@ -11,6 +11,7 @@ import {
   setPriceFilter,
   setVolumeFilter,
 } from "redux/filter/filterSlice";
+import DeleteIconButton from "components/UIkit/DeleteIconButton";
 
 interface IProps {
   type: string;
@@ -35,15 +36,18 @@ const FilterLabel: React.FC<IProps> = ({ type, value }) => {
   };
 
   return (
-    <Label>
-      <Box display="flex" marginRight={[3]}>
+    <Wrapper>
+      <Label>
         <Type>{type}:</Type>
         <Value>{value}</Value>
-      </Box>
-      <button onClick={() => handleRemoveClick(type, value)}>
+      </Label>
+      <DeleteIconButton
+        aria-label="delete filter"
+        onClick={() => handleRemoveClick(type, value)}
+      >
         <RxCross1 size={14} />
-      </button>
-    </Label>
+      </DeleteIconButton>
+    </Wrapper>
   );
 };
 
