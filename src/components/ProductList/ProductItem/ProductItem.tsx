@@ -1,6 +1,8 @@
 import Box from "components/Box";
 import Button from "components/UIkit/Button";
 import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
+import { FiShoppingBag } from "react-icons/fi";
+
 import {
   Card,
   ImageWrapper,
@@ -13,6 +15,8 @@ import {
 import Image from "next/image";
 import ProductItemLabel from "./ProductItemLabel";
 import { useWindowSize } from "hooks/useWindowSize";
+import IconButton from "components/UIkit/IconButton";
+import { DEFAULT_ICON_SIZE } from "constants/constants";
 
 interface IProps {
   isSale?: boolean;
@@ -60,6 +64,83 @@ const ProductItem: React.FC<IProps> = ({
         <Title>{name}</Title>
 
         <Box display="flex" justifyContent="space-between" alignItems="center">
+          {isTablet || isDesktop ? (
+            <Button
+              text="Add"
+              iconRight={AiOutlinePlus}
+              iconMargin="16px"
+              borderColor="input"
+              hoverColor="accent"
+            />
+          ) : (
+            <Button
+              text=""
+              iconRight={AiOutlinePlus}
+              iconMargin="0"
+              borderColor="input"
+              hoverColor="accent"
+            />
+          )}
+
+          <Box textAlign="end">
+            <Box display="flex" flexDirection="column" alignItems="end">
+              {isSale && (
+                <PreviousPrice>
+                  {currency} {oldPrice}
+                </PreviousPrice>
+              )}
+
+              <Price isSale={isSale}>
+                {currency} {price}
+              </Price>
+            </Box>
+            <Weight>
+              / {baseMeasure}
+              {measure}
+            </Weight>
+          </Box>
+        </Box>
+      </Box>
+    </Card>
+  );
+};
+
+export default ProductItem;
+
+/**
+ * const ProductItem: React.FC<IProps> = ({
+  isSale = false,
+  id,
+  name,
+  price,
+  oldPrice,
+  imageUrl,
+  rating,
+  currency,
+  measure,
+  baseMeasure,
+}) => {
+  const { isTablet, isDesktop } = useWindowSize();
+
+  return (
+    <Card>
+      {isSale && <ProductItemLabel />}
+      <ImageWrapper>
+        <Image src={imageUrl} alt={name} width={72} height={72} />
+      </ImageWrapper>
+      <Rating>
+        <AiFillStar />
+        <p>{rating}/5</p>
+      </Rating>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        flex="1"
+      >
+        <Title>{name}</Title>
+
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           {(isTablet || isDesktop) && (
             <Button
               text="Add"
@@ -69,7 +150,6 @@ const ProductItem: React.FC<IProps> = ({
               hoverColor="accent"
             />
           )}
-
           <Box textAlign={["left", "left", "end", "end"]}>
             <Box
               display={["flex"]}
@@ -98,3 +178,4 @@ const ProductItem: React.FC<IProps> = ({
 };
 
 export default ProductItem;
+ */
