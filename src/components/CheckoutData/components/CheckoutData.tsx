@@ -7,6 +7,7 @@ import {
 } from "assets/icons/paymentIcons";
 import CartList from "components/Cart/CartList";
 import CheckoutInput from "./CheckoutInput";
+import StorageService from "services/StorageService";
 import {
   FieldSet,
   FieldWrapper,
@@ -39,53 +40,9 @@ import {
   checkoutValidationSchema,
   packagingList,
   shippingList,
-} from "utils/checkout";
+} from "../utils";
 import { getCities, getCountries } from "services/countriesApi";
-
-interface IFormData {
-  first_name: string;
-  last_name: string;
-  phone: string;
-  email: string;
-  country: string;
-  city: string;
-  street: string;
-  postcode: string;
-  packaging: string;
-  shipping: string;
-}
-
-const initialValues: IFormData = {
-  first_name: "",
-  last_name: "",
-  phone: "",
-  email: "",
-  country: "",
-  city: "",
-  street: "",
-  postcode: "",
-  packaging: "",
-  shipping: "",
-};
-
-class StorageService {
-  key: string;
-  constructor(key: string) {
-    this.key = key;
-  }
-
-  get() {
-    if (typeof localStorage === "undefined") {
-      return;
-    }
-    const data = localStorage.getItem(this.key);
-    return data ? JSON.parse(data) : null;
-  }
-
-  set(value: unknown) {
-    localStorage.setItem(this.key, JSON.stringify(value));
-  }
-}
+import { IFormData, initialValues } from "../utils/initialFormValues";
 
 const storage = new StorageService("checkoutFormData");
 
@@ -98,6 +55,7 @@ const CheckoutData = () => {
   const [cartHeight, setCartHeight] = useState(0);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
+
   const formRef: { current: HTMLFormElement | null } = useRef(null);
   const orderRef = useRef<HTMLInputElement>(null);
   const cartRef = useRef<HTMLInputElement>(null);
@@ -184,7 +142,6 @@ const CheckoutData = () => {
     setCheckoutState(name, value);
   };
 
-  console.log(checkoutFormData);
   const {
     first_name,
     last_name,
