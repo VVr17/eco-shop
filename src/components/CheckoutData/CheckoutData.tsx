@@ -44,8 +44,21 @@ import { getCities, getCountries } from "services/countriesApi";
 
 const CHECKOUT_STORAGE_KEY = "checkoutFormData";
 
-const initialValues = {
-  first_name: "",
+interface IFormData {
+  first_name: string;
+  last_name: string;
+  phone: string;
+  email: string;
+  country: string;
+  city: string;
+  street: string;
+  postcode: string;
+  packaging: string;
+  shipping: string;
+}
+
+const initialValues: IFormData = {
+  first_name: "sssss",
   last_name: "",
   phone: "",
   email: "",
@@ -57,20 +70,32 @@ const initialValues = {
   shipping: "",
 };
 
+const getStorageData = () => {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+  const data = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+  return data ? JSON.parse(data) : null;
+};
+
+const setStorageData = (value: IFormData) => {
+  localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(value));
+};
+
+// const defaultFormValues = !storageFormData ? initialValues : storageFormData;
+
 const CheckoutData = () => {
-  const [checkoutFormData, setCheckoutFormData] = useState({});
+  const [checkoutFormData, setCheckoutFormData] = useState(
+    () => getStorageData() || initialValues
+  );
 
   const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const formRef: { current: HTMLFormElement | null } = useRef(null);
-
-  const storageFormData =
-    typeof localStorage !== "undefined"
-      ? localStorage.getItem(CHECKOUT_STORAGE_KEY)
-      : null;
-  const defaultFormValues = !storageFormData ? initialValues : storageFormData;
+  const orderRef = useRef<HTMLInputElement>(null);
+  const cartRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -79,31 +104,14 @@ const CheckoutData = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(checkoutValidationSchema),
-    defaultValues: defaultFormValues as any,
+    // defaultValues: defaultFormValues as any,
   });
 
-  // const test = watch(["first_name"]);
-  // console.log(test);
-
-  // useEffect(() => {
-  //   console.log(test);
-  // }, [test]);
-
-  // useEffect(() => {
-  //   const subscription = watch(
-  //     (value, { name, type }) => console.log(value, name, type)
-  //     // setCheckoutFormData((prevState) => ({
-  //     //   ...prevState,
-  //     //   [name as string]: value,
-  //     // }))
-  //   );
-  //   return () => subscription.unsubscribe();
-  // }, [watch]);
+  useEffect(() => {
+    setStorageData(checkoutFormData);
+  }, [checkoutFormData]);
 
   useEffect(() => {
-    // Init form data
-    // const data = localStorage.getItem(CHECKOUT_STORAGE_KEY);
-
     // Fetch countries on first render
     (async () => {
       try {
@@ -130,9 +138,6 @@ const CheckoutData = () => {
     };
   }, []);
 
-  const orderRef = useRef<HTMLInputElement>(null);
-  const cartRef = useRef<HTMLInputElement>(null);
-
   const CreditCardPmntHandler = (isChecked: boolean) => {
     setIsCreditCard(isChecked);
   };
@@ -155,7 +160,25 @@ const CheckoutData = () => {
     }
   };
 
-  // console.log(checkoutFormData);
+  const onChangeSelect = (name: string, value: string) => {
+    setCheckoutFormData((prevState: IFormData) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const onChangeFieldHandler = (e: Event) => {
+    const field = e.target as HTMLInputElement;
+    const fieldName = field.name;
+    const fieldValue = field.value;
+
+    setCheckoutFormData((prevState: IFormData) => ({
+      ...prevState,
+      [fieldName]: fieldValue,
+    }));
+  };
+
+  console.log(checkoutFormData);
   const {
     first_name,
     last_name,
@@ -167,7 +190,7 @@ const CheckoutData = () => {
     postcode,
     packaging,
     shipping,
-  } = initialValues;
+  } = checkoutFormData as IFormData;
 
   return (
     <>
@@ -189,6 +212,7 @@ const CheckoutData = () => {
                   name="first_name"
                   type="text"
                   defaultValue={first_name}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -200,6 +224,7 @@ const CheckoutData = () => {
                   name="last_name"
                   type="text"
                   defaultValue={last_name}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -211,6 +236,7 @@ const CheckoutData = () => {
                   name="phone"
                   type="text"
                   defaultValue={phone}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -222,6 +248,7 @@ const CheckoutData = () => {
                   name="email"
                   type="text"
                   defaultValue={email}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
             </FieldSet>
@@ -244,6 +271,7 @@ const CheckoutData = () => {
                   className={errors.country ? "hasError" : ""}
                   onSelect={onCountrySelectHandler}
                   defaultValue={country}
+                  onChangeSelect={onChangeSelect}
                 />
                 <ErrorMessage>{errors.country?.message as string}</ErrorMessage>
               </FieldWrapper>
@@ -259,6 +287,7 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.city ? "hasError" : ""}
                   defaultValue={city}
+                  onChangeSelect={onChangeSelect}
                 />
                 <ErrorMessage>{errors.city?.message as string}</ErrorMessage>
               </FieldWrapper>
@@ -271,6 +300,7 @@ const CheckoutData = () => {
                   name="street"
                   type="text"
                   defaultValue={street}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -282,6 +312,7 @@ const CheckoutData = () => {
                   name="postcode"
                   type="text"
                   defaultValue={postcode}
+                  onChange={onChangeFieldHandler as () => void}
                 />
               </FieldWrapper>
               <FieldWrapper>
@@ -296,6 +327,7 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.packaging ? "hasError" : ""}
                   defaultValue={packaging}
+                  onChangeSelect={onChangeSelect}
                 />
                 <ErrorMessage>
                   {errors.packaging?.message as string}
@@ -313,6 +345,7 @@ const CheckoutData = () => {
                   register={register}
                   className={errors.shipping ? "hasError" : ""}
                   defaultValue={shipping}
+                  onChangeSelect={onChangeSelect}
                 />
                 <ErrorMessage>
                   {errors.shipping?.message as string}
