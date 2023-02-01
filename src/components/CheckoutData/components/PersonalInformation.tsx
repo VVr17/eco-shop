@@ -9,6 +9,13 @@ import {
 } from "./CheckoutData.styled";
 import CheckoutInput from "./CheckoutInput";
 
+const data = [
+  { id: "checkout_first_name", name: "first_name" },
+  { id: "checkout_first_name", name: "first_name" },
+  { id: "checkout_first_name", name: "first_name" },
+  { id: "checkout_first_name", name: "first_name" },
+];
+
 interface IPersonalInformationProps {
   register: UseFormRegister<FieldValues>;
   errors: Partial<
@@ -16,13 +23,15 @@ interface IPersonalInformationProps {
       [x: string]: any;
     }>
   >;
-  onChangeFieldHandler: () => void;
+  onChange: () => void;
+  defaultValues: string[];
 }
 
 const PersonalInformation: FC<IPersonalInformationProps> = ({
   register,
   errors,
-  onChangeFieldHandler,
+  onChange,
+  defaultValues,
 }) => {
   return (
     <CheckoutDataBlock>
@@ -36,8 +45,8 @@ const PersonalInformation: FC<IPersonalInformationProps> = ({
             id="checkout_first_name"
             name="first_name"
             type="text"
-            defaultValue={first_name}
-            onChange={onChangeFieldHandler as () => void}
+            defaultValue={defaultValues[0]}
+            onChange={onChange as () => void}
           />
         </FieldWrapper>
         <FieldWrapper>
@@ -48,8 +57,8 @@ const PersonalInformation: FC<IPersonalInformationProps> = ({
             id="checkout_last_name"
             name="last_name"
             type="text"
-            defaultValue={last_name}
-            onChange={onChangeFieldHandler as () => void}
+            defaultValue={defaultValues[1]}
+            onChange={onChange as () => void}
           />
         </FieldWrapper>
         <FieldWrapper>
@@ -60,8 +69,8 @@ const PersonalInformation: FC<IPersonalInformationProps> = ({
             id="checkout_phone"
             name="phone"
             type="text"
-            defaultValue={phone}
-            onChange={onChangeFieldHandler as () => void}
+            defaultValue={defaultValues[2]}
+            onChange={onChange as () => void}
           />
         </FieldWrapper>
         <FieldWrapper>
@@ -72,8 +81,8 @@ const PersonalInformation: FC<IPersonalInformationProps> = ({
             id="checkout_email"
             name="email"
             type="text"
-            defaultValue={email}
-            onChange={onChangeFieldHandler as () => void}
+            defaultValue={defaultValues[3]}
+            onChange={onChange as () => void}
           />
         </FieldWrapper>
       </FieldSet>
