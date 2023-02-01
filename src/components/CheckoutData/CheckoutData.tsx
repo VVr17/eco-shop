@@ -42,8 +42,6 @@ import {
 } from "utils/checkout";
 import { getCities, getCountries } from "services/countriesApi";
 
-const CHECKOUT_STORAGE_KEY = "checkoutFormData";
-
 interface IFormData {
   first_name: string;
   last_name: string;
@@ -58,7 +56,7 @@ interface IFormData {
 }
 
 const initialValues: IFormData = {
-  first_name: "sssss",
+  first_name: "",
   last_name: "",
   phone: "",
   email: "",
@@ -70,23 +68,30 @@ const initialValues: IFormData = {
   shipping: "",
 };
 
-const getStorageData = () => {
-  if (typeof localStorage === "undefined") {
-    return;
+class StorageService {
+  key: string;
+  constructor(key: string) {
+    this.key = key;
   }
-  const data = localStorage.getItem(CHECKOUT_STORAGE_KEY);
-  return data ? JSON.parse(data) : null;
-};
 
-const setStorageData = (value: IFormData) => {
-  localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(value));
-};
+  get() {
+    if (typeof localStorage === "undefined") {
+      return;
+    }
+    const data = localStorage.getItem(this.key);
+    return data ? JSON.parse(data) : null;
+  }
 
-// const defaultFormValues = !storageFormData ? initialValues : storageFormData;
+  set(value: unknown) {
+    localStorage.setItem(this.key, JSON.stringify(value));
+  }
+}
+
+const storage = new StorageService("checkoutFormData");
 
 const CheckoutData = () => {
   const [checkoutFormData, setCheckoutFormData] = useState(
-    () => getStorageData() || initialValues
+    () => storage.get() || initialValues
   );
 
   const [isCreditCard, setIsCreditCard] = useState(false);
@@ -100,15 +105,14 @@ const CheckoutData = () => {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(checkoutValidationSchema),
-    // defaultValues: defaultFormValues as any,
   });
 
+  //Refresh form data values
   useEffect(() => {
-    setStorageData(checkoutFormData);
+    storage.set(checkoutFormData);
   }, [checkoutFormData]);
 
   useEffect(() => {
@@ -130,13 +134,18 @@ const CheckoutData = () => {
         return;
       }
     };
-
     formRef.current?.addEventListener("keydown", onEnterSubmit);
-
     return () => {
       formRef.current?.removeEventListener("keydown", onEnterSubmit);
     };
   }, []);
+
+  const setCheckoutState = (name: string, value: string) => {
+    setCheckoutFormData((prevState: IFormData) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const CreditCardPmntHandler = (isChecked: boolean) => {
     setIsCreditCard(isChecked);
@@ -144,6 +153,7 @@ const CheckoutData = () => {
 
   const onSubmitForm = (data: Object) => {
     console.log(data);
+    setCheckoutFormData(initialValues);
   };
 
   const onCountrySelectHandler = async (
@@ -152,6 +162,11 @@ const CheckoutData = () => {
   ) => {
     try {
       const response = await getCities(country);
+      // setCheckoutState("city", "");
+      setCheckoutFormData((prevState: IFormData) => ({
+        ...prevState,
+        city: "",
+      }));
       setCities(response.data);
     } catch (err) {
       alert(`We don't work in ${country} yet `);
@@ -161,21 +176,12 @@ const CheckoutData = () => {
   };
 
   const onChangeSelect = (name: string, value: string) => {
-    setCheckoutFormData((prevState: IFormData) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setCheckoutState(name, value);
   };
 
   const onChangeFieldHandler = (e: Event) => {
-    const field = e.target as HTMLInputElement;
-    const fieldName = field.name;
-    const fieldValue = field.value;
-
-    setCheckoutFormData((prevState: IFormData) => ({
-      ...prevState,
-      [fieldName]: fieldValue,
-    }));
+    const { name, value } = e.target as HTMLInputElement;
+    setCheckoutState(name, value);
   };
 
   console.log(checkoutFormData);
