@@ -1,9 +1,8 @@
-import Link from "next/link";
+import { MouseEvent } from "react";
 import { useRouter } from "next/router";
-import { MouseEvent, MouseEventHandler } from "react";
+import { List } from "./ProductList.styled";
 import { IProduct } from "types/product";
 import ProductItem from "./ProductItem";
-import { List } from "./ProductList.styled";
 
 interface IProps {
   products: IProduct[];
@@ -11,7 +10,6 @@ interface IProps {
 
 const ProductList: React.FC<IProps> = ({ products }) => {
   const router = useRouter();
-  // console.log("router", router.asPath);
 
   const handleClick = (
     event: MouseEvent<HTMLLIElement, globalThis.MouseEvent>,

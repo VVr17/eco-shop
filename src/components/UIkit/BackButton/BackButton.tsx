@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { MouseEventHandler } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BackButtonStyled } from "./BackButton.styled";
 

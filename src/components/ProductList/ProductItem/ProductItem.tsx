@@ -1,4 +1,6 @@
+import Box from "components/Box";
 import Button from "components/UIkit/Button";
+import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
 import {
   Card,
   ImageWrapper,
@@ -8,12 +10,9 @@ import {
   Title,
   Weight,
 } from "./ProductItem.styled";
-import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
-import Box from "components/Box";
-import { useWindowSize } from "hooks/useWindowSize";
-import ProductItemLabel from "./ProductItemLabel";
 import Image from "next/image";
-import { useRef } from "react";
+import ProductItemLabel from "./ProductItemLabel";
+import { useWindowSize } from "hooks/useWindowSize";
 
 interface IProps {
   isSale?: boolean;
@@ -41,16 +40,6 @@ const ProductItem: React.FC<IProps> = ({
   baseMeasure,
 }) => {
   const { isTablet, isDesktop } = useWindowSize();
-  const refButton = useRef(); //TODO: ref to no propagate
-
-  // const notToPropagate = (e: any) => {
-  //   if (refSelect.current !== e.target) {
-  //     console.log(" click outside");
-  //     setIsOpen(false);
-
-  //     // console.dir(document);
-  //   }
-  // };
 
   return (
     <Card>
@@ -73,16 +62,11 @@ const ProductItem: React.FC<IProps> = ({
         <Box display="flex" justifyContent="space-between" alignItems="center">
           {(isTablet || isDesktop) && (
             <Button
-              // ref={refButton as any}
               text="Add"
               iconRight={AiOutlinePlus}
               iconMargin="16px"
               borderColor="input"
               hoverColor="accent"
-              // onClick={(event) => {
-              //   event.stopPropagation();
-              //   // console.log(event);
-              // }}
             />
           )}
 

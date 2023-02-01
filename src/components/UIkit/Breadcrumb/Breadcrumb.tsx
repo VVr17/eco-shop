@@ -1,9 +1,8 @@
-import { homePageRoute } from "constants/constants";
-import { splitRoute } from "helpers/splitRoute";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { IRoute } from "types/route";
+import Link from "next/link";
 import { BreadcrumbStyled } from "./Breadcrumb.styled";
+import { homePageRoute } from "constants/constants";
+import { IRoute } from "types/route";
 
 interface IProps {
   route?: IRoute[];

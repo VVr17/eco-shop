@@ -1,6 +1,6 @@
+import React from "react";
 import Box from "components/Box";
 import Container from "components/Container";
-import React from "react";
 
 interface IProps {
   children?: React.ReactNode;

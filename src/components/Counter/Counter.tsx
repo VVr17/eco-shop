@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { CounterStyled } from "./Counter.styled";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { getCounterSets } from "helpers/getCounterSets";
+import { CounterStyled } from "./Counter.styled";
 
 interface IProps {
   id: string;

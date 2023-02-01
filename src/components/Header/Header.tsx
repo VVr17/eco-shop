@@ -1,25 +1,24 @@
+import { useState } from "react";
+import { BiChevronDown } from "react-icons/bi";
+import { FiSearch, FiUser, FiShoppingBag } from "react-icons/fi";
+import { CgMenuGridO } from "react-icons/cg";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Box from "components/Box";
-import { containerWidth } from "constants/constants";
-import { useWindowSize } from "hooks/useWindowSize";
+import Button from "components/UIkit/Button";
+import Cart from "components/Cart";
+import { cartData } from "utils/fakeData/fakeCartData";
+import { DEFAULT_ICON_SIZE } from "constants/constants";
 import IconButton from "components/UIkit/IconButton";
 import Logo from "components/UIkit/Logo";
+import ModalTooltip from "components/UIkit/Modal/ModalTooltip";
 import Search from "components/UIkit/Search";
-import { DEFAULT_ICON_SIZE } from "constants/constants";
 import { theme } from "constants/theme";
-import { FiSearch, FiUser, FiShoppingBag } from "react-icons/fi";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { CgMenuGridO } from "react-icons/cg";
-import { BiChevronDown } from "react-icons/bi";
-import Button from "components/UIkit/Button";
+import { useWindowSize } from "hooks/useWindowSize";
 import {
   HeaderContainer,
   LeftSideContainer,
   RightSideContainer,
 } from "./Header.styled";
-import { useState } from "react";
-import Cart from "components/Cart";
-import ModalTooltip from "components/UIkit/Modal/ModalTooltip";
-import { cartData } from "utils/fakeData/fakeCartData";
 
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
