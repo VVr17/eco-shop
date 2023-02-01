@@ -59,16 +59,6 @@ const SelectReg: FC<ISelectProps> = ({
     }
   }, [list]);
 
-  useEffect(() => {
-    if (defaultValue) {
-      onSelectItem(defaultValue);
-    }
-  }, [defaultValue]);
-
-  const toggleDropDownList = () => {
-    setIsOpen(!isOpen);
-  };
-
   const onSelectItem = (value: string) => {
     setValue(value);
     setIsOpen(false);
@@ -79,6 +69,16 @@ const SelectReg: FC<ISelectProps> = ({
     };
     onSelect && onSelect(value, setDefaultValue);
     onChangeSelect && onChangeSelect(name, value);
+  };
+
+  useEffect(() => {
+    if (defaultValue) {
+      onSelectItem(defaultValue);
+    }
+  }, [defaultValue]);
+
+  const toggleDropDownList = () => {
+    setIsOpen(!isOpen);
   };
 
   const closeDropDownList = (e: SyntheticEvent) => {

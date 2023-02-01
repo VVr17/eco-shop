@@ -1,49 +1,23 @@
-import { Checkbox, Button, SelectReg } from "components/UIkit";
-import {
-  ApplePayIcon,
-  PaypalIcon,
-  VisaIcon,
-  MastercardIcon,
-} from "assets/icons/paymentIcons";
+import { Button } from "components/UIkit";
+import Payments from "./Payments";
+import Summary from "./Summary";
 import CartList from "components/Cart/CartList";
-import CheckoutInput from "./CheckoutInput";
 import StorageService from "services/StorageService";
+import PersonalInformation from "./PersonalInformation";
+import DeliveryDetails from "./DeliveryDetails";
 import {
-  FieldSet,
-  FieldWrapper,
-  H3,
-  Label,
-  PaymentFieldWrapper,
-  PaymentHeading,
-  PaymentLogoWrapper,
-  PaymentMethodItem,
-  PaymentMethodList,
-  SummaryHeading,
-  SummaryCostsList,
-  SummaryCostItem,
-  SummaryCostName,
-  SummaryCostValue,
-  SummaryTotalWrapper,
   CheckoutMainContainer,
-  CheckoutDataBlock,
   CheckoutOrder,
   OrderListWrapper,
   OrderPurchaseContainer,
   CheckoutFields,
-  ErrorMessage,
 } from "./CheckoutData.styled";
 import { useEffect, useRef, useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  checkoutValidationSchema,
-  packagingList,
-  shippingList,
-} from "../utils";
-import { getCities, getCountries } from "services/countriesApi";
+import { checkoutValidationSchema } from "../utils";
 import { IFormData, initialValues } from "../utils/initialFormValues";
-import PersonalInformation from "./PersonalInformation";
 
 const storage = new StorageService("checkoutFormData");
 
@@ -52,10 +26,7 @@ const CheckoutData = () => {
     () => storage.get() || initialValues
   );
 
-  const [isCreditCard, setIsCreditCard] = useState(false);
   const [cartHeight, setCartHeight] = useState(0);
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
 
   const formRef: { current: HTMLFormElement | null } = useRef(null);
   const orderRef = useRef<HTMLInputElement>(null);
@@ -75,17 +46,6 @@ const CheckoutData = () => {
   }, [checkoutFormData]);
 
   useEffect(() => {
-    // Fetch countries on first render
-    (async () => {
-      try {
-        const response = await getCountries();
-        setCountries(response.data);
-      } catch (err) {
-        console.log("something went wrong. Error:", err);
-        alert("something went wrong");
-      }
-    })();
-
     //Prevent onEnter form submit
     const onEnterSubmit = (e: Event & { code: string }) => {
       if (e.code === "Enter") {
@@ -106,32 +66,9 @@ const CheckoutData = () => {
     }));
   };
 
-  const CreditCardPmntHandler = (isChecked: boolean) => {
-    setIsCreditCard(isChecked);
-  };
-
   const onSubmitForm = (data: Object) => {
     console.log(data);
     setCheckoutFormData(initialValues);
-  };
-
-  const onCountrySelectHandler = async (
-    country: string,
-    setDefaultValue: () => void
-  ) => {
-    try {
-      const response = await getCities(country);
-      // setCheckoutState("city", "");
-      setCheckoutFormData((prevState: IFormData) => ({
-        ...prevState,
-        city: "",
-      }));
-      setCities(response.data);
-    } catch (err) {
-      alert(`We don't work in ${country} yet `);
-      setDefaultValue();
-      setCities([]);
-    }
   };
 
   const onChangeSelect = (name: string, value: string) => {
@@ -159,207 +96,42 @@ const CheckoutData = () => {
   return (
     <>
       <CheckoutMainContainer
-        // id="checkoutFormID"
         ref={formRef}
         onSubmit={handleSubmit(onSubmitForm)}
       >
         <CheckoutFields id="checkoutForm">
           <PersonalInformation
+            defaultValues={[first_name, last_name, phone, email]}
             register={register}
             errors={errors}
             onChange={onChangeFieldHandler as () => void}
-            defaultValues={[first_name, last_name, phone, email]}
+          />
+          <DeliveryDetails
+            register={register}
+            errors={errors}
+            onChangeSelect={onChangeSelect}
+            defaultValues={[
+              country,
+              city,
+              street,
+              postcode,
+              packaging,
+              shipping,
+            ]}
+            onChange={onChangeFieldHandler as () => void}
           />
 
-          <CheckoutDataBlock>
-            <H3>Delivery details:</H3>
-            <FieldSet>
-              <FieldWrapper>
-                <Label htmlFor="checkout_country">Country / Region</Label>
-                <SelectReg
-                  id="checkout_country"
-                  list={countries}
-                  fontSize="14px"
-                  width="100%"
-                  name="country"
-                  pt="14px"
-                  pb="14px"
-                  placeholder="--Country--"
-                  register={register}
-                  className={errors.country ? "hasError" : ""}
-                  onSelect={onCountrySelectHandler}
-                  defaultValue={country}
-                  onChangeSelect={onChangeSelect}
-                />
-                <ErrorMessage>{errors.country?.message as string}</ErrorMessage>
-              </FieldWrapper>
-              <FieldWrapper>
-                <Label htmlFor="checkout_city">Town / City</Label>
-                <SelectReg
-                  id="checkout_city"
-                  list={cities}
-                  fontSize="15px"
-                  width="100%"
-                  name="city"
-                  placeholder="--City--"
-                  register={register}
-                  className={errors.city ? "hasError" : ""}
-                  defaultValue={city}
-                  onChangeSelect={onChangeSelect}
-                />
-                <ErrorMessage>{errors.city?.message as string}</ErrorMessage>
-              </FieldWrapper>
-              <FieldWrapper>
-                <Label htmlFor="checkout_street">Street</Label>
-                <CheckoutInput
-                  register={register}
-                  errors={errors}
-                  id="checkout_street"
-                  name="street"
-                  type="text"
-                  defaultValue={street}
-                  onChange={onChangeFieldHandler as () => void}
-                />
-              </FieldWrapper>
-              <FieldWrapper>
-                <Label htmlFor="checkout_postcode">Postcode</Label>
-                <CheckoutInput
-                  register={register}
-                  errors={errors}
-                  id="checkout_postcode"
-                  name="postcode"
-                  type="text"
-                  defaultValue={postcode}
-                  onChange={onChangeFieldHandler as () => void}
-                />
-              </FieldWrapper>
-              <FieldWrapper>
-                <Label htmlFor="checkout_packaging">Packaging type</Label>
-                <SelectReg
-                  id="checkout_packaging"
-                  list={packagingList}
-                  fontSize="15px"
-                  width="100%"
-                  name="packaging"
-                  placeholder="--Packaging--"
-                  register={register}
-                  className={errors.packaging ? "hasError" : ""}
-                  defaultValue={packaging}
-                  onChangeSelect={onChangeSelect}
-                />
-                <ErrorMessage>
-                  {errors.packaging?.message as string}
-                </ErrorMessage>
-              </FieldWrapper>
-              <FieldWrapper>
-                <Label htmlFor="checkout_shipping">Shipping option</Label>
-                <SelectReg
-                  id="checkout_shipping"
-                  list={shippingList}
-                  fontSize="15px"
-                  width="100%"
-                  name="shipping"
-                  placeholder="--Shipping--"
-                  register={register}
-                  className={errors.shipping ? "hasError" : ""}
-                  defaultValue={shipping}
-                  onChangeSelect={onChangeSelect}
-                />
-                <ErrorMessage>
-                  {errors.shipping?.message as string}
-                </ErrorMessage>
-              </FieldWrapper>
-            </FieldSet>
-          </CheckoutDataBlock>
-          <CheckoutDataBlock>
-            <PaymentHeading>Payment:</PaymentHeading>
-            <PaymentMethodList>
-              <PaymentMethodItem>
-                <Checkbox label="Apple Pay" />
-                <PaymentLogoWrapper>
-                  <ApplePayIcon />
-                </PaymentLogoWrapper>
-              </PaymentMethodItem>
-              <PaymentMethodItem>
-                <Checkbox label="Pay Pal" />
-                <PaymentLogoWrapper>
-                  <PaypalIcon />
-                </PaymentLogoWrapper>
-              </PaymentMethodItem>
-              <PaymentMethodItem>
-                <Checkbox
-                  label="Credit or debit card"
-                  onChange={CreditCardPmntHandler}
-                />
-                <PaymentLogoWrapper>
-                  <MastercardIcon /> <VisaIcon />
-                </PaymentLogoWrapper>
-              </PaymentMethodItem>
-            </PaymentMethodList>
-
-            {isCreditCard && (
-              <FieldSet>
-                <FieldWrapper>
-                  <Label htmlFor="checkout_card_number">Card number</Label>
-                  <CheckoutInput
-                    register={register}
-                    errors={errors}
-                    id="checkout_card_number"
-                    name="card_number"
-                    type="text"
-                  />
-                </FieldWrapper>
-
-                <PaymentFieldWrapper>
-                  <FieldWrapper>
-                    <Label htmlFor="checkout_expiration_date">
-                      Expiration date
-                    </Label>
-                    {/* <Input
-                      id="checkout_expiration_date"
-                      name="expiration_date"
-                      type="text"
-                    /> */}
-                    <CheckoutInput
-                      register={register}
-                      errors={errors}
-                      id="checkout_expiration_date"
-                      name="expiration_date"
-                      type="text"
-                    />
-                  </FieldWrapper>
-                  <FieldWrapper>
-                    <Label htmlFor="checkout_cvv">CVV code</Label>
-                    {/* <Input id="checkout_cvv" name="cvv" type="password" /> */}
-                    <CheckoutInput
-                      register={register}
-                      errors={errors}
-                      id="checkout_cvv"
-                      name="cvv"
-                      type="password"
-                    />
-                  </FieldWrapper>
-                </PaymentFieldWrapper>
-              </FieldSet>
-            )}
-          </CheckoutDataBlock>
+          <Payments register={register} errors={errors} />
         </CheckoutFields>
+
         <CheckoutOrder ref={orderRef}>
-          <SummaryHeading>Your order:</SummaryHeading>
-          <SummaryCostsList>
-            <SummaryCostItem>
-              <SummaryCostName>Subtotal:</SummaryCostName>
-              <SummaryCostValue>$60.30</SummaryCostValue>
-            </SummaryCostItem>
-            <SummaryCostItem>
-              <SummaryCostName>Delivery:</SummaryCostName>
-              <SummaryCostValue>$8.20</SummaryCostValue>
-            </SummaryCostItem>
-          </SummaryCostsList>
-          <SummaryTotalWrapper>
-            <SummaryCostName>Total:</SummaryCostName>
-            <SummaryCostValue>$68.50</SummaryCostValue>
-          </SummaryTotalWrapper>
+          <Summary
+            currency="$"
+            list={[
+              { label: "Subtotal", cost: 60.3 },
+              { label: "Delivery", cost: 8.2 },
+            ]}
+          />
 
           <OrderPurchaseContainer>
             <Button
@@ -387,17 +159,5 @@ const CheckoutData = () => {
 
 export default CheckoutData;
 
-//Refactor - split component
-// form data local storage
 //Page - server render
-
-//--------------------------------
-
-/*
-1) Init -> ask storage if yes -> from storage, if no -> initial object
-2) State {} -> setState after chacnge -> useEffect
-3) Save to storage
-
-
-
-*/
+//Cart - redux store

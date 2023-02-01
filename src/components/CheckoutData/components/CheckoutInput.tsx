@@ -18,11 +18,11 @@ interface ICheckoutInput {
 
 const CheckoutInput: FC<ICheckoutInput> = ({
   id,
-  register,
-  type,
-  errors,
-  name,
   defaultValue,
+  type,
+  name,
+  register,
+  errors,
   onChange,
 }) => {
   return (

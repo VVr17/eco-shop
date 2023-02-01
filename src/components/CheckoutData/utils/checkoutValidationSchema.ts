@@ -39,6 +39,13 @@ const checkoutValidationSchema = yup.object({
   //   .string()
   //   .not(["--Shipping--"], "Required field")
   //   .required("Required field"),
+  // card_number: yup
+  //   .string()
+  //   .matches(/[0-9]/, "Card number must be 16 digits")
+  //   .min(16)
+  //   .max(16),
+  // expiration_date: yup.date(),
+  // cvv: yup.string().matches(/[0-9]/, "CVV must be 3 digits").min(3).max(3),
 });
 
 export default checkoutValidationSchema;
