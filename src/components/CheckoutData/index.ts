@@ -1,1 +1,1 @@
-export { default } from "./CheckoutData";
+export { default } from "./components/CheckoutData";

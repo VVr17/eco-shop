@@ -14,6 +14,10 @@ export const StyledSelect = styled("input")<IBaseProps>`
     border-color: transparent;
     outline: 1px solid ${(p) => p.theme.colors.accent};
   }
+
+  &.hasError {
+    outline: 1px solid ${(p) => p.theme.colors.secondaryAccent};
+  }
 `;
 
 export const IconWrapper = styled("span")`
