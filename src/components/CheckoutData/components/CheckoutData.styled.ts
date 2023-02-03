@@ -68,6 +68,36 @@ export const Label = styled("label")`
   margin-bottom: ${(p) => p.theme.space[2]};
 `;
 
+//--------------------------Select---------------------------
+
+// export const CheckoutSelect = styled("select")`
+//   display: block;
+//   padding: 0;
+//   margin: 0;
+//   border: none;
+//   width: 100%;
+//   padding: 14px 16px;
+//   font-size: ${(p) => p.theme.fontSizes.xs};
+//   line-height: 1.142;
+//   color: ${(p) => p.theme.colors.mainText};
+//   border: 1px solid ${(p) => p.theme.colors.input};
+//   border-radius: 10px;
+//   &:focus,
+//   &:focus-visible {
+//     border: none;
+//     outline: 1px solid ${(p) => p.theme.colors.accent};
+//   }
+
+//   &.hasError {
+//     outline: 1px solid ${(p) => p.theme.colors.secondaryAccent};
+//   }
+
+//   /* &::-ms-expand {
+//     display: none;
+//   } */
+// `;
+//--------------------------Select---------------------------
+
 export const Input = styled("input")`
   display: block;
   padding: 0;
@@ -239,4 +269,40 @@ export const OrderListWrapper = styled("div")<{ maxHeight: number }>`
     max-height: initial;
     overflow-y: visible;
   }
+`;
+
+//-----------------------------------------------
+
+export const SelectInput = styled("input")`
+  cursor: pointer;
+
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+
+  width: 100%;
+  padding: 14px 16px;
+  font-size: ${(p) => p.theme.fontSizes.xs};
+  line-height: 1.142;
+  color: ${(p) => p.theme.colors.mainText};
+
+  border: 1px solid ${(p) => p.theme.colors.input};
+  border-radius: 10px;
+
+  &:focus,
+  &:focus-visible {
+    border: none;
+    outline: 1px solid ${(p) => p.theme.colors.accent};
+  }
+
+  &.hasError {
+    outline: 1px solid ${(p) => p.theme.colors.secondaryAccent};
+  }
+`;
+
+export const SelectListContainer = styled("div")`
+  cursor: pointer;
+
+  background-color: white;
 `;

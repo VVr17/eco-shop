@@ -64,7 +64,7 @@ const ModalTooltip: FC<IModalTooltipProps> = ({
   let posY: number = 0;
 
   if (refParent) {
-    console.log(refParent.current);
+    // console.log(refParent.current);
     const { bottom, left, width } =
       refParent.current?.getBoundingClientRect() as {
         bottom: number;
