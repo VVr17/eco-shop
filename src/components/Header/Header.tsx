@@ -46,17 +46,37 @@ const Header: React.FC = () => {
           <RightSideContainer>
             {isMobile && (
               <li>
-                <IconButton aria-label="search">
-                  <FiSearch size={DEFAULT_ICON_SIZE} />
-                </IconButton>
+                <Button
+                  aria-label="search"
+                  text=""
+                  iconLeft={FiSearch}
+                  iconMargin="0"
+                  backgroundColor="transparent"
+                  borderColor="transparent"
+                  pl={theme.space[2]}
+                  pr={theme.space[2]}
+                  pt={theme.space[2]}
+                  pb={theme.space[2]}
+                  iconSize="20px"
+                />
               </li>
             )}
 
             <li>
               {isMobile || isTablet ? (
-                <IconButton aria-label="auth">
-                  <FiUser size={DEFAULT_ICON_SIZE} />
-                </IconButton>
+                <Button
+                  aria-label="auth"
+                  text=""
+                  iconLeft={FiUser}
+                  iconMargin="0"
+                  backgroundColor="transparent"
+                  borderColor="transparent"
+                  pl={theme.space[2]}
+                  pr={theme.space[2]}
+                  pt={theme.space[2]}
+                  pb={theme.space[2]}
+                  iconSize="20px"
+                />
               ) : (
                 <Button
                   text="User"
@@ -72,9 +92,23 @@ const Header: React.FC = () => {
 
             <li>
               {isMobile || isTablet ? (
-                <IconButton aria-label="cart">
-                  <FiShoppingBag size={DEFAULT_ICON_SIZE} />
-                </IconButton>
+                <Button
+                  aria-label="cart"
+                  id="tooltipID"
+                  text=""
+                  iconLeft={FiShoppingBag}
+                  iconMargin="0"
+                  onClick={() => {
+                    setIsTooltipOpen(true);
+                  }}
+                  backgroundColor="transparent"
+                  borderColor="transparent"
+                  pl={theme.space[2]}
+                  pr={theme.space[2]}
+                  pt={theme.space[2]}
+                  pb={theme.space[2]}
+                  iconSize="20px"
+                />
               ) : (
                 <Button
                   id="tooltipID"
@@ -92,9 +126,19 @@ const Header: React.FC = () => {
 
             {(isMobile || isTablet) && (
               <li>
-                <IconButton aria-label="mobile-menu">
-                  <RxHamburgerMenu size={DEFAULT_ICON_SIZE} />
-                </IconButton>
+                <Button
+                  aria-label="mobile-menu"
+                  text=""
+                  iconLeft={RxHamburgerMenu}
+                  iconMargin="0"
+                  backgroundColor="transparent"
+                  borderColor="transparent"
+                  pl={theme.space[2]}
+                  pr={theme.space[2]}
+                  pt={theme.space[2]}
+                  pb={theme.space[2]}
+                  iconSize="20px"
+                />
               </li>
             )}
           </RightSideContainer>

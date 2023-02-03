@@ -18,6 +18,10 @@ export const LogoWrapper = styled(Link)`
     height: 36px;
   }
 
+  img {
+    transform: translateY(-5px);
+  }
+
   svg {
     object-fit: contain;
   }
