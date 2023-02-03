@@ -2,6 +2,9 @@ export const productData = {
   id: "1",
   name: "Gold apricots Limited edition",
 
+  category: "dried fruits",
+  form: "prepackaged", // 'on weight'
+
   composition: "Natural apricot",
   country: "Turkey",
   brand: "Jumbo",

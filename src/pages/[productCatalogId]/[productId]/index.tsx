@@ -1,11 +1,7 @@
-import Heading from "components/Heading";
 import ProductCard from "components/ProductCard";
-import QueryLine from "components/UIkit/Breadcrumb";
 import Section from "components/Section";
 import BackButton from "components/UIkit/BackButton";
-import { splitRoute } from "helpers/splitRoute";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { productData } from "utils/fakeData/fakeProductCardData";
 import { catalog } from "utils/fakeData/fakeListData";
@@ -28,8 +24,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //     notFound: true,
   //   };
   // }
+  const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  if (productId !== "1") {
+  if (!ids.includes(productId)) {
     return {
       notFound: true,
     };
@@ -63,10 +60,6 @@ const Product: React.FC<IProps> = ({
   catalogId,
   catalogName,
 }) => {
-  const router = useRouter();
-  // const isParsed = !router.asPath.includes("[");
-  // const message = splitRoute(router.asPath);
-
   return (
     <>
       <Head>
