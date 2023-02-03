@@ -1,12 +1,10 @@
 import Container from "components/Container";
-import Section from "components/Section";
 import Head from "next/head";
 import ErrorImage from "components/Error/ErrorImage";
 import { Button } from "components/UIkit";
 import { theme } from "constants/theme";
 import ErrorText from "components/Error/ErrorText";
 import Box from "components/Box";
-import { justifyContent } from "styled-system";
 
 const Error = () => {
   return (
@@ -16,7 +14,7 @@ const Error = () => {
         <meta name="description" content="eco shop" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Box as="section" pt={[5, 5, 5, 6]} pb={[5, 5, 5, 6]}>
+      <Box as="section" py={[5, 5, 5, 6]}>
         <Container>
           <ErrorText />
           <ErrorImage />
