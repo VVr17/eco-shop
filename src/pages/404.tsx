@@ -14,7 +14,7 @@ const Error = () => {
         <meta name="description" content="eco shop" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Box as="section" py={[5, 5, 5, 6]}>
+      <Box as="section" py={["64px", "64px", "64px", "100px"]}>
         <Container>
           <ErrorText />
           <ErrorImage />
