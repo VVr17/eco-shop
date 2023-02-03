@@ -10,7 +10,7 @@ import { Roboto } from "@next/font/google";
 import "rc-slider/assets/index.css";
 
 const roboto = Roboto({
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   style: ["normal"],
   subsets: ["latin"],
 });

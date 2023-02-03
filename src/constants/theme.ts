@@ -27,6 +27,7 @@ export const theme = {
     medium: 500,
     semiBold: 600,
     bold: 700,
+    superBold: 900,
   },
 
   fontSizes: {
