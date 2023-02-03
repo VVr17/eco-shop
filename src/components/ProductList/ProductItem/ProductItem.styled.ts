@@ -35,6 +35,7 @@ export const ImageWrapper = styled.div`
 
 export const Rating = styled.div`
   display: flex;
+  flex-direction: row;
   flex-direction: column;
   align-self: flex-end;
   color: ${({ theme }) => theme.colors.accent};
@@ -75,9 +76,6 @@ export const PreviousPrice = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xxs};
   text-decoration-line: line-through;
   opacity: 0.9;
-  ${theme.mq.mobileOnly} {
-    margin-left: ${({ theme }) => theme.space[1]};
-  }
 `;
 
 export const Price = styled.p<{ isSale: boolean }>`
