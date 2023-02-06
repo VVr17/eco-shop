@@ -148,7 +148,7 @@ const CheckoutData = () => {
             />
 
             <OrderListWrapper maxHeight={cartHeight} ref={cartRef}>
-              <CartList data={cartData} />
+              <CartList />
             </OrderListWrapper>
           </OrderPurchaseContainer>
         </CheckoutOrder>

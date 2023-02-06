@@ -1,29 +1,30 @@
 import CartCard from "components/CartCard";
-import { FC, useState } from "react";
-import { ICartCardData } from "types/types";
+
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "redux/cart/selectors";
+import { updateCart } from "redux/cart/slice";
+import { RootState } from "redux/store";
 import { CartListItem, CartListStyled } from "./Cart.styled";
 
-interface ICartListProps {
-  data: ICartCardData[];
-}
-
-const CartList: FC<ICartListProps> = ({ data }) => {
-  const [cart, setCart] = useState(data);
+const CartList = () => {
+  const cart = useSelector(cartSelector);
+  const dispatch = useDispatch();
 
   const cardValueChangeHandler = (id: string, value: number) => {
-    // console.log("id", id);
-    // console.log("value", value);
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id !== id ? item : { ...item, value: value.toString() }
+    dispatch(
+      updateCart(
+        cart.map((item) =>
+          item.id !== id ? item : { ...item, value: value.toString() }
+        )
       )
     );
   };
 
   const onRemoveCardHandler = (id: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    dispatch(updateCart(cart.filter((item) => item.id !== id)));
   };
 
+  console.log(cart);
   return (
     <CartListStyled>
       {cart.map(
