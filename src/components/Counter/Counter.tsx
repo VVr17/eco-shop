@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { CounterStyled } from "./Counter.styled";
 
@@ -7,10 +7,29 @@ interface IProps {
   initialValue: number;
   measure: string;
   step: number;
+
+  //Chertok
+  shareValue: (id: string, value: number) => void;
+  //Chertok
 }
 
-const Counter: React.FC<IProps> = ({ initialValue, measure, step, id }) => {
+const Counter: React.FC<IProps> = ({
+  initialValue,
+  measure,
+  step,
+  id,
+
+  //Chertok
+  shareValue,
+  //Chertok
+}) => {
   const [value, setValue] = useState(initialValue);
+
+  //Chertok
+  useEffect(() => {
+    shareValue(id, value);
+  }, [value]);
+  //Chertok
 
   const setIncrement = () => {
     setValue((prev) => prev + step);

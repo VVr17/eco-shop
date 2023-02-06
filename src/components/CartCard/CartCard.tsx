@@ -23,6 +23,10 @@ interface IProps {
   price: string;
   measure: string;
   counterStep: number;
+  //Chertok
+  shareValue: (id: string, value: number) => void;
+  onRemoveCard: (id: string) => void;
+  //Chertok
 }
 
 const CartCard: React.FC<IProps> = ({
@@ -35,6 +39,10 @@ const CartCard: React.FC<IProps> = ({
   price,
   measure,
   counterStep,
+  //Chertok
+  shareValue,
+  onRemoveCard,
+  //Chertok
 }) => {
   const { height, width } = imageDimensions;
 
@@ -57,13 +65,18 @@ const CartCard: React.FC<IProps> = ({
             initialValue={initialVolume}
             measure={measure}
             step={counterStep}
+            shareValue={shareValue}
           />
           <Price>
             {currency}
             {price}
           </Price>
         </Box>
-        <RemoveButton>
+        <RemoveButton
+          onClick={() => {
+            onRemoveCard(id);
+          }}
+        >
           <RxCross1 size={14} />
         </RemoveButton>
       </Box>

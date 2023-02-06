@@ -4,7 +4,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "1",
     name: "Jerky persimmon",
-    initialVolume: "1",
+    value: "1",
     increaseVolume: ".5",
     unit: "kg",
     price: "8.6",
@@ -14,7 +14,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "2",
     name: "Macadamia in the shell",
-    initialVolume: "2",
+    value: "2",
     increaseVolume: "0.5",
     unit: "kg",
     price: "28",
@@ -24,7 +24,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "3",
     name: "Spiced nuts",
-    initialVolume: "500",
+    value: "500",
     increaseVolume: "100",
     unit: "g",
     price: "7.2",
@@ -34,7 +34,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "4",
     name: "Banana",
-    initialVolume: "4",
+    value: "4",
     increaseVolume: "0.5",
     unit: "kg",
     price: "5.7",
@@ -44,7 +44,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "5",
     name: "Premium kiwifruit",
-    initialVolume: "3",
+    value: "3",
     increaseVolume: "0.5",
     unit: "kg",
     price: "15.5",
@@ -54,7 +54,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "6",
     name: "Jerky persimmon two",
-    initialVolume: "1",
+    value: "1",
     increaseVolume: "0.5",
     unit: "kg",
     price: "8.6",
@@ -64,7 +64,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "7",
     name: "Macadamia in the shell two",
-    initialVolume: "2",
+    value: "2",
     increaseVolume: "0.5",
     unit: "kg",
     price: "28",
@@ -74,7 +74,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "8",
     name: "Spiced nuts two",
-    initialVolume: "500",
+    value: "500",
     increaseVolume: "100",
     unit: "g",
     price: "7.2",
@@ -84,7 +84,7 @@ export const cartData: ICartCardData[] = [
   {
     id: "9",
     name: "Banana two",
-    initialVolume: "4",
+    value: "4",
     increaseVolume: "0.5",
     unit: "kg",
     price: "5.7",
