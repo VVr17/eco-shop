@@ -5,9 +5,6 @@ import Section from "components/Section";
 import { theme } from "constants/theme";
 import Head from "next/head";
 import Filter from "components/Filter";
-import { useRouter } from "next/router";
-import QueryLine from "components/UIkit/Breadcrumb";
-import { splitRoute } from "helpers/splitRoute";
 import SortedFilter from "components/Filter/SortedFilter";
 import { FiRefreshCw } from "react-icons/fi";
 import Button from "components/UIkit/Button";
@@ -25,6 +22,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //   `https://jsonplaceholder.typicode.com/users/${id}`
   // );
   // const data = await response.json();
+  // const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  // console.log("ids.includes(productCatalogId)", ids.includes(productCatalogId));
 
   if (productCatalogId !== "1") {
     return {
@@ -56,10 +55,6 @@ interface IProps {
 }
 
 const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
-  const router = useRouter();
-  // const isParsed = !router.asPath.includes("[");
-  // const message = splitRoute(router.asPath);
-
   return (
     <>
       <Head>

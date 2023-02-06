@@ -31,7 +31,7 @@ const Header: React.FC = () => {
           <LeftSideContainer>
             <Logo />
             {(isTablet || isDesktop) && <Search />}
-            {isDesktop && (
+            {isDesktop ? (
               <Button
                 text="Categories"
                 iconLeft={CgMenuGridO}
@@ -39,6 +39,20 @@ const Header: React.FC = () => {
                 hoverColor={theme.colors.hoverHeaderLink}
                 borderColor="transparent"
                 iconSize="24"
+              />
+            ) : (
+              <Button
+                aria-label="Categories"
+                text=""
+                iconLeft={CgMenuGridO}
+                iconMargin="0"
+                backgroundColor="transparent"
+                borderColor="transparent"
+                pl={theme.space[2]}
+                pr={theme.space[2]}
+                pt={theme.space[2]}
+                pb={theme.space[2]}
+                iconSize="20px"
               />
             )}
           </LeftSideContainer>

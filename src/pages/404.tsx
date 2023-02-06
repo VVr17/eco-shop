@@ -5,8 +5,11 @@ import { Button } from "components/UIkit";
 import { theme } from "constants/theme";
 import ErrorText from "components/Error/ErrorText";
 import Box from "components/Box";
+import { useRouter } from "next/router";
 
 const Error = () => {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -14,7 +17,7 @@ const Error = () => {
         <meta name="description" content="eco shop" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Box as="section" py={["64px", "64px", "64px", "100px"]}>
+      <Box as="section" py={5}>
         <Container>
           <ErrorText />
           <ErrorImage />
@@ -30,8 +33,8 @@ const Error = () => {
               color={theme.colors.lightText}
               width="150px"
               fontSize={theme.fontSizes.xs}
+              onClick={() => router.push(`/`)}
               // hoverColor={theme.colors.hoverHeaderLink}
-              // borderColor="transparent"
             />
             <Button
               text="Report a bug"
