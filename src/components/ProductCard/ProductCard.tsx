@@ -9,6 +9,7 @@ import OnSaleLabel from "./OnSaleLabel";
 import PriceInfo from "./PriceInfo";
 import { ImageStyled } from "./ProductCard.styled";
 import StockDelivery from "./StockDelivery";
+import Vitamins from "./Vitamins";
 
 interface IProps {
   product: IProduct;
@@ -25,7 +26,6 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
     inStock,
     currency,
     price,
-    oldPrice,
     onSale,
     initialVolume,
     increaseVolume,
@@ -56,7 +56,13 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         id={id}
       />
       <Description description={description} />
-      <AdditionalInfo />
+
+      <Vitamins />
+      <AdditionalInfo
+        nutritionalValue={nutritionalValue}
+        vitamins={vitamins}
+        minerals={minerals}
+      />
       <CustomerReviews customerReviews={customerReviews} rating={rating} />
     </>
   );

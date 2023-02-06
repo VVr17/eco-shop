@@ -1,6 +1,6 @@
 import Box from "components/Box";
 import Button from "components/UIkit/Button";
-import { AiOutlinePlus, AiFillStar } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import {
   Card,
   ImageWrapper,
@@ -13,6 +13,7 @@ import {
 import Image from "next/image";
 import ProductItemLabel from "./ProductItemLabel";
 import { useWindowSize } from "hooks/useWindowSize";
+import { ImStarFull } from "react-icons/im";
 
 interface IProps {
   isSale?: boolean;
@@ -48,7 +49,7 @@ const ProductItem: React.FC<IProps> = ({
         <Image src={imageUrl} alt={name} width={72} height={72} />
       </ImageWrapper>
       <Rating>
-        <AiFillStar />
+        <ImStarFull />
         <p>{rating}/5</p>
       </Rating>
       <Box
