@@ -5,20 +5,37 @@ import Heading from "components/Heading";
 import Section from "components/Section";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import Head from "next/head";
+import { FC } from "react";
+import { getCountries } from "services/countriesApi";
+import { ICountry } from "types/types";
 
-const Checkout = () => (
-  <>
-    <Head>
-      <title>Checkout</title>
-      <meta name="description" content="eco shop" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </Head>
+export async function getServerSideProps() {
+  const data = await getCountries();
 
-    <Section>
-      <Breadcrumb />
-      <Heading tag="h2" text="Checkout" />
-      <CheckoutData />
-    </Section>
-  </>
-);
+  return { props: { data } };
+}
+
+interface ICheckoutProps {
+  data: ICountry[];
+}
+
+const Checkout: FC<ICheckoutProps> = ({ data }) => {
+  console.log(data);
+
+  return (
+    <>
+      <Head>
+        <title>Checkout</title>
+        <meta name="description" content="eco shop" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
+      <Section>
+        <Breadcrumb />
+        <Heading tag="h2" text="Checkout" />
+        <CheckoutData />
+      </Section>
+    </>
+  );
+};
 export default Checkout;

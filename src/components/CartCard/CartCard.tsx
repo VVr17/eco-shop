@@ -49,7 +49,13 @@ const CartCard: React.FC<IProps> = ({
   return (
     <Card id={id}>
       <ImageWrapper width={`${width}px`} height={`${height}px`}>
-        <Image src={imageUrl} width={width} height={height} alt={title} />
+        <Image
+          src={imageUrl}
+          width={width}
+          height={height}
+          alt={title}
+          style={{ width: "auto", height: "auto" }} // done for solve warnings in concsole
+        />
       </ImageWrapper>
       <Box display="flex" flexDirection="column" flex={1}>
         <Title>{title}</Title>

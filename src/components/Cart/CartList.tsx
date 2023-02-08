@@ -3,7 +3,6 @@ import CartCard from "components/CartCard";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
 import { updateCart } from "redux/cart/slice";
-import { RootState } from "redux/store";
 import { CartListItem, CartListStyled } from "./Cart.styled";
 
 const CartList = () => {
@@ -24,7 +23,6 @@ const CartList = () => {
     dispatch(updateCart(cart.filter((item) => item.id !== id)));
   };
 
-  console.log(cart);
   return (
     <CartListStyled>
       {cart.map(

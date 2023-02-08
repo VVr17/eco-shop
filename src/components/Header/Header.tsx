@@ -165,7 +165,11 @@ const Header: React.FC = () => {
             setIsTooltipOpen(false);
           }}
         >
-          <Cart data={cartData} />
+          <Cart
+            onModalClose={() => {
+              setIsTooltipOpen(false);
+            }}
+          />
         </ModalTooltip>
       )}
     </>
