@@ -18,6 +18,10 @@ const cartSlice = createSlice({
     updateCart: (state, action: PayloadAction<ICartCardData[]>) => {
       state.data = action.payload;
     },
+
+    addToCart: (state, action: PayloadAction<ICartCardData>) => {
+      state.data.push(action.payload);
+    },
   },
 });
 
@@ -31,4 +35,4 @@ export const cartPersistedReducer = persistReducer(
   cartSlice.reducer
 );
 
-export const { updateCart } = cartSlice.actions;
+export const { updateCart, addToCart } = cartSlice.actions;
