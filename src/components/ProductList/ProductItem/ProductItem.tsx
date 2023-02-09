@@ -14,6 +14,11 @@ import Image from "next/image";
 import ProductItemLabel from "./ProductItemLabel";
 import { useWindowSize } from "hooks/useWindowSize";
 import { ImStarFull } from "react-icons/im";
+import { useDispatch } from "react-redux";
+import { addToCart, updateCart } from "redux/cart/slice";
+import { ICartCardData } from "types/types";
+import { useSelector } from "react-redux";
+import { cartSelector } from "redux/cart/selectors";
 
 interface IProps {
   isSale?: boolean;
@@ -41,6 +46,32 @@ const ProductItem: React.FC<IProps> = ({
   baseMeasure,
 }) => {
   const { isTablet, isDesktop } = useWindowSize();
+  const dispatch = useDispatch();
+  const cart = useSelector(cartSelector);
+  console.log("cart", cart);
+
+  const handleAddClick = () => {
+    console.log("add to cart");
+    const isInCart = cart.find(({ id: idInCart }) => idInCart === id);
+    console.log("isInCart", isInCart);
+    const data = {
+      id,
+      name,
+      value: baseMeasure,
+      increaseVolume: baseMeasure,
+      unit: measure,
+      price,
+      currency,
+      imgPath: imageUrl,
+    };
+    // TODO: update Cart - item quantity, in case item is already in cart
+    if (isInCart) {
+      data.value += 1;
+      return;
+    }
+
+    // dispatch(addToCart(data));
+  };
 
   return (
     <Card>
@@ -74,6 +105,7 @@ const ProductItem: React.FC<IProps> = ({
               iconMargin="16px"
               borderColor="input"
               hoverColor="accent"
+              onClick={handleAddClick}
             />
           ) : (
             <Button
@@ -87,6 +119,7 @@ const ProductItem: React.FC<IProps> = ({
               pt="10px"
               pl="14px"
               pr="14px"
+              onClick={handleAddClick}
             />
           )}
 

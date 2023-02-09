@@ -67,4 +67,5 @@ export const {
   setFormFilter,
   removeAllFilters,
 } = filterSlice.actions;
+
 export const filterReducer = filterSlice.reducer;
