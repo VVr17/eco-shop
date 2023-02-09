@@ -2,7 +2,7 @@ import CartCard from "components/CartCard";
 
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
-import { updateCart } from "redux/cart/slice";
+import { removeFromCart, updateCartItem } from "redux/cart/slice";
 import { CartListItem, CartListStyled } from "./Cart.styled";
 
 const CartList = () => {
@@ -10,17 +10,11 @@ const CartList = () => {
   const dispatch = useDispatch();
 
   const cardValueChangeHandler = (id: string, value: number) => {
-    dispatch(
-      updateCart(
-        cart.map((item) =>
-          item.id !== id ? item : { ...item, value: value.toString() }
-        )
-      )
-    );
+    dispatch(updateCartItem({ id, value }));
   };
 
   const onRemoveCardHandler = (id: string) => {
-    dispatch(updateCart(cart.filter((item) => item.id !== id)));
+    dispatch(removeFromCart(id));
   };
 
   return (

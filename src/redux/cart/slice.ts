@@ -15,12 +15,27 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    updateCart: (state, action: PayloadAction<ICartCardData[]>) => {
-      state.data = action.payload;
+    updateCartItem: (
+      state,
+      { payload }: PayloadAction<{ id: string; value: number }>
+    ) => {
+      state.data = state.data.map((item) =>
+        item.id !== payload.id
+          ? item
+          : { ...item, value: payload.value.toString() }
+      );
     },
 
     addToCart: (state, action: PayloadAction<ICartCardData>) => {
       state.data.push(action.payload);
+    },
+
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.data = state.data.filter((item) => item.id !== action.payload);
+    },
+
+    clearCart: (state) => {
+      state.data = [];
     },
   },
 });
@@ -35,4 +50,5 @@ export const cartPersistedReducer = persistReducer(
   cartSlice.reducer
 );
 
-export const { updateCart, addToCart } = cartSlice.actions;
+export const { updateCartItem, addToCart, removeFromCart, clearCart } =
+  cartSlice.actions;
