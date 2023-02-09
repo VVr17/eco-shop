@@ -18,6 +18,10 @@ const cartSlice = createSlice({
     updateCart: (state, action: PayloadAction<ICartCardData[]>) => {
       state.data = action.payload;
     },
+
+    addToCart: (state, action: PayloadAction<ICartCardData>) => {
+      state.data.push(action.payload);
+    },
   },
 });
 
