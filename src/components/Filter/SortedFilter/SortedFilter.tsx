@@ -56,7 +56,7 @@ const SortedFilter = () => {
   };
 
   const onChangeSort = (name: string, value: string) => {
-    console.log("name", name, "value", value);
+    // console.log("name", name, "value", value);
   };
 
   return (

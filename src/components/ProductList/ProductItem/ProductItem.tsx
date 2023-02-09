@@ -15,7 +15,7 @@ import ProductItemLabel from "./ProductItemLabel";
 import { useWindowSize } from "hooks/useWindowSize";
 import { ImStarFull } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { addToCart, updateCart } from "redux/cart/slice";
+import { addToCart } from "redux/cart/slice";
 import { ICartCardData } from "types/types";
 import { useSelector } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
@@ -69,7 +69,6 @@ const ProductItem: React.FC<IProps> = ({
       data.value += 1;
       return;
     }
-
     // dispatch(addToCart(data));
   };
 

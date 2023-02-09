@@ -16,7 +16,11 @@ const ProductList: React.FC<IProps> = ({ products }) => {
     id: string
   ) => {
     const target = event.target as Element;
-    if (target.nodeName === "BUTTON") return;
+    const isAddButton =
+      target.nodeName === "BUTTON" ||
+      target.nodeName === "svg" ||
+      target.nodeName === "path";
+    if (isAddButton) return;
 
     router.push(`${router.asPath}/${id}`);
   };

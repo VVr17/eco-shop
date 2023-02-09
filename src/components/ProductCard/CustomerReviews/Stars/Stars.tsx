@@ -7,7 +7,7 @@ interface IProps {
   fillColor: string;
 }
 const Stars: React.FC<IProps> = ({ rating, size, fillColor }) => {
-  console.log(fillColor);
+  // console.log(fillColor);
   return (
     <Box>
       <ImStarFull size={size} color={fillColor} />
