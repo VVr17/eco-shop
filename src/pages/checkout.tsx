@@ -9,18 +9,18 @@ import { FC } from "react";
 import { getCountries } from "services/countriesApi";
 import { ICountry } from "types/types";
 
-export async function getServerSideProps() {
-  const data = await getCountries();
+// export async function getServerSideProps() {
+//   const data = await getCountries();
 
-  return { props: { data } };
-}
+//   return { props: { data } };
+// }
 
-interface ICheckoutProps {
-  data: ICountry[];
-}
+// interface ICheckoutProps {
+//   data: ICountry[];
+// }
 
-const Checkout: FC<ICheckoutProps> = ({ data }) => {
-  console.log(data);
+const Checkout: FC = () => {
+  // console.log(data);
 
   return (
     <>
