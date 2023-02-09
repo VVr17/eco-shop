@@ -5,6 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
+import { addToCart, updateCartItem } from "redux/cart/slice";
 import { Price, PriceInfoWrapper, TotalPrice } from "./PriceInfo.styled";
 
 interface IProps {
@@ -14,41 +15,46 @@ interface IProps {
   measure: string;
   initialVolume: string;
   id: string;
+  baseMeasure: string;
+  imageUrl: string;
+  name: string;
 }
 
 const PriceInfo: React.FC<IProps> = ({
   currency,
   price,
+  name,
   increaseVolume,
   measure,
   initialVolume,
   id,
+  baseMeasure,
+  imageUrl,
 }) => {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  // console.log("cart", cart);
 
   const handleAddClick = () => {
-    console.log("add to cart");
-    const isInCart = cart.find(({ id: idInCart }) => idInCart === id);
-    console.log("isInCart", isInCart);
-    // const data = {
-    //   id,
-    //   name,
-    //   value ,
-    //   increaseVolume,
-    //   unit,
-    //   price,
-    //   currency,
-    //   imgPath,
-    // };
-    // TODO: update Cart - item quantity, in case item is already in cart
-    // if (isInCart) {
-    //   data.value += 1;
-    //   return;
-    // }
+    const productInCart = cart.find(({ id: idInCart }) => idInCart === id);
 
-    // dispatch(addToCart(data));
+    if (productInCart) {
+      const newValue = +productInCart.value + +productInCart.increaseVolume;
+      dispatch(updateCartItem({ id, value: newValue }));
+      return;
+    }
+
+    const data = {
+      id,
+      name,
+      value: baseMeasure,
+      increaseVolume: baseMeasure,
+      unit: measure,
+      price,
+      currency,
+      imgPath: imageUrl,
+    };
+
+    dispatch(addToCart(data));
   };
 
   return (

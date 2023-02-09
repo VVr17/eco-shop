@@ -15,8 +15,7 @@ import ProductItemLabel from "./ProductItemLabel";
 import { useWindowSize } from "hooks/useWindowSize";
 import { ImStarFull } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { addToCart } from "redux/cart/slice";
-import { ICartCardData } from "types/types";
+import { addToCart, updateCartItem } from "redux/cart/slice";
 import { useSelector } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
 
@@ -48,12 +47,16 @@ const ProductItem: React.FC<IProps> = ({
   const { isTablet, isDesktop } = useWindowSize();
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  // console.log("cart", cart);
 
   const handleAddClick = () => {
-    console.log("add to cart");
-    const isInCart = cart.find(({ id: idInCart }) => idInCart === id);
-    console.log("isInCart", isInCart);
+    const productInCart = cart.find(({ id: idInCart }) => idInCart === id);
+
+    if (productInCart) {
+      const newValue = +productInCart.value + +productInCart.increaseVolume;
+      dispatch(updateCartItem({ id, value: newValue }));
+      return;
+    }
+
     const data = {
       id,
       name,
@@ -64,12 +67,8 @@ const ProductItem: React.FC<IProps> = ({
       currency,
       imgPath: imageUrl,
     };
-    // TODO: update Cart - item quantity, in case item is already in cart
-    if (isInCart) {
-      data.value += 1;
-      return;
-    }
-    // dispatch(addToCart(data));
+
+    dispatch(addToCart(data));
   };
 
   return (
