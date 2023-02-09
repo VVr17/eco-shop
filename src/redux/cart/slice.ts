@@ -35,4 +35,4 @@ export const cartPersistedReducer = persistReducer(
   cartSlice.reducer
 );
 
-export const { updateCart } = cartSlice.actions;
+export const { updateCart, addToCart } = cartSlice.actions;
