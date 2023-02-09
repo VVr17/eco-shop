@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICheckboxType, IFilter, IPriceRange } from "types/filter";
-import { brands, form, volumes } from "utils/fakeData/filter";
+import { brands, form, onSale } from "utils/fakeData/filter";
 
 export const defaultPriceRange = { min: 0, max: 50 };
 
 export const filterInitialState: IFilter = {
   price: defaultPriceRange,
-  volume: volumes,
   brand: brands,
   form: form,
+  sale: onSale,
+  // volume: volumes,
 };
 
 const filterSlice = createSlice({
@@ -18,11 +19,9 @@ const filterSlice = createSlice({
     setPriceFilter(state, { payload }: PayloadAction<IPriceRange>) {
       state.price = payload;
     },
-    setVolumeFilter(state, { payload }: PayloadAction<ICheckboxType>) {
-      state.volume = state.volume.map((item) => {
-        if (item.value == payload.value) {
-          item.checked = payload.checked;
-        }
+    setSaleFilter(state, { payload }: PayloadAction<ICheckboxType>) {
+      state.sale = state.sale.map((item) => {
+        item.checked = payload.checked;
         return item;
       });
     },
@@ -42,18 +41,28 @@ const filterSlice = createSlice({
         return item;
       });
     },
+    // setVolumeFilter(state, { payload }: PayloadAction<ICheckboxType>) {
+    //   state.volume = state.volume.map((item) => {
+    //     if (item.value == payload.value) {
+    //       item.checked = payload.checked;
+    //     }
+    //     return item;
+    //   });
+    // },
     removeAllFilters(state) {
       state.brand = brands;
       state.price = { min: defaultPriceRange.min, max: defaultPriceRange.max };
       state.form = form;
-      state.volume = volumes;
+      state.sale = onSale;
+      // state.volume = volumes;
     },
   },
 });
 
 export const {
   setPriceFilter,
-  setVolumeFilter,
+  setSaleFilter,
+  // setVolumeFilter,
   setBrandFilter,
   setFormFilter,
   removeAllFilters,

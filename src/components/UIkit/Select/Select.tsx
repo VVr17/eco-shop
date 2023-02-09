@@ -8,6 +8,7 @@ import {
   FC,
   HTMLInputTypeAttribute,
   SyntheticEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -24,6 +25,10 @@ interface ISelectProps extends IBaseProps {
   width?: string;
   placeholder?: string;
   className?: string;
+  //Voronova
+  defaultValue?: string;
+  onChangeSelect?: (name: string, value: string) => void;
+  //Voronova
 }
 
 const Select: FC<ISelectProps> = ({
@@ -34,7 +39,8 @@ const Select: FC<ISelectProps> = ({
   placeholder = "",
 
   className = "",
-
+  defaultValue,
+  onChangeSelect,
   ...rest
 }) => {
   const commonProps = { ...UI_BASE_PROPS, ...rest };
@@ -44,6 +50,12 @@ const Select: FC<ISelectProps> = ({
 
   const refSelect: { current: HTMLInputElement | null } = useRef(null);
 
+  useEffect(() => {
+    if (defaultValue) {
+      onSelectItem(defaultValue);
+    }
+  }, [defaultValue]);
+
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
   };
@@ -52,6 +64,8 @@ const Select: FC<ISelectProps> = ({
     setValue(value);
     setIsOpen(false);
     refSelect.current?.focus();
+
+    onChangeSelect && onChangeSelect(name, value); // Voronova
   };
 
   const closeDropDownList = (e: SyntheticEvent) => {

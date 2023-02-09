@@ -12,7 +12,8 @@ export interface ICheckboxType {
 
 export interface IFilter {
   [filterTypes.price]: IPriceRange;
-  [filterTypes.volume]: ICheckboxType[];
+  // [filterTypes.volume]: ICheckboxType[];
   [filterTypes.brand]: ICheckboxType[];
   [filterTypes.form]: ICheckboxType[];
+  [filterTypes.onSale]: ICheckboxType[];
 }

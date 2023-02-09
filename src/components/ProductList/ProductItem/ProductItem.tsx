@@ -46,7 +46,13 @@ const ProductItem: React.FC<IProps> = ({
     <Card>
       {isSale && <ProductItemLabel />}
       <ImageWrapper>
-        <Image src={imageUrl} alt={name} width={72} height={72} />
+        <Image
+          src={imageUrl}
+          alt={name}
+          width={72}
+          height={72}
+          style={{ width: "auto", height: "auto" }} // done for solve warnings in console
+        />
       </ImageWrapper>
       <Rating>
         <ImStarFull />

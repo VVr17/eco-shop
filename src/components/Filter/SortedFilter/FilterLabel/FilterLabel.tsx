@@ -9,7 +9,8 @@ import {
   setBrandFilter,
   setFormFilter,
   setPriceFilter,
-  setVolumeFilter,
+  setSaleFilter,
+  // setVolumeFilter,
 } from "redux/filter/filterSlice";
 
 interface IProps {
@@ -23,8 +24,8 @@ const FilterLabel: React.FC<IProps> = ({ type, value }) => {
     if (type === filterTypes.price) {
       dispatch(setPriceFilter(defaultPriceRange));
     }
-    if (type === filterTypes.volume) {
-      dispatch(setVolumeFilter({ value, checked: false }));
+    if (type === filterTypes.onSale) {
+      dispatch(setSaleFilter({ value, checked: false }));
     }
     if (type === filterTypes.brand) {
       dispatch(setBrandFilter({ value, checked: false }));
@@ -32,6 +33,9 @@ const FilterLabel: React.FC<IProps> = ({ type, value }) => {
     if (type === filterTypes.form) {
       dispatch(setFormFilter({ value, checked: false }));
     }
+    // if (type === filterTypes.volume) {
+    //   dispatch(setVolumeFilter({ value, checked: false }));
+    // }
   };
 
   return (

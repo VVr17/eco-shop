@@ -54,7 +54,7 @@ const CartCard: React.FC<IProps> = ({
           width={width}
           height={height}
           alt={title}
-          style={{ width: "auto", height: "auto" }} // done for solve warnings in concsole
+          style={{ width: "auto", height: "auto" }} // done for solve warnings in console
         />
       </ImageWrapper>
       <Box display="flex" flexDirection="column" flex={1}>

@@ -19,7 +19,7 @@ const SortedFilter = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
-  const { price, brand, volume, form } = filter;
+  const { price, brand, form, sale } = filter;
   const isPriceSet =
     price.min !== defaultPriceRange.min || price.max !== defaultPriceRange.max;
 
@@ -33,13 +33,17 @@ const SortedFilter = () => {
       if (checked) amount += 1;
     });
 
-    volume.forEach(({ checked }) => {
+    sale.forEach(({ checked }) => {
       if (checked) amount += 1;
     });
 
     form.forEach(({ checked }) => {
       if (checked) amount += 1;
     });
+
+    // volume.forEach(({ checked }) => {
+    //   if (checked) amount += 1;
+    // });
 
     return amount;
   };
@@ -49,6 +53,10 @@ const SortedFilter = () => {
   const handleRemoveAll = () => {
     console.log("remove all");
     dispatch(removeAllFilters());
+  };
+
+  const onChangeSort = (name: string, value: string) => {
+    console.log("name", name, "value", value);
   };
 
   return (
@@ -62,11 +70,16 @@ const SortedFilter = () => {
           <Sort>
             <SortLabel>Sort by</SortLabel>
             <Select
-              width="148px"
+              width="180px"
               name="sort"
-              list={[{ name: "price ascending" }, { name: "price descending" }]}
-              placeholder="Relevancy"
+              list={[
+                { name: "relevancy" },
+                { name: "price ascending" },
+                { name: "price descending" },
+              ]}
               backgroundColor={theme.colors.mainBackground}
+              defaultValue="relevancy"
+              onChangeSelect={onChangeSort}
             />
           </Sort>
         </SortWrapper>
@@ -79,17 +92,6 @@ const SortedFilter = () => {
                 value={`${price.min} - ${price.max} $`}
               />
             )}
-            {volume.map(({ value, checked }) => {
-              if (checked) {
-                return (
-                  <FilterLabel
-                    key={value}
-                    type={filterTypes.volume}
-                    value={value}
-                  />
-                );
-              }
-            })}
             {form.map(({ value, checked }) => {
               if (checked) {
                 return (
@@ -112,6 +114,29 @@ const SortedFilter = () => {
                 );
               }
             })}
+            {sale.map(({ value, checked }) => {
+              if (checked) {
+                return (
+                  <FilterLabel
+                    key={value}
+                    type={filterTypes.onSale}
+                    value={value}
+                  />
+                );
+              }
+            })}
+
+            {/* {volume.map(({ value, checked }) => {
+              if (checked) {
+                return (
+                  <FilterLabel
+                    key={value}
+                    type={filterTypes.volume}
+                    value={value}
+                  />
+                );
+              }
+            })} */}
             <ClearFilterButton onClick={handleRemoveAll}>
               Clear all filters
             </ClearFilterButton>
@@ -132,55 +157,3 @@ const SortedFilter = () => {
 };
 
 export default SortedFilter;
-
-{
-  /* {isTablet || isDesktop ? (
-        <SortWrapper>
-          {isTablet && (
-            <Box display="flex">
-              <Button
-                text="Filter (2)"
-                backgroundColor="transparent"
-                fontSize="17px"
-                borderColor="transparent"
-              />
-              <p>Showed 84 goods</p>
-            </Box>
-          )}
-
-          {isDesktop && <p>Showed 84 goods</p>}
-          <Sort>
-            <SortLabel>Sort by</SortLabel>
-            <Select
-              width="148px"
-              name="sort"
-              list={[{ name: "price ascending" }, { name: "price descending" }]}
-              placeholder="Relevancy"
-              backgroundColor={theme.colors.mainBackground}
-            />
-          </Sort>
-        </SortWrapper>
-      ) : (
-        <>
-          <SortWrapper>
-            <Button
-              text="Filter (2)"
-              backgroundColor="transparent"
-              fontSize="17px"
-              borderColor="transparent"
-            />
-            <Showed>Showed 84 goods</Showed>
-          </SortWrapper>
-          <Sort>
-            <SortLabel>Sort by</SortLabel>
-            <Select
-              width="148px"
-              name="sort"
-              list={[{ name: "price ascending" }, { name: "price descending" }]}
-              placeholder="Relevancy"
-              backgroundColor={theme.colors.mainBackground}
-            />
-          </Sort>
-        </>
-      )} */
-}

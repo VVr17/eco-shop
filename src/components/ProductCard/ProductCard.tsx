@@ -42,7 +42,13 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
     <>
       <Heading tag="h2" text={name} />
       <Box position="relative">
-        <ImageStyled src={imgPath} alt={name} width={311} height={212} />
+        <ImageStyled
+          src={imgPath}
+          alt={name}
+          width={311}
+          height={212}
+          style={{ width: "auto", height: "auto" }} // done for solve warnings in console
+        />
         {onSale && <OnSaleLabel />}
       </Box>
       <StockDelivery inStock={inStock} />

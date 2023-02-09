@@ -1,5 +1,4 @@
 import Box from "components/Box";
-import { theme } from "constants/theme";
 import { ImStarEmpty, ImStarFull, ImStarHalf } from "react-icons/im";
 
 interface IProps {

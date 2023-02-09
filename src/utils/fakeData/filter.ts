@@ -1,10 +1,4 @@
-export const volumes = [
-  { value: "<10", checked: false },
-  { value: "10-20", checked: false },
-  { value: "21-30", checked: false },
-  { value: "31-40", checked: false },
-  { value: "41-50", checked: false },
-];
+export const onSale = [{ value: "On Sale", checked: false }];
 
 export const form = [
   { value: "Prepackaged", checked: false },
@@ -23,3 +17,11 @@ export const brands = [
   { value: "Dastony2", checked: false },
   { value: "Gopal’s2", checked: false },
 ];
+
+// export const volumes = [
+//   { value: "<10", checked: false },
+//   { value: "10-20", checked: false },
+//   { value: "21-30", checked: false },
+//   { value: "31-40", checked: false },
+//   { value: "41-50", checked: false },
+// ];

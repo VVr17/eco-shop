@@ -36,8 +36,6 @@ const Breadcrumb: React.FC<IProps> = ({ route }) => {
     });
   }
 
-  console.log("routeLine", routeLine);
-
   return (
     <BreadcrumbStyled>
       {routeLine.map(({ href, name }, index, array) => {

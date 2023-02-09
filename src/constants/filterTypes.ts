@@ -3,4 +3,5 @@ export const filterTypes = {
   volume: "volume",
   brand: "brand",
   form: "form",
+  onSale: "sale",
 } as const;
