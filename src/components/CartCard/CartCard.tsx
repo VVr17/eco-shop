@@ -23,6 +23,10 @@ interface IProps {
   price: string;
   measure: string;
   counterStep: number;
+  //Chertok
+  shareValue: (id: string, value: number) => void;
+  onRemoveCard: (id: string) => void;
+  //Chertok
 }
 
 const CartCard: React.FC<IProps> = ({
@@ -35,13 +39,23 @@ const CartCard: React.FC<IProps> = ({
   price,
   measure,
   counterStep,
+  //Chertok
+  shareValue,
+  onRemoveCard,
+  //Chertok
 }) => {
   const { height, width } = imageDimensions;
 
   return (
     <Card id={id}>
       <ImageWrapper width={`${width}px`} height={`${height}px`}>
-        <Image src={imageUrl} width={width} height={height} alt={title} />
+        <Image
+          src={imageUrl}
+          width={width}
+          height={height}
+          alt={title}
+          style={{ width: "auto", height: "auto" }} // done for solve warnings in concsole
+        />
       </ImageWrapper>
       <Box display="flex" flexDirection="column" flex={1}>
         <Title>{title}</Title>
@@ -57,13 +71,18 @@ const CartCard: React.FC<IProps> = ({
             initialValue={initialVolume}
             measure={measure}
             step={counterStep}
+            shareValue={shareValue}
           />
           <Price>
             {currency}
             {price}
           </Price>
         </Box>
-        <RemoveButton>
+        <RemoveButton
+          onClick={() => {
+            onRemoveCard(id);
+          }}
+        >
           <RxCross1 size={14} />
         </RemoveButton>
       </Box>

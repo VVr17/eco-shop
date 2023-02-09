@@ -2,19 +2,18 @@ import Box from "components/Box";
 import Button from "components/UIkit/Button";
 import CartList from "./CartList";
 import { useRouter } from "next/router";
-
 import { FC } from "react";
-import { ICartCardData } from "types/types";
 import { CartListWrapper, ModalBody } from "./Cart.styled";
 
-interface ICartProps {
-  data: ICartCardData[];
+interface IcartProps {
+  onModalClose?: () => void;
 }
 
-const Cart: FC<ICartProps> = ({ data }) => {
+const Cart: FC<IcartProps> = ({ onModalClose }) => {
   const router = useRouter();
 
   const onCheckoutButtonClick = () => {
+    onModalClose && onModalClose();
     router.push("/checkout");
   };
 
@@ -24,7 +23,7 @@ const Cart: FC<ICartProps> = ({ data }) => {
         My shopping cart:
       </Box>
       <CartListWrapper>
-        <CartList data={data} />
+        <CartList />
       </CartListWrapper>
       <Box
         display="flex"

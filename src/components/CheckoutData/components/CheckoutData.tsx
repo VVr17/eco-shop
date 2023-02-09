@@ -18,6 +18,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { checkoutValidationSchema } from "../utils";
 import { IFormData, initialValues } from "../utils/initialFormValues";
+import { useSelector } from "react-redux";
+import { cartSelector } from "redux/cart/selectors";
+import { useDispatch } from "react-redux";
+import { updateCart } from "redux/cart/slice";
+import { useRouter } from "next/router";
+import { ICartCardData } from "types/types";
+import { countSubtotal } from "utils/cartTotalCount";
 
 const storage = new StorageService("checkoutFormData");
 
@@ -31,6 +38,9 @@ const CheckoutData = () => {
   const formRef: { current: HTMLFormElement | null } = useRef(null);
   const orderRef = useRef<HTMLInputElement>(null);
   const cartRef = useRef<HTMLInputElement>(null);
+  const cart = useSelector(cartSelector);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     register,
@@ -67,7 +77,18 @@ const CheckoutData = () => {
   };
 
   const onSubmitForm = (data: Object) => {
-    console.log(data);
+    // Here must be fetch post with order
+    const sendThisToDatabase = {
+      customer: data,
+      order: cart,
+    };
+    console.log(sendThisToDatabase);
+
+    // Here - cleare cart persisted data
+    // dispatch(updateCart([]));
+    router.push("/");
+    //------------------------------------
+
     setCheckoutFormData(initialValues);
   };
 
@@ -92,6 +113,8 @@ const CheckoutData = () => {
     packaging,
     shipping,
   } = checkoutFormData as IFormData;
+
+  const subtotal = countSubtotal(cart);
 
   return (
     <>
@@ -128,8 +151,8 @@ const CheckoutData = () => {
           <Summary
             currency="$"
             list={[
-              { label: "Subtotal", cost: 60.3 },
-              { label: "Delivery", cost: 8.2 },
+              { label: "Subtotal", cost: subtotal },
+              { label: "Delivery", cost: Number(subtotal) / 10 },
             ]}
           />
 
@@ -148,7 +171,7 @@ const CheckoutData = () => {
             />
 
             <OrderListWrapper maxHeight={cartHeight} ref={cartRef}>
-              <CartList data={cartData} />
+              <CartList />
             </OrderListWrapper>
           </OrderPurchaseContainer>
         </CheckoutOrder>
@@ -160,4 +183,3 @@ const CheckoutData = () => {
 export default CheckoutData;
 
 //Page - server render
-//Cart - redux store

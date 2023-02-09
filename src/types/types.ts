@@ -5,7 +5,7 @@ export interface ICountry {
 export interface ICartCardData {
   id: string;
   name: string;
-  initialVolume: string;
+  value: string;
   increaseVolume: string;
   unit: string;
   price: string;

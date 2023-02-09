@@ -1,20 +1,35 @@
 import CartCard from "components/CartCard";
-import { FC } from "react";
-import { ICartCardData } from "types/types";
+
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "redux/cart/selectors";
+import { updateCart } from "redux/cart/slice";
 import { CartListItem, CartListStyled } from "./Cart.styled";
 
-interface ICartListProps {
-  data: ICartCardData[];
-}
+const CartList = () => {
+  const cart = useSelector(cartSelector);
+  const dispatch = useDispatch();
 
-const CartList: FC<ICartListProps> = ({ data }) => {
+  const cardValueChangeHandler = (id: string, value: number) => {
+    dispatch(
+      updateCart(
+        cart.map((item) =>
+          item.id !== id ? item : { ...item, value: value.toString() }
+        )
+      )
+    );
+  };
+
+  const onRemoveCardHandler = (id: string) => {
+    dispatch(updateCart(cart.filter((item) => item.id !== id)));
+  };
+
   return (
     <CartListStyled>
-      {data.map(
+      {cart.map(
         ({
           id,
           name,
-          initialVolume,
+          value,
           increaseVolume,
           unit,
           price,
@@ -25,13 +40,15 @@ const CartList: FC<ICartListProps> = ({ data }) => {
             <CartCard
               id={id}
               currency={currency}
-              initialVolume={Number(initialVolume)}
+              initialVolume={Number(value)}
               counterStep={Number(increaseVolume)}
               imageDimensions={{ width: 61, height: 61 }}
               imageUrl={imgPath}
               measure={unit}
               price={Number(price).toFixed(2)}
               title={name}
+              shareValue={cardValueChangeHandler}
+              onRemoveCard={onRemoveCardHandler}
             />
           </CartListItem>
         )

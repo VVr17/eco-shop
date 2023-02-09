@@ -5,7 +5,7 @@ export const CheckoutMainContainer = styled("form")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 
   margin-top: ${(p) => p.theme.space[4]};
   ${theme.mq.desktop} {
