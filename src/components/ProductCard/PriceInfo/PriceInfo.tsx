@@ -35,6 +35,8 @@ const PriceInfo: React.FC<IProps> = ({
       </Box>
       <Box display="flex" flexDirection="column" gridGap={2}>
         <Counter
+          // TODO:check if need share value to do smth
+          shareValue={(id: string, value: number) => {}}
           id={id}
           initialValue={+initialVolume}
           measure={measure}
