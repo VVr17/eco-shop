@@ -1,7 +1,7 @@
 import { theme } from "constants/theme";
 import styled from "styled-components";
 
-export const ModalBody = styled("div")`
+export const CartBody = styled("div")`
   &::-webkit-scrollbar {
     width: 0;
     background-color: ${(p) => p.theme.colors.input};

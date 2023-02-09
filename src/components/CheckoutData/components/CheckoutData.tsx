@@ -21,10 +21,9 @@ import { IFormData, initialValues } from "../utils/initialFormValues";
 import { useSelector } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
 import { useDispatch } from "react-redux";
-import { updateCart } from "redux/cart/slice";
 import { useRouter } from "next/router";
-import { ICartCardData } from "types/types";
 import { countSubtotal } from "utils/cartTotalCount";
+import { clearCart } from "redux/cart/slice";
 
 const storage = new StorageService("checkoutFormData");
 
@@ -85,7 +84,7 @@ const CheckoutData = () => {
     console.log(sendThisToDatabase);
 
     // Here - cleare cart persisted data
-    // dispatch(updateCart([]));
+    dispatch(clearCart());
     router.push("/");
     //------------------------------------
 
