@@ -48,7 +48,7 @@ const ProductItem: React.FC<IProps> = ({
   const { isTablet, isDesktop } = useWindowSize();
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  console.log("cart", cart);
+  // console.log("cart", cart);
 
   const handleAddClick = () => {
     console.log("add to cart");
