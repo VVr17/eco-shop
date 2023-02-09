@@ -39,16 +39,6 @@ const ModalExamples = () => {
           Modal Body
         </Modal>
       )}
-
-      {isTooltipOpen && (
-        <ModalTooltip
-          onClose={() => {
-            setIsTooltipOpen(false);
-          }}
-        >
-          <Cart data={cartData} />
-        </ModalTooltip>
-      )}
     </Box>
   );
 };
