@@ -36,7 +36,8 @@ const Home = () => {
       <Section>
         <Breadcrumb />
         <Heading tag="h2" text="Home" />
-        {categories && categories.map(({ title }) => <p>{title}</p>)}
+        {categories &&
+          categories.map(({ title, id }) => <p key={id}>{title}</p>)}
       </Section>
     </>
   );
