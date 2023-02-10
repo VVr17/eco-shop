@@ -6,17 +6,13 @@ import Breadcrumb from "components/UIkit/Breadcrumb";
 import { wrapper } from "redux/store";
 import {
   getCategories,
-  getMeasure,
   getRunningQueriesThunk,
   useGetCategoriesQuery,
-  useGetMeasureQuery,
 } from "redux/api/manualApi";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     store.dispatch(getCategories.initiate());
-    store.dispatch(getMeasure.initiate());
-
     await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
     return {
@@ -27,9 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 const Home = () => {
   const router = useRouter();
-  // // console.log("router.asPath", router.asPath);
   const { isLoading, error, data: categories } = useGetCategoriesQuery();
-  // console.log("categories", categories, "measures ", measures);
 
   return (
     <>
@@ -42,6 +36,7 @@ const Home = () => {
       <Section>
         <Breadcrumb />
         <Heading tag="h2" text="Home" />
+        {categories && categories.map(({ title }) => <p>{title}</p>)}
       </Section>
     </>
   );

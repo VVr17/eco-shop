@@ -12,11 +12,13 @@ import {
 import { cartPersistedReducer } from "./cart/slice";
 import { filterReducer } from "./filter/filterSlice";
 import { userApi, manualApi } from "./api";
+import { productsApi } from "./api/productsApi";
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     [manualApi.reducerPath]: manualApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
     cart: cartPersistedReducer,
     filter: filterReducer,
   },
@@ -25,7 +27,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware, manualApi.middleware),
+    }).concat(userApi.middleware, manualApi.middleware, productsApi.middleware),
 });
 
 const makeStore = () => store;
