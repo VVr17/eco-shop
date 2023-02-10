@@ -60,6 +60,9 @@ const ProductCard: React.FC<IProps> = ({ product }) => {
         measure={measure}
         initialVolume={initialVolume}
         id={id}
+        baseMeasure={increaseVolume}
+        imageUrl={imgPath}
+        name={name}
       />
       <Description description={description} />
 

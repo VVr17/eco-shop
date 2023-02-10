@@ -1,10 +1,12 @@
 import Box from "components/Box";
 import Counter from "components/Counter";
 import { Button } from "components/UIkit";
+import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { cartSelector } from "redux/cart/selectors";
+import { addToCart, updateCartItem } from "redux/cart/slice";
 import { Price, PriceInfoWrapper, TotalPrice } from "./PriceInfo.styled";
 
 interface IProps {
@@ -14,41 +16,47 @@ interface IProps {
   measure: string;
   initialVolume: string;
   id: string;
+  baseMeasure: string;
+  imageUrl: string;
+  name: string;
 }
 
 const PriceInfo: React.FC<IProps> = ({
   currency,
   price,
+  name,
   increaseVolume,
   measure,
   initialVolume,
   id,
+  baseMeasure,
+  imageUrl,
 }) => {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  // console.log("cart", cart);
+  const [counterValue, setCounterValue] = useState(initialVolume);
 
   const handleAddClick = () => {
-    console.log("add to cart");
-    const isInCart = cart.find(({ id: idInCart }) => idInCart === id);
-    console.log("isInCart", isInCart);
-    // const data = {
-    //   id,
-    //   name,
-    //   value ,
-    //   increaseVolume,
-    //   unit,
-    //   price,
-    //   currency,
-    //   imgPath,
-    // };
-    // TODO: update Cart - item quantity, in case item is already in cart
-    // if (isInCart) {
-    //   data.value += 1;
-    //   return;
-    // }
+    const productInCart = cart.find(({ id: idInCart }) => idInCart === id);
 
-    // dispatch(addToCart(data));
+    if (productInCart) {
+      const newValue = +productInCart.value + +counterValue;
+      dispatch(updateCartItem({ id, value: newValue }));
+      return;
+    }
+
+    const data = {
+      id,
+      name,
+      value: counterValue,
+      increaseVolume: baseMeasure,
+      unit: measure,
+      price,
+      currency,
+      imgPath: imageUrl,
+    };
+
+    dispatch(addToCart(data));
   };
 
   return (
@@ -65,8 +73,9 @@ const PriceInfo: React.FC<IProps> = ({
       </Box>
       <Box display="flex" flexDirection="column" gridGap={2}>
         <Counter
-          // TODO:check if need share value to do smth
-          shareValue={(id: string, value: number) => {}}
+          shareValue={(id: string, value: number) => {
+            setCounterValue(value.toString());
+          }}
           id={id}
           initialValue={+initialVolume}
           measure={measure}
@@ -80,9 +89,7 @@ const PriceInfo: React.FC<IProps> = ({
           backgroundColor="accent"
           color="lightText"
           hoverColor="hoverAccent"
-          onClick={() => {
-            console.log("add to cart");
-          }}
+          onClick={handleAddClick}
         />
       </Box>
     </PriceInfoWrapper>
