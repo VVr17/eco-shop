@@ -14,6 +14,7 @@ import Section from "components/Section";
 import Cart from "components/Cart";
 import ProductList from "components/ProductList";
 import PriceRange from "components/UIkit/PriceRange";
+import ReviewsRangeExample from "components/UIkit/ReviewsRange/ReviewsRangeExample";
 
 const Test = () => {
   return (
@@ -24,6 +25,7 @@ const Test = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Section>
+        <ReviewsRangeExample />
         <ModalExamples />
         {/* <SelectExamples /> */}
         <SubscribeInputExamples />
