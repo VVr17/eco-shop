@@ -1,6 +1,7 @@
 import Box from "components/Box";
 import Counter from "components/Counter";
 import { Button } from "components/UIkit";
+import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -33,12 +34,13 @@ const PriceInfo: React.FC<IProps> = ({
 }) => {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
+  const [counterValue, setCounterValue] = useState(initialVolume);
 
   const handleAddClick = () => {
     const productInCart = cart.find(({ id: idInCart }) => idInCart === id);
 
     if (productInCart) {
-      const newValue = +productInCart.value + +productInCart.increaseVolume;
+      const newValue = +productInCart.value + +counterValue;
       dispatch(updateCartItem({ id, value: newValue }));
       return;
     }
@@ -46,7 +48,7 @@ const PriceInfo: React.FC<IProps> = ({
     const data = {
       id,
       name,
-      value: baseMeasure,
+      value: counterValue,
       increaseVolume: baseMeasure,
       unit: measure,
       price,
@@ -71,8 +73,9 @@ const PriceInfo: React.FC<IProps> = ({
       </Box>
       <Box display="flex" flexDirection="column" gridGap={2}>
         <Counter
-          // TODO:check if need share value to do smth
-          shareValue={(id: string, value: number) => {}}
+          shareValue={(id: string, value: number) => {
+            setCounterValue(value.toString());
+          }}
           id={id}
           initialValue={+initialVolume}
           measure={measure}
@@ -86,9 +89,7 @@ const PriceInfo: React.FC<IProps> = ({
           backgroundColor="accent"
           color="lightText"
           hoverColor="hoverAccent"
-          onClick={() => {
-            console.log("add to cart");
-          }}
+          onClick={handleAddClick}
         />
       </Box>
     </PriceInfoWrapper>

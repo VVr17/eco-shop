@@ -1,5 +1,5 @@
 export const productData = {
-  id: "1",
+  id: "123",
   name: "Gold apricots Limited edition",
 
   category: "dried fruits",
