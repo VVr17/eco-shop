@@ -8,11 +8,12 @@ import {
   getCategories,
   getMeasure,
   getRunningQueriesThunk,
+  useGetCategoriesQuery,
+  useGetMeasureQuery,
 } from "redux/api/manualApi";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    // const name = context.params?.name;
     store.dispatch(getCategories.initiate());
     store.dispatch(getMeasure.initiate());
 
@@ -26,7 +27,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 const Home = () => {
   const router = useRouter();
-  // console.log("router.asPath", router.asPath);
+  // // console.log("router.asPath", router.asPath);
+  const { isLoading, error, data: categories } = useGetCategoriesQuery();
+  // console.log("categories", categories, "measures ", measures);
 
   return (
     <>
