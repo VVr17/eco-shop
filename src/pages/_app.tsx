@@ -1,14 +1,13 @@
 import { AppProps } from "next/app";
-import Head from "next/head";
 import { Provider } from "react-redux";
-import { persistor, store } from "redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store, wrapper } from "redux/store";
 import Layout from "../components/Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
 import { GlobalStyle } from "../styles/global.styled";
 import { Roboto } from "@next/font/google";
 import "rc-slider/assets/index.css";
-import { PersistGate } from "redux-persist/integration/react";
 
 const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
@@ -38,4 +37,5 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   </>
 );
 
-export default MyApp;
+// export default MyApp;
+export default wrapper.withRedux(MyApp);

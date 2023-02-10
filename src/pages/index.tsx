@@ -2,13 +2,34 @@ import Heading from "components/Heading";
 import Section from "components/Section";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
+import { wrapper } from "redux/store";
+import {
+  getCategories,
+  getMeasure,
+  getRunningQueriesThunk,
+  useGetCategoriesQuery,
+  useGetMeasureQuery,
+} from "redux/api/manualApi";
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    store.dispatch(getCategories.initiate());
+    store.dispatch(getMeasure.initiate());
+
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+    return {
+      props: {},
+    };
+  }
+);
 
 const Home = () => {
   const router = useRouter();
-  // console.log("router.asPath", router.asPath);
+  // // console.log("router.asPath", router.asPath);
+  const { isLoading, error, data: categories } = useGetCategoriesQuery();
+  // console.log("categories", categories, "measures ", measures);
 
   return (
     <>
