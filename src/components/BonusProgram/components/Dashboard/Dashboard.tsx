@@ -1,7 +1,13 @@
 import { FC } from "react";
 import Chart from "../Chart";
 import DiscountBar from "../DiscountBar";
-import { DashboardCard } from "./Dashboard.styled";
+import {
+  DashboardCard,
+  Meta,
+  MetaChartWrapper,
+  Text,
+  TextItem,
+} from "./Dashboard.styled";
 
 interface IDashboardProps {
   maxDiscountingValue: number;
@@ -27,7 +33,19 @@ const Dashboard: FC<IDashboardProps> = ({
 
   return (
     <DashboardCard>
-      <Chart discountValue={discountValue} />
+      <MetaChartWrapper>
+        <Chart discountValue={discountValue} />
+        <Meta>
+          <Text>
+            <TextItem>Level:</TextItem>
+            <TextItem>1</TextItem>
+          </Text>
+          <Text>
+            <TextItem>Not enough to 10%:</TextItem>
+            <TextItem>$74</TextItem>
+          </Text>
+        </Meta>
+      </MetaChartWrapper>
 
       <DiscountBar maxValue={maxDiscountingValue} value={cutomerCurrentValue} />
     </DashboardCard>
