@@ -15,27 +15,31 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <>
-    <style jsx global>{`
-      html {
-        font-family: ${roboto.style.fontFamily};
-      }
-    `}</style>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <Layout>
-            <main>
-              <Component {...pageProps} />
-            </main>
-          </Layout>
-          <GlobalStyle />
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
-  </>
-);
+const MyApp: React.FC<AppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
 
-// export default MyApp;
-export default wrapper.withRedux(MyApp);
+  return (
+    <>
+      <style jsx global>{`
+        html {
+          font-family: ${roboto.style.fontFamily};
+        }
+      `}</style>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <Layout>
+              <main>
+                <Component {...pageProps} />
+              </main>
+            </Layout>
+            <GlobalStyle />
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    </>
+  );
+};
+
+export default MyApp;

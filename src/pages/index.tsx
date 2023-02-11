@@ -4,11 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import { wrapper } from "redux/store";
-import {
-  getCategories,
-  getRunningQueriesThunk,
-  useGetCategoriesQuery,
-} from "redux/api/manualApi";
+import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
@@ -23,7 +19,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 const Home = () => {
   const router = useRouter();
-  const { isLoading, error, data: categories } = useGetCategoriesQuery();
 
   return (
     <>
@@ -36,8 +31,6 @@ const Home = () => {
       <Section>
         <Breadcrumb />
         <Heading tag="h2" text="Home" />
-        {categories &&
-          categories.map(({ title, id }) => <p key={id}>{title}</p>)}
       </Section>
     </>
   );
