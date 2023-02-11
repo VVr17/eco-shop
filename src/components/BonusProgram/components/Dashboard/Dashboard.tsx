@@ -22,15 +22,17 @@ const Dashboard: FC<IDashboardProps> = ({
   cutomerCurrentValue,
 }) => {
   const pointValue = maxDiscountingValue / DiscountOptionsNumber;
-  const discountCalculation = Math.trunc(cutomerCurrentValue / pointValue);
+  const discountCalcIndex = Math.trunc(cutomerCurrentValue / pointValue);
 
-  const discountValue =
-    discounts[
-      discountCalculation > discounts.length - 1
-        ? DiscountOptionsNumber
-        : discountCalculation
-    ];
-
+  const discountLevel =
+    discountCalcIndex > discounts.length - 1
+      ? discounts.length - 1
+      : discountCalcIndex;
+  const discountValue = discounts[discountLevel];
+  const notEnoughTo = discounts[discountLevel + 1];
+  const notEnoughToValue = Math.trunc(
+    (discountLevel + 1) * pointValue - cutomerCurrentValue
+  );
   return (
     <DashboardCard>
       <MetaChartWrapper>
@@ -38,11 +40,11 @@ const Dashboard: FC<IDashboardProps> = ({
         <Meta>
           <Text>
             <TextItem>Level:</TextItem>
-            <TextItem>1</TextItem>
+            <TextItem>{discountLevel}</TextItem>
           </Text>
           <Text>
-            <TextItem>Not enough to 10%:</TextItem>
-            <TextItem>$74</TextItem>
+            <TextItem>Not enough to {notEnoughTo}%:</TextItem>
+            <TextItem>${notEnoughToValue}</TextItem>
           </Text>
         </Meta>
       </MetaChartWrapper>

@@ -1,18 +1,38 @@
 import Box from "components/Box";
 import Container from "components/Container";
 import Dashboard from "./Dashboard";
+import SignUp from "./SignUp";
+import {
+  BlockWrapper,
+  BonusIconStyled,
+  BonusProgramContainer,
+  IconWrapper,
+  Title,
+} from "./BonusProgram.styled";
+import HomePageContainer from "components/HomePageContainer";
 
 const BonusProgram = () => {
   return (
-    <Box pt={[65, 65, 80]} pb={[65, 65, 80]}>
-      <Container>
-        <div>
-          <h2>Bonus program</h2>
-          <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
-        </div>
-      </Container>
-    </Box>
+    <Container>
+      <HomePageContainer>
+        <BonusProgramContainer>
+          <Title>
+            <IconWrapper>
+              <BonusIconStyled />
+            </IconWrapper>
+            Bonus program
+          </Title>
+          <BlockWrapper>
+            <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
+            <SignUp />
+          </BlockWrapper>
+        </BonusProgramContainer>
+      </HomePageContainer>
+    </Container>
   );
 };
 
 export default BonusProgram;
+
+// HomePageContainer
+// Borders on desktop

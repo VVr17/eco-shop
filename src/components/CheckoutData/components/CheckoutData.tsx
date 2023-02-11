@@ -1,10 +1,10 @@
-import { Button } from "components/UIkit";
 import Payments from "./Payments";
 import Summary from "./Summary";
 import CartList from "components/Cart/CartList";
 import StorageService from "services/StorageService";
 import PersonalInformation from "./PersonalInformation";
 import DeliveryDetails from "./DeliveryDetails";
+import { Button } from "components/UIkit";
 import {
   CheckoutMainContainer,
   CheckoutOrder,
@@ -13,7 +13,6 @@ import {
   CheckoutFields,
 } from "./CheckoutData.styled";
 import { useEffect, useRef, useState } from "react";
-import { cartData } from "utils/fakeData/fakeCartData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { checkoutValidationSchema } from "../utils";

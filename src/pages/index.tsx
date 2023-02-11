@@ -28,10 +28,15 @@ const Home = () => {
         <Heading tag="h2" text="Home" />
       </Section> */}
       <BannerBlock />
+
       <ProductSlider title="Discounted goods" />
+
       <WhatToCook />
+
       <BonusProgram />
+
       <ProductSlider title="New additions" />
+
       <HowWeWork />
     </>
   );
