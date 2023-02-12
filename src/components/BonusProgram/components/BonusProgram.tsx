@@ -33,6 +33,3 @@ const BonusProgram = () => {
 };
 
 export default BonusProgram;
-
-// HomePageContainer
-// Borders on desktop
