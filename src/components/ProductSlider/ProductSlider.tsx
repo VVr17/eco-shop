@@ -43,7 +43,7 @@ const ProductSlider: FC<IProductSliderProps> = ({ title }) => {
   // console.log(position);
   return (
     <HomePageContainer>
-      {/* <h2>{title}</h2> */}
+      <h2>{title}</h2>
       <SliderWrapper>
         <BackwardIconWrapper onClick={moveLeft}>
           <MdArrowBackIos viewBox="0 0 16 24" />

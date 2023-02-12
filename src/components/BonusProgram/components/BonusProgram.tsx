@@ -2,26 +2,17 @@ import Box from "components/Box";
 import Container from "components/Container";
 import Dashboard from "./Dashboard";
 import SignUp from "./SignUp";
-import {
-  BlockWrapper,
-  BonusIconStyled,
-  BonusProgramContainer,
-  IconWrapper,
-  Title,
-} from "./BonusProgram.styled";
+import { BlockWrapper, BonusProgramContainer } from "./BonusProgram.styled";
 import HomePageContainer from "components/HomePageContainer";
+import HomePageTitle from "components/HomePageTitle";
+import { BonusIcon } from "assets/icons/homePageIcons";
 
 const BonusProgram = () => {
   return (
     <Container>
       <HomePageContainer>
         <BonusProgramContainer>
-          <Title>
-            <IconWrapper>
-              <BonusIconStyled />
-            </IconWrapper>
-            Bonus program
-          </Title>
+          <HomePageTitle title="Bonus program" icon={BonusIcon} />
           <BlockWrapper>
             <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
             <SignUp />
