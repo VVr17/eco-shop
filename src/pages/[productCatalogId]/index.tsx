@@ -13,7 +13,6 @@ import { listsData, catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import { IProduct } from "types/product";
 import { homePageRoute } from "constants/constants";
-
 import { wrapper } from "redux/store";
 import { getCategories, getMeasure } from "redux/api/manualApi";
 import {
@@ -24,21 +23,23 @@ import {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
+    const { res } = context; // response
     const productCatalogId = context.params?.productCatalogId as string;
 
-    store.dispatch(getCategories.initiate());
-    store.dispatch(getMeasure.initiate());
-    store.dispatch(getProducts.initiate());
+    try {
+      store.dispatch(getCategories.initiate());
+      store.dispatch(getMeasure.initiate());
+      store.dispatch(getProducts.initiate());
 
-    const result = await Promise.all(store.dispatch(getRunningQueriesThunk()));
+      await Promise.all(store.dispatch(getRunningQueriesThunk()));
 
-    console.log("result", result);
-
-    // if (!data) {
-    //   return {
-    //     notFound: true,
-    //   };
-    // }
+      // throw new Error();
+    } catch (error) {
+      res.writeHead(302, {
+        Location: "/404",
+      });
+      res.end();
+    }
 
     if (productCatalogId !== "1") {
       return {
@@ -66,14 +67,16 @@ interface IProps {
   catalogId: string;
   catalogName: string;
 }
-//const Products: React.FC<IProps> = ({ products, catalogName, catalogId })
+
 const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
   const { isLoading, error, data: productsFromApi } = useGetProductsQuery();
-  console.log("isLoading", isLoading);
   console.log("productsFromApi", productsFromApi);
 
   return (
     <>
+      {/* {isLoading && <p>Loading...</p>} */}
+      {/* {error && <p>Error: {error}</p>} */}
+
       <Head>
         <title>Products</title>
         <meta name="description" content="eco shop" />

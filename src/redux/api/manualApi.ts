@@ -8,7 +8,7 @@ export const manualApi = createApi({
   reducerPath: "manualApi",
   baseQuery,
   tagTypes: [TAGS_TYPES.categories, TAGS_TYPES.measure],
-  // keepUnusedDataFor: 30000,
+  keepUnusedDataFor: 30000,
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
       return action.payload[reducerPath];

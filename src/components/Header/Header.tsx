@@ -6,9 +6,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import Box from "components/Box";
 import Button from "components/UIkit/Button";
 import Cart from "components/Cart";
-import { cartData } from "utils/fakeData/fakeCartData";
-import { DEFAULT_ICON_SIZE } from "constants/constants";
-import IconButton from "components/UIkit/IconButton";
 import Logo from "components/UIkit/Logo";
 import ModalTooltip from "components/UIkit/Modal/ModalTooltip";
 import Search from "components/UIkit/Search";
@@ -20,14 +17,27 @@ import {
   RightSideContainer,
 } from "./Header.styled";
 import { useGetCategoriesQuery } from "redux/api/manualApi";
+import { useRouter } from "next/router";
 
 const Header: React.FC = () => {
+  const router = useRouter();
   const { isDesktop, isTablet, isMobile } = useWindowSize();
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const { isLoading, error, data: categories } = useGetCategoriesQuery();
+  console.log(categories);
 
   return (
     <>
+      {/* <article>
+        {error ? (
+          <>Oh no, there was an error</>
+        ) : router.isFallback || isLoading ? (
+          <>Loading...</>
+        ) : categories ? (
+          <>{categories.map((category) => category.title)}</>
+        ) : null}
+      </article> */}
+
       <Box as="header" pt={3} pb={3}>
         <HeaderContainer>
           <LeftSideContainer>

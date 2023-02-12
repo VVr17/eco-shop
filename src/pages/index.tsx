@@ -6,7 +6,7 @@ import Breadcrumb from "components/UIkit/Breadcrumb";
 import { wrapper } from "redux/store";
 import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
 
-export const getServerSideProps = wrapper.getServerSideProps(
+export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {
     store.dispatch(getCategories.initiate());
     await Promise.all(store.dispatch(getRunningQueriesThunk()));

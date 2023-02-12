@@ -6,6 +6,19 @@ import { theme } from "constants/theme";
 import ErrorText from "components/Error/ErrorText";
 import Box from "components/Box";
 import { useRouter } from "next/router";
+import { wrapper } from "redux/store";
+import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
+
+export const getStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    store.dispatch(getCategories.initiate());
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+    return {
+      props: {},
+    };
+  }
+);
 
 const Error = () => {
   const router = useRouter();
