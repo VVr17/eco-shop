@@ -1,8 +1,8 @@
-import { FC, ReactNode } from "react";
+import { ComponentType, FC } from "react";
 import styles from "./HomePageIcon.module.css";
 
 interface IHomePageIconProps {
-  icon: React.ComponentType;
+  icon: ComponentType<{ className: string }>;
 }
 
 const HomePageIcon: FC<IHomePageIconProps> = ({ icon: Icon }) => {

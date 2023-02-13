@@ -11,8 +11,8 @@ const BonusProgram = () => {
   return (
     <Container>
       <HomePageContainer>
+        <HomePageTitle title="Bonus program" icon={BonusIcon} />
         <BonusProgramContainer>
-          <HomePageTitle title="Bonus program" icon={BonusIcon} />
           <BlockWrapper>
             <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
             <SignUp />

@@ -10,6 +10,7 @@ import ProductSlider from "components/ProductSlider/ProductSlider";
 import WhatToCook from "components/WhatToCook/WhatToCook";
 import BonusProgram from "components/BonusProgram";
 import HowWeWork from "components/HowWeWork/HowWeWork";
+import DiscountedGoods from "components/DiscountedGoods";
 
 const Home = () => {
   const router = useRouter();
@@ -23,19 +24,15 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* <Section>
-        <Breadcrumb />
-        <Heading tag="h2" text="Home" />
-      </Section> */}
       <BannerBlock />
 
-      <ProductSlider title="Discounted goods" />
+      <DiscountedGoods />
 
       <WhatToCook />
 
       <BonusProgram />
 
-      <ProductSlider title="New additions" />
+      {/* <ProductSlider title="New additions" /> */}
 
       <HowWeWork />
     </>

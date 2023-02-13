@@ -1,23 +1,11 @@
-/* export const IconStyled = styled(BonusIcon)`
-  height: 40px;
-  width: 40px;
-
-  ${theme.mq.mobileOnly} {
-    width: 32px;
-    height: 32px;
-  }
-`; */
-
 .homePageIcon {
   height: 40px;
   width: 40px;
-
-  @media screen and (min-width: 375px) and (max-width: 767.98px) {
-    width: 32px;
-    height: 32px;
-  }
 }
 
-/* mediumMobileOnly: `@media screen and (min-width: ${
-      breakpoints[0]
-    }px) and (max-width: ${+breakpoints[1] - 0.02}px)`, */
+@media screen and (min-width: 375px) and (max-width: 767.98px) {
+  .homePageIcon {
+    height: 32px;
+    width: 32px;
+  }
+}

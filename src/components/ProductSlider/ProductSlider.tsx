@@ -1,7 +1,5 @@
-import HomePageContainer from "components/HomePageContainer";
 import ProductItem from "components/ProductList/ProductItem";
 import { FC, useState } from "react";
-import { discountedList } from "utils/fakeData/fakeDiscountedList";
 import {
   BackwardIconWrapper,
   ForwardIconWrapper,
@@ -11,19 +9,17 @@ import {
   SliderWrapper,
 } from "./ProductSlider.styled";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
+import { IProduct } from "types/product";
 
 const STEPS = [175, 288, 288]; // mobile, tablet, desktop
-// const cardsPerViewNumber = 4;
 const CARDS = [2, 2, 4]; // mobile, tablet, desktop
 
 interface IProductSliderProps {
-  title: string;
+  list: IProduct[];
 }
 
-const ProductSlider: FC<IProductSliderProps> = ({ title }) => {
+const ProductSlider: FC<IProductSliderProps> = ({ list }) => {
   const [position, setPosition] = useState([0, 0, 0]);
-
-  // const tempData = discountedList[0];
 
   const moveLeft = () => {
     setPosition((prevPosition) =>
@@ -32,7 +28,7 @@ const ProductSlider: FC<IProductSliderProps> = ({ title }) => {
   };
 
   const moveRight = () => {
-    const itemsNum = discountedList.length;
+    const itemsNum = list.length;
     setPosition((prevPosition) =>
       prevPosition.map((pos, i) =>
         pos - STEPS[i] < (CARDS[i] - itemsNum) * STEPS[i] ? pos : pos - STEPS[i]
@@ -40,16 +36,14 @@ const ProductSlider: FC<IProductSliderProps> = ({ title }) => {
     );
   };
 
-  // console.log(position);
   return (
-    <HomePageContainer>
-      <h2>{title}</h2>
+    <>
       <SliderWrapper>
         <BackwardIconWrapper onClick={moveLeft}>
           <MdArrowBackIos viewBox="0 0 16 24" />
         </BackwardIconWrapper>
         <SliderContainer position={position} steps={STEPS}>
-          {discountedList.map(
+          {list.map(
             ({
               currency,
               id,
@@ -84,8 +78,10 @@ const ProductSlider: FC<IProductSliderProps> = ({ title }) => {
         </ForwardIconWrapper>
         <SliderBackdrop />
       </SliderWrapper>
-    </HomePageContainer>
+    </>
   );
 };
 
 export default ProductSlider;
+
+//refactor item
