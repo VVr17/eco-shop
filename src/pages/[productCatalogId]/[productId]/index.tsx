@@ -8,42 +8,57 @@ import { catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import { IProduct } from "types/product";
 import { homePageRoute } from "constants/constants";
+import { wrapper } from "redux/store";
+import { getCategories } from "redux/api/manualApi";
+import {
+  getProducts,
+  getRunningQueriesThunk,
+  useGetProductsQuery,
+} from "redux/api/productsApi";
 
 // return props for component
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const productCatalogId = context.params?.productCatalogId as string;
-  const productId = context.params?.productId as string;
 
-  // const response = await fetch(
-  //   `https://jsonplaceholder.typicode.com/users/${id}`
-  // );
-  // const data = await response.json();
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const { res } = context; // response
+    const productCatalogId = context.params?.productCatalogId as string;
+    const productId = context.params?.productId as string;
 
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-  const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    try {
+      store.dispatch(getCategories.initiate());
+      store.dispatch(getProducts.initiate());
 
-  if (!ids.includes(productId)) {
+      await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+      // throw new Error();
+    } catch (error) {
+      res.writeHead(302, {
+        Location: "/404",
+      });
+      res.end();
+    }
+
+    const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+    if (!ids.includes(productId)) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const data = productData;
+
     return {
-      notFound: true,
+      props: {
+        product: data,
+        catalogId: productCatalogId,
+        catalogName: catalog[0].name,
+        productId,
+        productName: productData.name,
+      },
     };
   }
-
-  const data = productData;
-
-  return {
-    props: {
-      product: data,
-      catalogId: productCatalogId,
-      catalogName: catalog[0].name,
-      productId,
-      productName: productData.name,
-    },
-  };
-};
+);
 
 interface IProps {
   product: IProduct;
@@ -60,6 +75,9 @@ const Product: React.FC<IProps> = ({
   catalogId,
   catalogName,
 }) => {
+  const { isLoading, error, data: productsFromApi } = useGetProductsQuery();
+  console.log("productsFromApiInOneCard", productsFromApi);
+
   return (
     <>
       <Head>

@@ -20,24 +20,18 @@ import { useGetCategoriesQuery } from "redux/api/manualApi";
 import { useRouter } from "next/router";
 
 const Header: React.FC = () => {
-  const router = useRouter();
   const { isDesktop, isTablet, isMobile } = useWindowSize();
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-  const { isLoading, error, data: categories } = useGetCategoriesQuery();
+  const {
+    isLoading,
+    error,
+    data: categories,
+    refetch,
+  } = useGetCategoriesQuery();
   console.log(categories);
 
   return (
     <>
-      {/* <article>
-        {error ? (
-          <>Oh no, there was an error</>
-        ) : router.isFallback || isLoading ? (
-          <>Loading...</>
-        ) : categories ? (
-          <>{categories.map((category) => category.title)}</>
-        ) : null}
-      </article> */}
-
       <Box as="header" pt={3} pb={3}>
         <HeaderContainer>
           <LeftSideContainer>

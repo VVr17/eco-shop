@@ -8,6 +8,7 @@ import Box from "components/Box";
 import { useRouter } from "next/router";
 import { wrapper } from "redux/store";
 import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
+import { useEffect, useState } from "react";
 
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {

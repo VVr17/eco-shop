@@ -20,6 +20,7 @@ import {
   getRunningQueriesThunk,
   useGetProductsQuery,
 } from "redux/api/productsApi";
+import { useState } from "react";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
