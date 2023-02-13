@@ -6,6 +6,8 @@ export const BonusProgramContainer = styled("div")`
 
   ${theme.mq.tabletOnly} {
     width: 570px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 

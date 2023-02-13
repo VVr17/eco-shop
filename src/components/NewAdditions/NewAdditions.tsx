@@ -1,24 +1,23 @@
-import { DiscountedGoodsIcon } from "assets/icons/homePageIcons";
 import Container from "components/Container";
 import HomePageContainer from "components/HomePageContainer";
 import HomePageTitle from "components/HomePageTitle";
 import ProductSlider from "components/ProductSlider/ProductSlider";
+import { NewAdditionsIcon } from "assets/icons/homePageIcons";
+import { newAdditionList } from "utils/fakeData/fakeNewAdditionList";
 
-import { discountedList } from "utils/fakeData/fakeDiscountedList";
-
-const DiscountedGoods = () => {
+const NewAdditions = () => {
   return (
     <HomePageContainer>
       <Container>
         <HomePageTitle
-          title="Discounted goods"
-          icon={DiscountedGoodsIcon}
+          title="New additions"
+          icon={NewAdditionsIcon}
           needViewAllLink
         />
       </Container>
-      <ProductSlider list={discountedList as any} />
+      <ProductSlider list={newAdditionList as any} />
     </HomePageContainer>
   );
 };
 
-export default DiscountedGoods;
+export default NewAdditions;

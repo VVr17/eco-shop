@@ -11,6 +11,7 @@ import WhatToCook from "components/WhatToCook/WhatToCook";
 import BonusProgram from "components/BonusProgram";
 import HowWeWork from "components/HowWeWork/HowWeWork";
 import DiscountedGoods from "components/DiscountedGoods";
+import NewAdditions from "components/NewAdditions";
 
 const Home = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ const Home = () => {
 
       <BonusProgram />
 
-      {/* <ProductSlider title="New additions" /> */}
+      <NewAdditions />
 
       <HowWeWork />
     </>

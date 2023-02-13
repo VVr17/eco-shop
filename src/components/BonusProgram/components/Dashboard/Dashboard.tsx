@@ -44,7 +44,7 @@ const Dashboard: FC<IDashboardProps> = ({
           </Text>
           <Text>
             <TextItem>Not enough to {notEnoughTo}%:</TextItem>
-            <TextItem>${notEnoughToValue}</TextItem>
+            <TextItem>${notEnoughToValue < 0 ? 0 : notEnoughToValue}</TextItem>
           </Text>
         </Meta>
       </MetaChartWrapper>

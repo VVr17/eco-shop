@@ -9,8 +9,8 @@ import { BonusIcon } from "assets/icons/homePageIcons";
 
 const BonusProgram = () => {
   return (
-    <Container>
-      <HomePageContainer>
+    <HomePageContainer>
+      <Container>
         <HomePageTitle title="Bonus program" icon={BonusIcon} />
         <BonusProgramContainer>
           <BlockWrapper>
@@ -18,8 +18,8 @@ const BonusProgram = () => {
             <SignUp />
           </BlockWrapper>
         </BonusProgramContainer>
-      </HomePageContainer>
-    </Container>
+      </Container>
+    </HomePageContainer>
   );
 };
 
