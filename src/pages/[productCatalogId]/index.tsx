@@ -14,47 +14,64 @@ import Breadcrumb from "components/UIkit/Breadcrumb";
 import { IProduct } from "types/product";
 import { homePageRoute } from "constants/constants";
 
-// return props for component
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const productCatalogId = context.params?.productCatalogId as string;
+import { wrapper } from "redux/store";
+import { getCategories, getMeasure } from "redux/api/manualApi";
+import {
+  getProducts,
+  getRunningQueriesThunk,
+  useGetProductsQuery,
+} from "redux/api/productsApi";
 
-  // const response = await fetch(
-  //   `https://jsonplaceholder.typicode.com/users/${id}`
-  // );
-  // const data = await response.json();
-  // const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  // console.log("ids.includes(productCatalogId)", ids.includes(productCatalogId));
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    const productCatalogId = context.params?.productCatalogId as string;
 
-  if (productCatalogId !== "1") {
+    store.dispatch(getCategories.initiate());
+    store.dispatch(getMeasure.initiate());
+    store.dispatch(getProducts.initiate());
+
+    const result = await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+    console.log("result", result);
+
+    // if (!data) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
+
+    if (productCatalogId !== "1") {
+      return {
+        notFound: true,
+      };
+    }
+
+    const data = listsData;
+
     return {
-      notFound: true,
+      props: {
+        products: data,
+        catalogId: productCatalogId,
+        catalogName: catalog[0].name,
+      },
     };
+    // return {
+    //   props: {},
+    // };
   }
-
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-
-  const data = listsData;
-
-  return {
-    props: {
-      products: data,
-      catalogId: productCatalogId,
-      catalogName: catalog[0].name,
-    },
-  };
-};
+);
 
 interface IProps {
   products: IProduct[];
   catalogId: string;
   catalogName: string;
 }
-
+//const Products: React.FC<IProps> = ({ products, catalogName, catalogId })
 const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
+  const { isLoading, error, data: productsFromApi } = useGetProductsQuery();
+  console.log("isLoading", isLoading);
+  console.log("productsFromApi", productsFromApi);
+
   return (
     <>
       <Head>
@@ -100,3 +117,37 @@ const Products: React.FC<IProps> = ({ products, catalogName, catalogId }) => {
 };
 
 export default Products;
+
+// // return props for component
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const productCatalogId = context.params?.productCatalogId as string;
+
+//   // const response = await fetch(
+//   //   `https://jsonplaceholder.typicode.com/users/${id}`
+//   // );
+//   // const data = await response.json();
+//   // const ids = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+//   // console.log("ids.includes(productCatalogId)", ids.includes(productCatalogId));
+
+//   if (productCatalogId !== "1") {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+// if (!data) {
+//   return {
+//     notFound: true,
+//   };
+// }
+
+//   const data = listsData;
+
+//   return {
+//     props: {
+//       products: data,
+//       catalogId: productCatalogId,
+//       catalogName: catalog[0].name,
+//     },
+//   };
+// };

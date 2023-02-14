@@ -1,7 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userApi } from "./api/userApi";
-import { filterReducer } from "./filter/filterSlice";
-import { cartPersistedReducer } from "./cart/slice";
+import { createWrapper } from "next-redux-wrapper";
 import {
   persistStore,
   FLUSH,
@@ -11,11 +9,17 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { cartPersistedReducer } from "./cart/slice";
+import { filterReducer } from "./filter/filterSlice";
+import { userApi, manualApi } from "./api";
+import { productsApi } from "./api/productsApi";
 
 export const store = configureStore({
   reducer: {
-    cart: cartPersistedReducer,
     [userApi.reducerPath]: userApi.reducer,
+    [manualApi.reducerPath]: manualApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
+    cart: cartPersistedReducer,
     filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -23,12 +27,14 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
-      .concat(userApi.middleware)
-      .concat(),
+    }).concat(userApi.middleware, manualApi.middleware, productsApi.middleware),
 });
+
+const makeStore = () => store;
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const wrapper = createWrapper(makeStore);
 export const persistor = persistStore(store);

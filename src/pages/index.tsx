@@ -2,9 +2,8 @@ import Heading from "components/Heading";
 import Section from "components/Section";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { catalog } from "utils/fakeData/fakeListData";
 import Breadcrumb from "components/UIkit/Breadcrumb";
+
 import BannerBlock from "components/BannerBlock";
 import ProductSlider from "components/ProductSlider/ProductSlider";
 import WhatToCook from "components/WhatToCook/WhatToCook";
@@ -13,9 +12,22 @@ import HowWeWork from "components/HowWeWork/HowWeWork";
 import DiscountedGoods from "components/DiscountedGoods";
 import NewAdditions from "components/NewAdditions";
 
+import { wrapper } from "redux/store";
+import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    store.dispatch(getCategories.initiate());
+    await Promise.all(store.dispatch(getRunningQueriesThunk()));
+
+    return {
+      props: {},
+    };
+  }
+);
+
 const Home = () => {
   const router = useRouter();
-  // console.log("router.asPath", router.asPath);
 
   return (
     <>

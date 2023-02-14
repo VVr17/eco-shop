@@ -19,10 +19,12 @@ import {
   LeftSideContainer,
   RightSideContainer,
 } from "./Header.styled";
+import { useGetCategoriesQuery } from "redux/api/manualApi";
 
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  const { isLoading, error, data: categories } = useGetCategoriesQuery();
 
   return (
     <>
