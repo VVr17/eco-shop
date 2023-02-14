@@ -1,17 +1,13 @@
-import Heading from "components/Heading";
-import Section from "components/Section";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import Breadcrumb from "components/UIkit/Breadcrumb";
 
 import BannerBlock from "components/BannerBlock";
-import ProductSlider from "components/ProductSlider/ProductSlider";
 import WhatToCook from "components/WhatToCook/WhatToCook";
 import BonusProgram from "components/BonusProgram";
 import HowWeWork from "components/HowWeWork/HowWeWork";
 import DiscountedGoods from "components/DiscountedGoods";
 import NewAdditions from "components/NewAdditions";
 
+import { useRouter } from "next/router";
 import { wrapper } from "redux/store";
 import { getCategories, getRunningQueriesThunk } from "redux/api/manualApi";
 
