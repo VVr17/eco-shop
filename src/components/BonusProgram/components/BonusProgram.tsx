@@ -9,17 +9,25 @@ import { BonusIcon } from "assets/icons/homePageIcons";
 
 const BonusProgram = () => {
   return (
-    <HomePageContainer>
+    <>
       <Container>
-        <HomePageTitle title="Bonus program" icon={BonusIcon} />
-        <BonusProgramContainer>
-          <BlockWrapper>
-            <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
-            <SignUp />
-          </BlockWrapper>
-        </BonusProgramContainer>
+        <Box borderTop="1px solid rgba(56, 54, 52, 0.08)"></Box>
       </Container>
-    </HomePageContainer>
+      <HomePageContainer>
+        <Container>
+          <HomePageTitle title="Bonus program" icon={BonusIcon} />
+          <BonusProgramContainer>
+            <BlockWrapper>
+              <Dashboard maxDiscountingValue={1000} cutomerCurrentValue={426} />
+              <SignUp />
+            </BlockWrapper>
+          </BonusProgramContainer>
+        </Container>
+      </HomePageContainer>
+      <Container>
+        <Box borderTop="1px solid rgba(56, 54, 52, 0.08)"></Box>
+      </Container>
+    </>
   );
 };
 

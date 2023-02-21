@@ -12,6 +12,6 @@ export const HomeContainer = styled("div")`
     padding-top: 80px;
     padding-bottom: 80px;
 
-    border-bottom: 1px solid rgba(56, 54, 52, 0.08);
+    /* border-bottom: 1px solid rgba(56, 54, 52, 0.08); */
   }
 `;

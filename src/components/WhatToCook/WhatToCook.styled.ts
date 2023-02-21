@@ -92,7 +92,7 @@ const SmallCard = styled("div")`
   border-radius: 24px;
 
   ${theme.mq.mobileOnly} {
-    height: 160px;
+    height: 184px;
   }
 
   ${theme.mq.tabletOnly} {
@@ -122,7 +122,12 @@ export const CardOtherRecipes = styled(SmallCard)`
 `;
 
 export const CardSubscribeForRecipes = styled(SmallCard)`
+  padding: 32px 48px;
   background-color: #edeae7;
+
+  ${theme.mq.mobileOnly} {
+    padding: 16px 32px;
+  }
 `;
 
 // export const ReceipeTitleWrapper = styled("div")`
@@ -161,4 +166,30 @@ export const ReceipeAuthor = styled("p")`
     font-size: 9px;
     line-height: 1.777;
   }
+`;
+
+export const Label = styled("label")`
+  font-size: 20px;
+  line-height: 1.4;
+
+  color: ${(p) => p.theme.colors.mainText};
+
+  ${theme.mq.mobileOnly} {
+    font-size: 17px;
+    line-height: 1.647;
+  }
+`;
+
+export const Input = styled("input")`
+  width: 100%;
+  padding: 13px 17px;
+  margin-top: ${(p) => p.theme.space[3]};
+
+  font-size: ${(p) => p.theme.fontSizes.s};
+  line-height: 1.125;
+  border: none;
+
+  color: ${(p) => p.theme.colors.mainText};
+
+  border-radius: 10px;
 `;
