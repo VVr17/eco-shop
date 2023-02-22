@@ -23,7 +23,7 @@ import { Button } from "components/UIkit";
 import { useWindowSize } from "hooks/useWindowSize";
 
 const WhatToCook = () => {
-  const { isDesktop, isMobile, isTablet } = useWindowSize();
+  const { isMobile } = useWindowSize();
 
   return (
     <>
