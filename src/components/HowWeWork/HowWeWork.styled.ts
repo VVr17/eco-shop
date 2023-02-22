@@ -1,11 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "constants/theme";
-// import {
-//   ArrowLeftDownIcon,
-//   ArrowRightUpIcon,
-//   ArrowRightDownIcon,
-// } from "assets/icons/homePageIcons";
-// import arrow from "assets/icons/homePageIcons/arrow-right-up.svg";
+import HomePageTitle from "components/HomePageTitle";
 
 export const List = styled("ul")`
   height: 100%;
@@ -14,6 +9,7 @@ export const List = styled("ul")`
   row-gap: 24px;
 
   ${theme.mq.desktop} {
+    margin-top: 80px;
     height: 170px;
     flex-direction: row;
     justify-content: space-between;
@@ -37,17 +33,6 @@ export const Item = styled("li")`
 
     ${theme.mq.desktop} {
       align-self: flex-end;
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        right: -30px;
-        width: 100%;
-        height: 100%;
-
-        /* background-color: grey; */
-      }
     }
   }
 `;
@@ -80,5 +65,29 @@ export const Text = styled("p")`
   ${theme.mq.mobileOnly} {
     font-size: 14px;
     line-height: 1.42;
+  }
+`;
+
+export const ArrowWrapper = styled("div")<{
+  width: string;
+  right?: string;
+  left?: string;
+  top?: string;
+  bottom?: string;
+}>`
+  position: absolute;
+
+  ${({ right, left, top, bottom, width }) => {
+    return css`
+      left: ${left};
+      right: ${right};
+      top: ${top};
+      bottom: ${bottom};
+      width: ${width};
+    `;
+  }};
+
+  @media screen and (max-width: 340px) {
+    display: none;
   }
 `;

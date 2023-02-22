@@ -8,20 +8,25 @@ import {
   GatheringIcon,
   PackagingIcon,
   TransportationIcon,
+  ArrowLeftDownIcon,
+  ArrowRightDownIcon,
+  ArrowRightUpLargeIcon,
+  ArrowRightDownLargeIcon,
+  ArrowLeftDownLargeIcon,
 } from "assets/icons/homePageIcons";
-import { Item, Label, List, Meta, Text } from "./HowWeWork.styled";
+import {
+  ArrowWrapper,
+  Item,
+  Label,
+  List,
+  Meta,
+  Text,
+} from "./HowWeWork.styled";
 import { useWindowSize } from "hooks/useWindowSize";
 
-import {
-  ArrowLeftDownIcon,
-  ArrowRightUpIcon,
-  ArrowRightDownIcon,
-} from "assets/icons/homePageIcons";
-
 const HowWeWork = () => {
-  const { isMobile } = useWindowSize();
+  const { isMobile, isTablet, isDesktop } = useWindowSize();
 
-  console.log(ArrowRightUpIcon);
   return (
     <>
       <Container>
@@ -31,6 +36,7 @@ const HowWeWork = () => {
         <Container>
           <HomePageTitle title="How we work" icon={HowWeWorkIcon} />
           <List>
+            {/*  ITEM 1 */}
             <Item>
               <GatheringIcon
                 width={isMobile ? 48 : 83}
@@ -40,8 +46,24 @@ const HowWeWork = () => {
                 <Label>Gathering</Label>
                 <Text>Picking fresh plants from all over the world</Text>
               </Meta>
+              {isDesktop && (
+                <ArrowWrapper width="100px" right="-65px" bottom="0">
+                  <ArrowRightUpLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isTablet && (
+                <ArrowWrapper width="100px" right="-150px" bottom="-15px">
+                  <ArrowRightDownLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isMobile && (
+                <ArrowWrapper width="60px" right="-60px" bottom="0">
+                  <ArrowRightDownIcon />
+                </ArrowWrapper>
+              )}
             </Item>
 
+            {/*  ITEM 2 */}
             <Item>
               <TransportationIcon
                 width={isMobile ? 54 : 99}
@@ -51,8 +73,24 @@ const HowWeWork = () => {
                 <Label>Transportation</Label>
                 <Text>Select the best and transport it to our bases</Text>
               </Meta>
+              {isDesktop && (
+                <ArrowWrapper width="100px" right="-80px" top="-20px">
+                  <ArrowRightDownLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isTablet && (
+                <ArrowWrapper width="100px" left="-140px" bottom="-20px">
+                  <ArrowLeftDownLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isMobile && (
+                <ArrowWrapper width="60px" left="-80px" bottom="-25px">
+                  <ArrowLeftDownIcon />
+                </ArrowWrapper>
+              )}
             </Item>
 
+            {/*  ITEM 3 */}
             <Item>
               <PackagingIcon
                 width={isMobile ? 52 : 100}
@@ -62,8 +100,24 @@ const HowWeWork = () => {
                 <Label>Packaging</Label>
                 <Text>Carefully pack your order in ecological packaging</Text>
               </Meta>
+              {isDesktop && (
+                <ArrowWrapper width="100px" right="-65px" bottom="0">
+                  <ArrowRightUpLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isTablet && (
+                <ArrowWrapper width="100px" right="-135px" bottom="-15px">
+                  <ArrowRightDownLargeIcon />
+                </ArrowWrapper>
+              )}
+              {isMobile && (
+                <ArrowWrapper width="60px" right="-55px" bottom="-10px">
+                  <ArrowRightDownIcon />
+                </ArrowWrapper>
+              )}
             </Item>
 
+            {/*  ITEM 4 */}
             <Item>
               <DeliveryIcon
                 width={isMobile ? 50 : 89}
