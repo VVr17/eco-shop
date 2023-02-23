@@ -1,4 +1,12 @@
 import { FC } from "react";
+import {
+  Article,
+  Meta,
+  PromoCode,
+  Text,
+  Title,
+  TitleWrapper,
+} from "./PromoCodeBanner.styled";
 
 interface IPromoCodeBannerProps {
   title: string;
@@ -14,16 +22,15 @@ const PromoCodeBanner: FC<IPromoCodeBannerProps> = ({
   labelImage,
 }) => {
   return (
-    <div>
-      <div>
-        <div>
-          <h1>{title}</h1>
-          <p>{promocode}</p>
-        </div>
-        <p>{text}</p>
-      </div>
-      <div>Ribbon Label image</div>
-    </div>
+    <Article labelImageUrl={labelImage}>
+      <Meta>
+        <TitleWrapper>
+          <Title>{title}</Title>
+          <PromoCode>{promocode}</PromoCode>
+        </TitleWrapper>
+        <Text>{text}</Text>
+      </Meta>
+    </Article>
   );
 };
 

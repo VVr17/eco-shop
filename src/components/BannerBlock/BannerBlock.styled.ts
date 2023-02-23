@@ -1,5 +1,6 @@
-import { theme } from "constants/theme";
 import styled from "styled-components";
+import visuallyHiddenCSS from "utils/visuallyHidden";
+import { theme } from "constants/theme";
 
 export const BannerContainer = styled("div")`
   margin: 0 auto;
@@ -16,6 +17,13 @@ export const BannerContainer = styled("div")`
 
   ${theme.mq.desktop} {
     width: ${({ theme }) => theme.breakpoints[2]};
+  }
+
+  @media screen and (max-width: calc(${({ theme }) =>
+      theme.breakpoints[0]} - 1px)) {
+    & {
+      ${visuallyHiddenCSS()}
+    }
   }
 `;
 
@@ -87,7 +95,7 @@ export const LongBanner = styled("div")`
 export const ShortBanner = styled("div")`
   height: 100%;
 
-  background-color: azure;
+  /* background-color: azure; */
 
   ${theme.mq.mobileOnly} {
   }
@@ -109,6 +117,13 @@ export const Dots = styled("ul")`
 
   ${theme.mq.tablet} {
     display: none;
+  }
+
+  @media screen and (max-width: calc(${({ theme }) =>
+      theme.breakpoints[0]} - 1px)) {
+    & {
+      ${visuallyHiddenCSS()}
+    }
   }
 `;
 

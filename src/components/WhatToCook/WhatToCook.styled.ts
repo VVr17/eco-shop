@@ -62,6 +62,11 @@ export const Recipe = styled(CardItem)<{
     background-position: top 50% right 20px;
     align-items: flex-start;
   }
+
+  @media screen and (max-width: ${(p) => p.theme.breakpoints[0]}) {
+    padding-right: 24px;
+    background-image: none;
+  }
 `;
 
 export const RestCardsContainer = styled(CardItem)`

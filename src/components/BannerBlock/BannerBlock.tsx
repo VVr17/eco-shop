@@ -13,8 +13,8 @@ import {
 import { useSwipeable } from "react-swipeable";
 import InteractiveBanner from "./templates/InteractiveBanner";
 import PromoCodeBanner from "./templates/PromoCodeBanner";
-
 import organicBarImage from "assets/images/banner/organic-bar.png";
+import labelRibbon10Percent from "assets/images/banner/label-ribbon-10-percent.png";
 
 const BannerBlock = () => {
   const [pos, setPos] = useState<1 | 2>(1);
@@ -49,7 +49,12 @@ const BannerBlock = () => {
             </Item>
             <Item>
               <ShortBanner>
-                <PromoCodeBanner />
+                <PromoCodeBanner
+                  title="Spring promo code:"
+                  text="Gives 10% off all seasonal fruits on your first purchase"
+                  promocode="FRUITS2021"
+                  labelImage={labelRibbon10Percent.src}
+                />
               </ShortBanner>
             </Item>
           </List>
