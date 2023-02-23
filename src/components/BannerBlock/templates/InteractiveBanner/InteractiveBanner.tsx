@@ -1,5 +1,4 @@
 import { Button } from "components/UIkit";
-import { StaticImageData } from "next/image";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { Article, Meta, Text, Title } from "./InteractiveBanner.styled";

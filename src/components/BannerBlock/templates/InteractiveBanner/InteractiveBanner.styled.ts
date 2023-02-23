@@ -7,24 +7,25 @@ export const Article = styled("article")<{
 }>`
   width: 100%;
   height: 100%;
+  padding: 32px;
 
   border-radius: 24px;
-  /* background: linear-gradient(
-      to right,
-      rgba(237, 234, 231, 0.9),
-      rgba(237, 234, 231, 0.9)
-    ),
-    url(${({ backgroundImage }) => backgroundImage}); */
 
-  /* background-image: url(${({ backgroundImage }) => backgroundImage}); */
+  background: linear-gradient(
+      to right,
+      ${({ backgroundColor }) => backgroundColor + "cc"},
+      ${({ backgroundColor }) => backgroundColor + "cc"}
+    ),
+    url(${({ backgroundImage }) => backgroundImage});
 
   background-repeat: no-repeat;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  background-position: right;
-  background-size: 90%;
+  background-position: right 0 bottom -5px;
+  background-size: 80%;
 
   ${theme.mq.desktop} {
     padding: 80px 440px 80px 130px;
+    background-image: url(${({ backgroundImage }) => backgroundImage});
     background-size: contain;
   }
 `;
@@ -39,13 +40,21 @@ export const Meta = styled("div")`
 
 export const Title = styled("h1")<{ color: string }>`
   color: ${({ color }) => color};
-  font-size: 56px;
+
   line-height: 1.21;
+  font-size: 36px;
+  ${theme.mq.desktop} {
+    font-size: 56px;
+  }
 `;
 
 export const Text = styled("p")<{ color: string }>`
   color: ${({ color }) => color};
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.4;
-  /* font-weight: 600; */
+  font-weight: 600;
+
+  ${theme.mq.tablet} {
+    font-size: 20px;
+  }
 `;
