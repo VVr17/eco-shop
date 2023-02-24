@@ -7,7 +7,7 @@ checkout layout jumps when clicking by cart increment or submit
 checkout page server render - countries 
 
 
-
+cart - subtotal - toFixed(2)
 
 
 id and name props to Button

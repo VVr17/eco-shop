@@ -51,7 +51,7 @@ const Modal: FC<IModalProps> = ({
 
   return createPortal(
     <Backdrop onClick={onBackdropClick}>
-      <ModalContainer maxWidth={modalWidth}>{children}</ModalContainer>
+      <ModalContainer>{children}</ModalContainer>
     </Backdrop>,
     document.querySelector("#modal-root") as Element
   );
