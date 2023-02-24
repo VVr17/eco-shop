@@ -15,6 +15,7 @@ export const ModalContainer = styled("div")`
   /* padding: 50px 56px; */
 
   background-color: ${(p) => p.theme.colors.cardBackground};
+  box-shadow: 0px 24px 48px -12px rgba(56, 54, 52, 0.08);
 `;
 
 export const TooltipContainer = styled("div")<{

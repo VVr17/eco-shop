@@ -8,8 +8,11 @@ import {
   Label,
   Main,
   Socials,
+  SubmitWrapper,
   Title,
   ToLogin,
+  ToLoginLink,
+  ToLoginText,
   ToolBar,
 } from "./RegisterForm.styled";
 import { AiOutlineGoogle } from "react-icons/ai";
@@ -58,16 +61,21 @@ const RegisterForm = () => {
       <Footer>
         <FormContainer>
           <ToolBar>
-            <Button
-              type="submit"
-              text="Sign up"
-              backgroundColor="mainText"
-              color="#F5F3F1"
-              pt="14px"
-              pb="14px"
-              fontSize="16px"
-            />
-            <p>or</p>
+            <SubmitWrapper>
+              <Button
+                type="submit"
+                text="Sign up"
+                backgroundColor="mainText"
+                color="#F5F3F1"
+                pt="14px"
+                pb="14px"
+                fontSize="16px"
+                width="100%"
+              />
+            </SubmitWrapper>
+
+            {/* <p>or</p> */}
+
             <Socials>
               <Button
                 text="Google"
@@ -77,12 +85,10 @@ const RegisterForm = () => {
                 backgroundColor="transparent"
                 color="secondaryAccent"
                 borderColor="secondaryAccent"
-                pl="37px"
-                pr="37px"
-                pt="14px"
-                pb="14px"
                 fontSize="16px"
+                width="100%"
               />
+
               <Button
                 text="Facebook"
                 iconLeft={FaFacebookF}
@@ -91,17 +97,14 @@ const RegisterForm = () => {
                 backgroundColor="transparent"
                 color="#3B5998"
                 borderColor="#3B5998"
-                pl="26px"
-                pr="32px"
-                pt="14px"
-                pb="14px"
                 fontSize="16px"
+                width="100%"
               />
             </Socials>
           </ToolBar>
           <ToLogin>
-            <p>Have an account yet?</p>
-            <Link href="/">Log in</Link>
+            <ToLoginText>Have an account yet?</ToLoginText>
+            <ToLoginLink href="/">Log in</ToLoginLink>
           </ToLogin>
         </FormContainer>
       </Footer>
@@ -110,3 +113,18 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+
+/*
+
+- date and password icons
+- date picker
+- password visible
+- responsive form
+
+- react hook form  + validation
+
+- login form 
+- link route to login form 
+- responsive login form
+
+*/
