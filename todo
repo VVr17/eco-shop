@@ -1,6 +1,6 @@
 /* 
 
-
+Homepage -> hidden h1 title
 
 
 checkout layout jumps when clicking by cart increment or submit
@@ -31,5 +31,14 @@ cart -> close on button "to checkout"
 
 
 ModalBody change for ...Wrapper
+
+
+
+
+//-------------------------------
+
+Vira!
+
+Logo - height = 30px !!
 
 */
