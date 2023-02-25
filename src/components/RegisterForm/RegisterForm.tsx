@@ -1,5 +1,6 @@
 import { Button } from "components/UIkit";
 import {
+  DatePickerInput,
   Fields,
   Footer,
   Form,
@@ -17,9 +18,13 @@ import {
 } from "./RegisterForm.styled";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
-import Link from "next/link";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 const RegisterForm = () => {
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+
   return (
     <Form>
       <Main>
@@ -28,32 +33,37 @@ const RegisterForm = () => {
           <Fields>
             <Label>
               First name
-              <Input />
+              <Input type="text" />
             </Label>
 
             <Label>
               Last name
-              <Input />
+              <Input type="text" />
             </Label>
 
             <Label>
               Phone
-              <Input />
+              <Input type="tel" />
             </Label>
 
             <Label>
               Email
-              <Input />
+              <Input type="email" />
             </Label>
 
             <Label>
               Birth date
-              <Input />
+              {/* <Input type="date" /> */}
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                customInput={<DatePickerInput />}
+              />
             </Label>
 
             <Label>
               Password
-              <Input />
+              <Input type="password" />
             </Label>
           </Fields>
         </FormContainer>

@@ -110,3 +110,15 @@ export const ToLoginText = styled("p")``;
 export const ToLoginLink = styled(Link)`
   text-decoration: underline;
 `;
+
+export const DatePickerInput = styled("input")`
+  /* display: block; */
+  width: 100%;
+  padding: 14px 50px 14px 16px;
+  font-size: 14px;
+  line-height: 1.14;
+  color: ${(p) => p.theme.colors.mainText};
+
+  border: 1px solid ${(p) => p.theme.colors.input};
+  border-radius: 10px;
+`;
