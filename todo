@@ -1,8 +1,8 @@
 /* 
 
+Homepage -> hidden h1 title
 
 
-Cart redux-persistor
 checkout layout jumps when clicking by cart increment or submit
 checkout page server render - countries 
 
@@ -31,5 +31,14 @@ cart -> close on button "to checkout"
 
 
 ModalBody change for ...Wrapper
+
+
+
+
+//-------------------------------
+
+Vira!
+
+Logo - height = 30px !!
 
 */

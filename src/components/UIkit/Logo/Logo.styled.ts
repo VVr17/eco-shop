@@ -7,7 +7,7 @@ export const LogoWrapper = styled(Link)`
   padding: 0;
   border: none;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.mainBackground};
+  /* background-color: ${({ theme }) => theme.colors.mainBackground}; */
   border-radius: 10px;
   transition: background-color ${(p) => p.theme.transitionTiming};
   width: 83px;
