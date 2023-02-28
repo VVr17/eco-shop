@@ -43,18 +43,20 @@ export const Fields = styled("div")`
 `;
 
 export const Label = styled("label")`
+  position: relative;
   font-size: 13px;
   line-height: 1.2;
   color: rgba(56, 54, 52, 0.8);
 
   display: flex;
   flex-direction: column;
-  row-gap: ${(p) => p.theme.space[2]};
+  /* row-gap: ${(p) => p.theme.space[2]}; */
 
   flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
 `;
 
 export const Input = styled("input")`
+  margin-top: ${(p) => p.theme.space[2]};
   padding: 14px 50px 14px 16px;
   font-size: 14px;
   line-height: 1.14;
@@ -62,6 +64,11 @@ export const Input = styled("input")`
 
   border: 1px solid ${(p) => p.theme.colors.input};
   border-radius: 10px;
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid ${(p) => p.theme.colors.accent};
+  }
 `;
 
 export const ToolBar = styled("div")`
@@ -112,7 +119,7 @@ export const ToLoginLink = styled(Link)`
 `;
 
 export const DatePickerInput = styled("input")`
-  /* display: block; */
+  margin-top: ${(p) => p.theme.space[2]};
   width: 100%;
   padding: 14px 50px 14px 16px;
   font-size: 14px;
@@ -121,4 +128,33 @@ export const DatePickerInput = styled("input")`
 
   border: 1px solid ${(p) => p.theme.colors.input};
   border-radius: 10px;
+
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid ${(p) => p.theme.colors.accent};
+  }
+
+  &::after {
+    content: FiCalendar;
+  }
+`;
+
+export const IconWrapper = styled("div")`
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  width: 18px;
+  height: 18px;
+`;
+
+export const ErrorMessage = styled("p")`
+  padding-top: 3px;
+  padding-left: ${(p) => p.theme.space[3]};
+
+  font-size: ${(p) => p.theme.fontSizes.xs};
+
+  color: ${(p) => p.theme.colors.secondaryAccent};
 `;

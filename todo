@@ -1,39 +1,27 @@
-/* 
+/\*
 
 Homepage -> hidden h1 title
 
-
-checkout layout jumps when clicking by cart increment or submit
-checkout page server render - countries 
-
+checkout layout jumps when clicking by cart increment or submit (seems problem is row gap for flex childs)
+checkout page server render - countries
 
 cart - subtotal - toFixed(2)
-
 
 id and name props to Button
 
 Modal tooltip - change viewport -> rebuild modal position
 
-if viewport small tooltip positioning - center 
+if viewport small tooltip positioning - center
 
+modal height in Tablet
 
-modal height in Tablet 
-
-
-mobile and table cart modal???  
-
+mobile and table cart modal???
 
 crossbrowser scroll
 
-
-
 cart -> close on button "to checkout"
 
-
 ModalBody change for ...Wrapper
-
-
-
 
 //-------------------------------
 
@@ -41,4 +29,4 @@ Vira!
 
 Logo - height = 30px !!
 
-*/
+\*/

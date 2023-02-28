@@ -1,10 +1,14 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "components/UIkit";
 import {
   DatePickerInput,
+  ErrorMessage,
   Fields,
   Footer,
   Form,
   FormContainer,
+  IconWrapper,
   Input,
   Label,
   Main,
@@ -18,52 +22,112 @@ import {
 } from "./RegisterForm.styled";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { FiCalendar } from "react-icons/fi";
+import { BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import { Controller, FieldValues, useForm } from "react-hook-form";
+import loginValidationSchema from "./loginValidationSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const RegisterForm = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  // const [startDate, setStartDate] = useState<Date | null>(null);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginValidationSchema),
+  });
+
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Main>
         <FormContainer>
           <Title>Create account</Title>
           <Fields>
             <Label>
               First name
-              <Input type="text" />
+              <Input type="text" {...register("firstname")} />
+              <ErrorMessage>{errors.firstname?.message as string}</ErrorMessage>
             </Label>
 
             <Label>
               Last name
-              <Input type="text" />
+              <Input type="text" {...register("lastname")} />
+              <ErrorMessage>{errors.lastname?.message as string}</ErrorMessage>
             </Label>
 
             <Label>
               Phone
-              <Input type="tel" />
+              <Input type="tel" {...register("tel")} />
+              <ErrorMessage>{errors.tel?.message as string}</ErrorMessage>
             </Label>
 
             <Label>
               Email
-              <Input type="email" />
+              <Input type="email" {...register("email")} />
+              <ErrorMessage>{errors.email?.message as string}</ErrorMessage>
             </Label>
 
             <Label>
               Birth date
               {/* <Input type="date" /> */}
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                customInput={<DatePickerInput />}
+              <Controller
+                control={control}
+                name="birthdate"
+                render={({ field: { onChange, onBlur, value, ref } }) => (
+                  <>
+                    <DatePicker
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      selected={value}
+                      // selected={startDate}
+                      // onChange={(date) => setStartDate(date)}
+                      customInput={<DatePickerInput type="text" />}
+                      dateFormat="dd.MM.yyyy"
+                      name="birthdate"
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      minDate={new Date("1921-03-03")}
+                      maxDate={new Date()}
+                    />
+                    <ErrorMessage>
+                      {errors.birthdate?.message as string}
+                    </ErrorMessage>
+                  </>
+                )}
               />
+              <IconWrapper>
+                <FiCalendar size="18px" color="#383634" />
+              </IconWrapper>
             </Label>
 
             <Label>
               Password
-              <Input type="password" />
+              <Input
+                type={isPasswordVisible ? "text" : "password"}
+                {...register("password")}
+              />
+              <ErrorMessage>{errors.password?.message as string}</ErrorMessage>
+              <IconWrapper>
+                <BsEyeSlash
+                  size="18px"
+                  color="#383634"
+                  onMouseDown={() => {
+                    setIsPasswordVisible(true);
+                  }}
+                  onMouseUp={() => {
+                    setIsPasswordVisible(false);
+                  }}
+                />
+              </IconWrapper>
             </Label>
           </Fields>
         </FormContainer>
@@ -126,12 +190,10 @@ export default RegisterForm;
 
 /*
 
-- date and password icons
-- date picker
-- password visible
-- responsive form
 
-- react hook form  + validation
+
+- password visible- responsive form
+
 
 - login form 
 - link route to login form 
