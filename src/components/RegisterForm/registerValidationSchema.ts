@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const loginValidationSchema = yup.object({
+const registerValidationSchema = yup.object({
   firstname: yup
     .string()
     .max(50, "Required maximum 50 symbols")
@@ -24,4 +24,4 @@ const loginValidationSchema = yup.object({
     .matches(/[0-9a-zA-Z]/, "Only numbers and letters"),
 });
 
-export default loginValidationSchema;
+export default registerValidationSchema;

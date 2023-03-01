@@ -1,11 +1,9 @@
 import { theme } from "constants/theme";
-import Link from "next/link";
 import styled from "styled-components";
 
 export const Fields = styled("div")`
   display: flex;
-  flex-wrap: wrap;
-  column-gap: ${(p) => p.theme.space[4]};
+  flex-direction: column;
   row-gap: ${(p) => p.theme.space[3]};
 `;
 
@@ -35,9 +33,9 @@ export const ToolBar = styled("div")`
     }
   }
 
-  ${theme.mq.desktop} {
+  /* ${theme.mq.desktop} {
     flex-direction: row;
-  }
+  } */
 `;
 
 export const SubmitWrapper = styled("div")`
@@ -65,7 +63,7 @@ export const Socials = styled("div")`
   }
 `;
 
-export const ToLogin = styled("div")`
+export const ToRegister = styled("div")`
   display: flex;
   justify-content: center;
   column-gap: ${(p) => p.theme.space[3]};
@@ -79,36 +77,9 @@ export const ToLogin = styled("div")`
   }
 `;
 
-export const ToLoginText = styled("p")``;
+export const ToRegisterText = styled("p")``;
 
-export const ToLoginLink = styled("p")`
+export const ToRegisterLink = styled("p")`
   cursor: pointer;
   text-decoration: underline;
-`;
-
-export const DatePickerInput = styled("input")`
-  margin-top: ${(p) => p.theme.space[2]};
-  width: 100%;
-  padding: 14px 50px 14px 16px;
-  font-size: 14px;
-  line-height: 1.14;
-  color: ${(p) => p.theme.colors.mainText};
-
-  border: 1px solid ${(p) => p.theme.colors.input};
-  border-radius: 10px;
-
-  cursor: pointer;
-
-  &:focus,
-  &:focus-visible {
-    outline: 1px solid ${(p) => p.theme.colors.accent};
-  }
-
-  &::after {
-    content: FiCalendar;
-  }
-
-  /* ${theme.mq.mobileOnly} {
-    padding: 11px 50px 11px 16px;
-  } */
 `;

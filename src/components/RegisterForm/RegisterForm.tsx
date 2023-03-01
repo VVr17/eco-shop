@@ -1,20 +1,14 @@
+import FormBody from "components/UIkit/FormElements/FormBody";
+import FormFooter from "components/UIkit/FormElements/FormFooter";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import loginValidationSchema from "./registerValidationSchema";
 import { Button } from "components/UIkit";
 import {
   DatePickerInput,
-  ErrorMessage,
   Fields,
-  Footer,
-  Form,
-  FormContainer,
-  IconWrapper,
-  Input,
-  Label,
-  Main,
   Socials,
   SubmitWrapper,
-  Title,
   ToLogin,
   ToLoginLink,
   ToLoginText,
@@ -24,14 +18,25 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 import { FiCalendar } from "react-icons/fi";
 import { BsEyeSlash } from "react-icons/bs";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
-import loginValidationSchema from "./loginValidationSchema";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import {
+  ErrorMessage,
+  Form,
+  IconWrapper,
+  Input,
+  Label,
+  RegisterLabel,
+} from "components/UIkit/FormElements/FormElements.styled";
 
-const RegisterForm = () => {
-  // const [startDate, setStartDate] = useState<Date | null>(null);
+interface IRegisterFormProps {
+  toLoginForm: () => void;
+}
+
+const RegisterForm: FC<IRegisterFormProps> = ({ toLoginForm }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const router = useRouter();
   const {
@@ -49,143 +54,140 @@ const RegisterForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Main>
-        <FormContainer>
-          <Title>Create account</Title>
-          <Fields>
-            <Label>
-              First name
-              <Input type="text" {...register("firstname")} />
-              <ErrorMessage>{errors.firstname?.message as string}</ErrorMessage>
-            </Label>
+    <Form onSubmit={handleSubmit(onSubmit)} width={["300px", "500px", "824px"]}>
+      <FormBody title="Create account">
+        <Fields>
+          <RegisterLabel>
+            First name
+            <Input type="text" {...register("firstname")} />
+            <ErrorMessage>{errors.firstname?.message as string}</ErrorMessage>
+          </RegisterLabel>
 
-            <Label>
-              Last name
-              <Input type="text" {...register("lastname")} />
-              <ErrorMessage>{errors.lastname?.message as string}</ErrorMessage>
-            </Label>
+          <RegisterLabel>
+            Last name
+            <Input type="text" {...register("lastname")} />
+            <ErrorMessage>{errors.lastname?.message as string}</ErrorMessage>
+          </RegisterLabel>
 
-            <Label>
-              Phone
-              <Input type="tel" {...register("tel")} />
-              <ErrorMessage>{errors.tel?.message as string}</ErrorMessage>
-            </Label>
+          <RegisterLabel>
+            Phone
+            <Input type="tel" {...register("tel")} />
+            <ErrorMessage>{errors.tel?.message as string}</ErrorMessage>
+          </RegisterLabel>
 
-            <Label>
-              Email
-              <Input type="email" {...register("email")} />
-              <ErrorMessage>{errors.email?.message as string}</ErrorMessage>
-            </Label>
+          <RegisterLabel>
+            Email
+            <Input type="email" {...register("email")} />
+            <ErrorMessage>{errors.email?.message as string}</ErrorMessage>
+          </RegisterLabel>
 
-            <Label>
-              Birth date
-              {/* <Input type="date" /> */}
-              <Controller
-                control={control}
-                name="birthdate"
-                render={({ field: { onChange, onBlur, value, ref } }) => (
-                  <>
-                    <DatePicker
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      selected={value}
-                      // selected={startDate}
-                      // onChange={(date) => setStartDate(date)}
-                      customInput={<DatePickerInput type="text" />}
-                      dateFormat="dd.MM.yyyy"
-                      name="birthdate"
-                      peekNextMonth
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      minDate={new Date("1921-03-03")}
-                      maxDate={new Date()}
-                    />
-                    <ErrorMessage>
-                      {errors.birthdate?.message as string}
-                    </ErrorMessage>
-                  </>
-                )}
+          <RegisterLabel>
+            Birth date
+            {/* <Input type="date" /> */}
+            <Controller
+              control={control}
+              name="birthdate"
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <>
+                  <DatePicker
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    selected={value}
+                    // selected={startDate}
+                    // onChange={(date) => setStartDate(date)}
+                    customInput={<DatePickerInput type="text" />}
+                    dateFormat="dd.MM.yyyy"
+                    name="birthdate"
+                    peekNextMonth
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    minDate={new Date("1921-03-03")}
+                    maxDate={new Date()}
+                  />
+                  <ErrorMessage>
+                    {errors.birthdate?.message as string}
+                  </ErrorMessage>
+                </>
+              )}
+            />
+            <IconWrapper>
+              <FiCalendar size="18px" color="#383634" />
+            </IconWrapper>
+          </RegisterLabel>
+
+          <RegisterLabel>
+            Password
+            <Input
+              type={isPasswordVisible ? "text" : "password"}
+              {...register("password")}
+            />
+            <ErrorMessage>{errors.password?.message as string}</ErrorMessage>
+            <IconWrapper>
+              <BsEyeSlash
+                size="18px"
+                color="#383634"
+                onMouseDown={() => {
+                  setIsPasswordVisible(true);
+                }}
+                onMouseUp={() => {
+                  setIsPasswordVisible(false);
+                }}
               />
-              <IconWrapper>
-                <FiCalendar size="18px" color="#383634" />
-              </IconWrapper>
-            </Label>
+            </IconWrapper>
+          </RegisterLabel>
+        </Fields>
+      </FormBody>
+      <FormFooter>
+        <ToolBar>
+          <SubmitWrapper>
+            <Button
+              type="submit"
+              text="Sign up"
+              backgroundColor="mainText"
+              color="#F5F3F1"
+              pt="14px"
+              pb="14px"
+              fontSize="16px"
+              width="100%"
+            />
+          </SubmitWrapper>
 
-            <Label>
-              Password
-              <Input
-                type={isPasswordVisible ? "text" : "password"}
-                {...register("password")}
-              />
-              <ErrorMessage>{errors.password?.message as string}</ErrorMessage>
-              <IconWrapper>
-                <BsEyeSlash
-                  size="18px"
-                  color="#383634"
-                  onMouseDown={() => {
-                    setIsPasswordVisible(true);
-                  }}
-                  onMouseUp={() => {
-                    setIsPasswordVisible(false);
-                  }}
-                />
-              </IconWrapper>
-            </Label>
-          </Fields>
-        </FormContainer>
-      </Main>
-      <Footer>
-        <FormContainer>
-          <ToolBar>
-            <SubmitWrapper>
-              <Button
-                type="submit"
-                text="Sign up"
-                backgroundColor="mainText"
-                color="#F5F3F1"
-                pt="14px"
-                pb="14px"
-                fontSize="16px"
-                width="100%"
-              />
-            </SubmitWrapper>
+          {/* <p>or</p> */}
 
-            {/* <p>or</p> */}
+          <Socials>
+            <Button
+              text="Google"
+              iconLeft={AiOutlineGoogle}
+              iconSize="20px"
+              iconMargin="16px"
+              backgroundColor="transparent"
+              color="secondaryAccent"
+              borderColor="secondaryAccent"
+              fontSize="16px"
+              width="100%"
+            />
 
-            <Socials>
-              <Button
-                text="Google"
-                iconLeft={AiOutlineGoogle}
-                iconSize="20px"
-                iconMargin="16px"
-                backgroundColor="transparent"
-                color="secondaryAccent"
-                borderColor="secondaryAccent"
-                fontSize="16px"
-                width="100%"
-              />
-
-              <Button
-                text="Facebook"
-                iconLeft={FaFacebookF}
-                iconSize="20px"
-                iconMargin="16px"
-                backgroundColor="transparent"
-                color="#3B5998"
-                borderColor="#3B5998"
-                fontSize="16px"
-                width="100%"
-              />
-            </Socials>
-          </ToolBar>
-          <ToLogin>
-            <ToLoginText>Have an account yet?</ToLoginText>
-            <ToLoginLink href="/">Log in</ToLoginLink>
-          </ToLogin>
-        </FormContainer>
-      </Footer>
+            <Button
+              text="Facebook"
+              iconLeft={FaFacebookF}
+              iconSize="20px"
+              iconMargin="16px"
+              backgroundColor="transparent"
+              color="#3B5998"
+              borderColor="#3B5998"
+              fontSize="16px"
+              width="100%"
+            />
+          </Socials>
+        </ToolBar>
+        <ToLogin>
+          <ToLoginText>Have an account yet?</ToLoginText>
+          <ToLoginLink role="link" onClick={toLoginForm}>
+            Log in
+          </ToLoginLink>
+        </ToLogin>
+      </FormFooter>
     </Form>
   );
 };
@@ -193,12 +195,6 @@ const RegisterForm = () => {
 export default RegisterForm;
 
 /*
-
-
-
-- responsive form
-
-
 - login form 
 - link route to login form 
 - responsive login form
