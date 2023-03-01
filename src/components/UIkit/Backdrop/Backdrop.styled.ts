@@ -1,3 +1,4 @@
+import { theme } from "constants/theme";
 import styled from "styled-components";
 
 export const BackdropOverlay = styled("div")`
@@ -7,4 +8,8 @@ export const BackdropOverlay = styled("div")`
   width: 100%;
   height: 100%;
   background-color: rgba(56, 54, 52, 0.15);
+  overflow-y: auto;
+  /* ${theme.mq.tabletOnly} {
+    overflow-y: auto;
+  } */
 `;

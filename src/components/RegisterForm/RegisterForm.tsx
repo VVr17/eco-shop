@@ -28,11 +28,12 @@ import { useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import loginValidationSchema from "./loginValidationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 
 const RegisterForm = () => {
   // const [startDate, setStartDate] = useState<Date | null>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -42,7 +43,10 @@ const RegisterForm = () => {
     resolver: yupResolver(loginValidationSchema),
   });
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+    router.push("/");
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

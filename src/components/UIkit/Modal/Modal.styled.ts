@@ -16,6 +16,11 @@ export const ModalContainer = styled("div")`
 
   background-color: ${(p) => p.theme.colors.cardBackground};
   box-shadow: 0px 24px 48px -12px rgba(56, 54, 52, 0.08);
+
+  max-height: 100%;
+  /* ${theme.mq.tabletOnly} {
+    max-height: 100%;
+  } */
 `;
 
 export const TooltipContainer = styled("div")<{

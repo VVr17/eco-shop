@@ -1,31 +1,55 @@
+import { theme } from "constants/theme";
 import Link from "next/link";
 import styled from "styled-components";
 
 export const Form = styled("form")`
   width: 824px;
   color: ${(p) => p.theme.colors.mainText};
+
+  ${theme.mq.mobileOnly} {
+    width: 300px;
+  }
+
+  ${theme.mq.tabletOnly} {
+    width: 500px;
+  }
 `;
 
 export const Main = styled("div")`
-  padding-top: 50px;
+  padding-top: 35px;
   padding-bottom: 35px;
 
   background-color: ${(p) => p.theme.colors.cardBackground};
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
+
+  ${theme.mq.desktop} {
+    padding-top: 50px;
+  }
 `;
 
 export const Footer = styled("div")`
   padding-top: 30px;
-  padding-bottom: 50px;
+  padding-bottom: 35px;
   background-color: ${(p) => p.theme.colors.mainBackground};
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
+
+  ${theme.mq.desktop} {
+    padding-bottom: 50px;
+  }
 `;
 
 export const FormContainer = styled("div")`
   padding-left: 56px;
   padding-right: 56px;
+  margin-left: auto;
+  margin-right: auto;
+
+  ${theme.mq.mobileOnly} {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 `;
 
 export const Title = styled("h2")`
@@ -33,6 +57,10 @@ export const Title = styled("h2")`
   font-weight: 700;
   font-size: 40px;
   line-height: 1.2;
+
+  ${theme.mq.mobileOnly} {
+    font-size: 24px;
+  }
 `;
 
 export const Fields = styled("div")`
@@ -50,9 +78,12 @@ export const Label = styled("label")`
 
   display: flex;
   flex-direction: column;
+  flex-basis: 100%;
   /* row-gap: ${(p) => p.theme.space[2]}; */
 
-  flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+  ${theme.mq.desktop} {
+    flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+  }
 `;
 
 export const Input = styled("input")`
@@ -64,7 +95,7 @@ export const Input = styled("input")`
 
   border: 1px solid ${(p) => p.theme.colors.input};
   border-radius: 10px;
-
+  width: 100%;
   &:focus,
   &:focus-visible {
     outline: 1px solid ${(p) => p.theme.colors.accent};
@@ -74,9 +105,11 @@ export const Input = styled("input")`
 export const ToolBar = styled("div")`
   position: relative;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  flex-direction: column;
   /* justify-content: center; */
   column-gap: ${(p) => p.theme.space[4]};
+  row-gap: ${(p) => p.theme.space[4]};
 
   &:after {
     content: "or";
@@ -88,18 +121,41 @@ export const ToolBar = styled("div")`
     font-size: 13px;
     line-height: 1.2;
     color: rgba(56, 54, 52, 0.8);
+
+    ${theme.mq.mobileOnly} {
+      /* display: none; */
+      top: 35%;
+    }
+  }
+
+  ${theme.mq.desktop} {
+    flex-direction: row;
   }
 `;
 
 export const SubmitWrapper = styled("div")`
   flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+
+  ${theme.mq.tabletOnly} {
+    flex-basis: 100%;
+  }
 `;
 
 export const Socials = styled("div")`
   display: flex;
   align-items: center;
   column-gap: 16px;
-  flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+
+  flex-basis: 100%;
+
+  ${theme.mq.mobileOnly} {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+
+  ${theme.mq.desktop} {
+    flex-basis: calc((100% - ${(p) => p.theme.space[4]}) / 2);
+  }
 `;
 
 export const ToLogin = styled("div")`
@@ -108,8 +164,12 @@ export const ToLogin = styled("div")`
   column-gap: ${(p) => p.theme.space[3]};
 
   margin-top: 32px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.067;
+
+  ${theme.mq.desktop} {
+    font-size: 15px;
+  }
 `;
 
 export const ToLoginText = styled("p")``;
@@ -139,13 +199,17 @@ export const DatePickerInput = styled("input")`
   &::after {
     content: FiCalendar;
   }
+
+  /* ${theme.mq.mobileOnly} {
+    padding: 11px 50px 11px 16px;
+  } */
 `;
 
 export const IconWrapper = styled("div")`
   cursor: pointer;
   position: absolute;
   right: 16px;
-  bottom: 14px;
+  bottom: 16px;
   width: 18px;
   height: 18px;
 `;
