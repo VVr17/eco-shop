@@ -192,7 +192,7 @@ export default RegisterForm;
 
 
 
-- password visible- responsive form
+- responsive form
 
 
 - login form 
