@@ -52,7 +52,11 @@ const LoginForm: FC<ILoginFormProps> = ({ toRegisterForm }) => {
       setLoginError(error.message);
       return;
     }
+
+    //Here can be your code for using User data
     console.log(data);
+    //Here can be your code for using User data
+
     setLoginError(null);
     // router.push("/");
   }
