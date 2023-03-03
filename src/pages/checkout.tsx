@@ -1,3 +1,4 @@
+import axios from "axios";
 import Box from "components/Box";
 import CheckoutData from "components/CheckoutData";
 import Container from "components/Container";
@@ -5,22 +6,39 @@ import Heading from "components/Heading";
 import Section from "components/Section";
 import Breadcrumb from "components/UIkit/Breadcrumb";
 import Head from "next/head";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { getCountries } from "services/countriesApi";
 import { ICountry } from "types/types";
 
-// export async function getServerSideProps() {
-//   const data = await getCountries();
+export async function getServerSideProps() {
+  const response = await axios.get(
+    "http://localhost:3000/_next/data/development/1/2.json?productCatalogId=1&productId=2"
+  );
 
-//   return { props: { data } };
-// }
+  return { props: { data: response.data } };
+}
 
-// interface ICheckoutProps {
-//   data: ICountry[];
-// }
+interface ICheckoutProps {
+  // data: ICountry[];
+  data: { pageProps: { catalogName: string } };
+}
 
-const Checkout: FC = () => {
-  // console.log(data);
+const Checkout: FC<ICheckoutProps> = ({ data }) => {
+  console.log(data);
+
+  // const [test, setTest] = useState("");
+
+  // useEffect(() => {
+  //   const test = async () => {
+  //     const response = await axios.get(
+  //       "http://localhost:3000/_next/data/development/1/2.json?productCatalogId=1&productId=2"
+  //     );
+
+  //     setTest(response.data.pageProps.catalogName);
+  //   };
+
+  //   test();
+  // }, []);
 
   return (
     <>
@@ -31,6 +49,8 @@ const Checkout: FC = () => {
       </Head>
 
       <Section>
+        <h2>{data.pageProps.catalogName}</h2>
+        {/* <h2>{test}</h2> */}
         <Breadcrumb />
         <Heading tag="h2" text="Checkout" />
         <CheckoutData />

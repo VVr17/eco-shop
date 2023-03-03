@@ -129,7 +129,7 @@ const LoginForm: FC<ILoginFormProps> = ({ toRegisterForm }) => {
           </Socials>
         </ToolBar>
         <ToRegister>
-          <ToRegisterText>Haven't account? </ToRegisterText>
+          <ToRegisterText>{`Haven't account?`} </ToRegisterText>
           <ToRegisterLink role="link" onClick={toRegisterForm}>
             Registration
           </ToRegisterLink>
