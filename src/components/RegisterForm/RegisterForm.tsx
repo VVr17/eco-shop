@@ -31,6 +31,8 @@ import {
   Label,
   RegisterLabel,
 } from "components/UIkit/FormElements/FormElements.styled";
+import { useUserGoogleData } from "hooks/useUserGoogleData";
+import Box from "components/Box";
 
 interface IRegisterFormProps {
   toLoginForm: () => void;
@@ -38,6 +40,20 @@ interface IRegisterFormProps {
 
 const RegisterForm: FC<IRegisterFormProps> = ({ toLoginForm }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+
+  function onGoogleUserLogin(error: Error | null, data: {} | null) {
+    if (error) {
+      console.log(error);
+      setLoginError(error.message);
+      return;
+    }
+    console.log(data);
+    setLoginError(null);
+    // router.push("/");
+  }
+  const { googleLogin } = useUserGoogleData(onGoogleUserLogin);
+
   const router = useRouter();
   const {
     register,
@@ -166,6 +182,9 @@ const RegisterForm: FC<IRegisterFormProps> = ({ toLoginForm }) => {
               borderColor="secondaryAccent"
               fontSize="16px"
               width="100%"
+              onClick={() => {
+                googleLogin();
+              }}
             />
 
             <Button
@@ -187,6 +206,11 @@ const RegisterForm: FC<IRegisterFormProps> = ({ toLoginForm }) => {
             Log in
           </ToLoginLink>
         </ToLogin>
+        {loginError && (
+          <Box as="p" color="red" mt="20px" textAlign="center">
+            Login Error: {loginError}
+          </Box>
+        )}
       </FormFooter>
     </Form>
   );

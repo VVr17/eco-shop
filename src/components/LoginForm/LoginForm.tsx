@@ -24,7 +24,10 @@ import {
 import { Button } from "components/UIkit";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
+import { useUserGoogleData } from "hooks/useUserGoogleData";
+import Box from "components/Box";
 
+/* ------------Validation schema------------ */
 const loginValidationSchema = yup.object({
   email: yup.string().email("Invalid email").required("Required field"),
   password: yup
@@ -32,13 +35,28 @@ const loginValidationSchema = yup.object({
     .min(8, "Required min 8 symbols")
     .matches(/[0-9a-zA-Z]/, "Only numbers and letters"),
 });
+/* ------------Validation schema------------ */
 
 interface ILoginFormProps {
   toRegisterForm: () => void;
 }
 
+// Component----------------------------------
 const LoginForm: FC<ILoginFormProps> = ({ toRegisterForm }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+
+  function onGoogleUserLogin(error: Error | null, data: {} | null) {
+    if (error) {
+      console.log(error);
+      setLoginError(error.message);
+      return;
+    }
+    console.log(data);
+    setLoginError(null);
+    // router.push("/");
+  }
+  const { googleLogin } = useUserGoogleData(onGoogleUserLogin);
 
   const {
     register,
@@ -113,6 +131,9 @@ const LoginForm: FC<ILoginFormProps> = ({ toRegisterForm }) => {
               borderColor="secondaryAccent"
               fontSize="16px"
               width="100%"
+              onClick={() => {
+                googleLogin();
+              }}
             />
 
             <Button
@@ -134,6 +155,11 @@ const LoginForm: FC<ILoginFormProps> = ({ toRegisterForm }) => {
             Registration
           </ToRegisterLink>
         </ToRegister>
+        {loginError && (
+          <Box as="p" color="red" mt="20px" textAlign="center">
+            Login Error: {loginError}
+          </Box>
+        )}
       </FormFooter>
     </Form>
   );
