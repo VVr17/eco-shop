@@ -24,6 +24,7 @@ interface IButtonProps extends IBaseProps {
 
 export type Ref = HTMLButtonElement;
 
+// eslint-disable-next-line react/display-name
 const Button = React.forwardRef<Ref, IButtonProps>(
   (
     {
