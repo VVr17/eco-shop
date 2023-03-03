@@ -4,6 +4,8 @@ import ModalTooltip from "./ModalTooltip";
 import Cart from "components/Cart";
 import { useState } from "react";
 import { cartData } from "utils/fakeData/fakeCartData";
+import RegisterForm from "components/RegisterForm";
+import UserForm from "components/UserForm";
 
 const ModalExamples = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +38,7 @@ const ModalExamples = () => {
             setIsModalOpen(false);
           }}
         >
-          Modal Body
+          <UserForm />
         </Modal>
       )}
     </Box>
