@@ -61,9 +61,12 @@ const CheckoutData = () => {
         return;
       }
     };
-    formRef.current?.addEventListener("keydown", onEnterSubmit);
+
+    const ref = formRef.current;
+    ref?.addEventListener("keydown", onEnterSubmit);
+
     return () => {
-      formRef.current?.removeEventListener("keydown", onEnterSubmit);
+      ref?.removeEventListener("keydown", onEnterSubmit);
     };
   }, []);
 
