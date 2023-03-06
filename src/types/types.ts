@@ -16,3 +16,12 @@ export interface ICartCardData {
 export interface ISelectList {
   name: string;
 }
+
+export interface IUser {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  birthDate?: string;
+  password: string;
+}

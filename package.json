@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@next/font": "^13.1.1",
+    "@react-oauth/google": "^0.8.0",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -24,10 +25,12 @@
     "next-redux-wrapper": "^8.1.0",
     "rc-slider": "^10.1.0",
     "react": "18.2.0",
+    "react-datepicker": "^4.10.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1",
     "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
+    "react-swipeable": "^7.0.0",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6",
@@ -36,6 +39,11 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@svgr/webpack": "^6.5.1"
+    "@svgr/webpack": "^6.5.1",
+
+    "eslint": "8.34.0",
+    "eslint-config-next": "13.1.6",
+    "@types/react-datepicker": "^4.8.0"
+
   }
 }

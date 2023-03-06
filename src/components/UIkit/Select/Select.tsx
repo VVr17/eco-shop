@@ -49,6 +49,13 @@ const Select: FC<ISelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const refSelect: { current: HTMLInputElement | null } = useRef(null);
+  const onSelectItem = (value: string) => {
+    setValue(value);
+    setIsOpen(false);
+    refSelect.current?.focus();
+
+    onChangeSelect && onChangeSelect(name, value); // Voronova
+  };
 
   useEffect(() => {
     if (defaultValue) {
@@ -58,14 +65,6 @@ const Select: FC<ISelectProps> = ({
 
   const toggleDropDownList = () => {
     setIsOpen(!isOpen);
-  };
-
-  const onSelectItem = (value: string) => {
-    setValue(value);
-    setIsOpen(false);
-    refSelect.current?.focus();
-
-    onChangeSelect && onChangeSelect(name, value); // Voronova
   };
 
   const closeDropDownList = (e: SyntheticEvent) => {

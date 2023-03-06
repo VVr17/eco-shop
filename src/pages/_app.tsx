@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../constants/theme";
 import { GlobalStyle } from "../styles/global.styled";
 import { Roboto } from "@next/font/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import "rc-slider/assets/index.css";
 
 const roboto = Roboto({
@@ -26,15 +27,18 @@ const MyApp: React.FC<AppProps> = ({ Component, ...rest }) => {
           font-family: ${roboto.style.fontFamily};
         }
       `}</style>
+
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider theme={theme}>
-            <Layout>
-              <main>
-                <Component {...pageProps} />
-              </main>
-            </Layout>
-            <GlobalStyle />
+            <GoogleOAuthProvider clientId="715978511289-dq4vmvgt7pcqn4r5i96utudfpbllqng4.apps.googleusercontent.com">
+              <Layout>
+                <main>
+                  <Component {...pageProps} />
+                </main>
+              </Layout>
+              <GlobalStyle />
+            </GoogleOAuthProvider>
           </ThemeProvider>
         </PersistGate>
       </Provider>

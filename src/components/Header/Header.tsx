@@ -22,13 +22,13 @@ import { useRouter } from "next/router";
 const Header: React.FC = () => {
   const { isDesktop, isTablet, isMobile } = useWindowSize();
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-  const {
-    isLoading,
-    error,
-    data: categories,
-    refetch,
-  } = useGetCategoriesQuery();
-  console.log(categories);
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: categories,
+  //   refetch,
+  // } = useGetCategoriesQuery();
+  // console.log(categories);
 
   return (
     <>
